@@ -1,0 +1,127 @@
+@font-face {
+  font-family: 'Yanone Kaffeesatz';
+  src: url('YanoneKaffeesatz-Bold.ttf') format('truetype');
+}
+
+html, body{
+	margin: 0;
+	padding: 0;
+	background-color: #1b1b1b;
+	background-image: url('office.png');
+	color: #FFFFFF;
+	font-size: 15px;
+}
+
+* {
+	font-weight: 100;
+}
+
+#container {
+	position: absolute;
+	padding: 150px 20px 0 20px;
+	top: 2%;
+	left: 0;
+	right: 0;
+	margin-left: auto;
+	margin-right: auto;
+	width: 70%;
+	max-width: 1000px;
+	height: 600px;
+}
+
+#header {
+    -webkit-box-shadow: 1px 1px 15px 0px #000;
+    -moz-box-shadow: 1px 1px 15px 0px #000;
+    box-shadow: 1px 1px 15px 0px #000;
+	border: 2px solid #332d29;
+	background-color: #1b1b1b;
+	margin: 6px;
+	margin-bottom: 100px;
+	padding: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	width:70%;
+	max-width: 900px;
+}
+
+#header:hover {
+	border: 2px solid #504339;
+}
+
+
+#links {
+	width: 100%;
+    text-align: center;
+}
+
+#links a {
+	font-family: 'Yanone Kaffeesatz', sans-serif;
+	
+	font-size: 64px;
+	text-decoration: none;
+	text-shadow: 3px 5px 3px rgba(0,0,0, 1);
+	margin-right: 20px;
+
+	display:inline-block;
+	position: relative;
+	
+	overflow: hidden;
+}
+
+.small-links a {
+	font-size: 32px !important;
+}
+
+a:after, a:before {
+    transition: all 0.3s ease 0s;
+}
+
+.offwhite {
+	color: #dddddd;
+}
+.offwhite:hover{
+	color: #909090 !important;
+}
+
+.pink {
+	color: #F665AE;
+}
+
+.green {
+	color: #3EA290;
+}
+
+.blue {
+	color: #518bb7;
+}
+.blue:hover {
+	color: #31658c;
+}
+
+.orange {
+	color: #fe6800;
+}
+.orange:hover {
+	color: #cb5300;
+}
+
+h3 {
+	font-size: 14px;
+	padding-bottom: 0;
+	margin-bottom: 0;
+	margin-top: 0;
+}
+
+form {
+	display: inline;
+}
+
+input 	{
+	display: inline;
+	background: none;
+	display: inline;
+	border: none;
+	color: #FFF;
+	width: 85%;
+	font-size: 15px;
+}
