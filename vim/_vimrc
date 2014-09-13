@@ -1,0 +1,82 @@
+set nocompatible
+source $VIMRUNTIME/vimrc_example.vim
+source $VIMRUNTIME/mswin.vim
+behave mswin
+
+" Pathogen
+execute pathogen#infect()
+
+" General General stuff
+"""""""""""""""""""""""""""""""""""""""""""""
+set gfn=Consolas:h10:cANSI
+set encoding=utf-8
+set fileencoding=utf-8
+au Filetype html,xml,xsl source D:\Vim\vimfiles\custom\closetag.vim
+if has("win32") || has("win64")
+    set directory=D:\\tmp
+endif
+
+" General options
+"""""""""""""""""""""""""""""""""""""""""""""
+colorscheme wombat
+hi ColorColumn guibg=#333333 gui=none
+filetype on
+filetype plugin indent on
+syntax on
+set guioptions-=T
+set smartindent
+set autoindent
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set softtabstop=4
+set nobackup
+
+set laststatus=2
+set winaltkeys=no
+
+" Variable definitions
+"""""""""""""""""""""""""""""""""""""""""""""
+let &showbreak = repeat(' ', 3)
+let mapleader = ","
+let $HOME="C:\\Users\\Ben"
+
+let  g:tagbar_ctags_bin="D:\\Applications\\Vim\\vimfiles\\custom\\ctags58\\ctags.exe"
+let g:tagbar_left=1
+let g:tagbar_width=30
+let g:tagbar_indent=1
+let g:tagbar_expand=1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_buffers = 0
+let g:airline_powerline_fonts = 1
+
+let g:ctrlp_regexp = 1
+let g:ctrlp_prompt_mappings = { 'PrtAdd(".*")': ['<space>'] }
+let g:ctrlp_map = ''
+
+" Auto-commands
+"""""""""""""""""""""""""""""""""""""""""""""
+"au Filetype python map <F7> :TlistToggle<Enter>
+"au Filetype c map <F7> :TlistToggle<Enter>
+
+
+" Mappings
+"""""""""""""""""""""""""""""""""""""""""""""
+map <F8> :NERDTreeToggle<Enter>
+nmap <F7> :TagbarToggle<CR>
+nmap <c-p> :CtrlP D:\Dropbox<CR>
+
+nmap <Leader>f :CtrlP<Space>
+
+nnoremap <silent> <C-l> :tabnext<CR>
+nnoremap <silent> <C-h> :tabprevious<CR>
+
+nnoremap <silent> <A-Right> <c-w>l
+nnoremap <silent> <A-Left> <c-w>h
+nnoremap <silent> <A-Up> <c-w>k
+nnoremap <silent> <A-Down> <c-w>j
+
+nnoremap <silent> <A-h> <c-w>h
+nnoremap <silent> <A-j> <c-w>j
+nnoremap <silent> <A-k> <c-w>k
+nnoremap <silent> <A-l> <c-w>l
