@@ -3,15 +3,23 @@ source $VIMRUNTIME/vimrc_example.vim
 source $VIMRUNTIME/mswin.vim
 behave mswin
 
-" Pathogen
-execute pathogen#infect()
+filetype off
+set rtp+=D:/Applications/Vim/vimfiles/bundle/Vundle.vim/
+let path='D:/Applications/Vim/vimfiles/bundle'
+call vundle#begin(path)
+Plugin 'gmarik/Vundle.vim'
+" Add plugins below
+Plugin 'kien/ctrlp.vim'
+Plugin 'majutsushi/tagbar'
+Plugin 'bling/vim-airline'
+call vundle#end()
+filetype plugin indent on
 
 " General General stuff
 """""""""""""""""""""""""""""""""""""""""""""
 set gfn=Consolas:h10:cANSI
 set encoding=utf-8
 set fileencoding=utf-8
-au Filetype html,xml,xsl source D:\Vim\vimfiles\custom\closetag.vim
 if has("win32") || has("win64")
     set directory=D:\\tmp
 endif
@@ -19,9 +27,7 @@ endif
 " General options
 """""""""""""""""""""""""""""""""""""""""""""
 colorscheme wombat
-hi ColorColumn guibg=#333333 gui=none
 filetype on
-filetype plugin indent on
 syntax on
 set guioptions-=T
 set smartindent
@@ -52,31 +58,33 @@ let g:airline_powerline_fonts = 1
 
 let g:ctrlp_regexp = 1
 let g:ctrlp_prompt_mappings = { 'PrtAdd(".*")': ['<space>'] }
-let g:ctrlp_map = ''
+let g:ctrlp_map = '<c-p>'
 
 " Auto-commands
 """""""""""""""""""""""""""""""""""""""""""""
-"au Filetype python map <F7> :TlistToggle<Enter>
-"au Filetype c map <F7> :TlistToggle<Enter>
 
 
 " Mappings
 """""""""""""""""""""""""""""""""""""""""""""
-map <F8> :NERDTreeToggle<Enter>
 nmap <F7> :TagbarToggle<CR>
-nmap <c-p> :CtrlP D:\Dropbox<CR>
-
 nmap <Leader>f :CtrlP<Space>
 
+" switch tabs
 nnoremap <silent> <C-l> :tabnext<CR>
 nnoremap <silent> <C-h> :tabprevious<CR>
 
-nnoremap <silent> <A-Right> <c-w>l
-nnoremap <silent> <A-Left> <c-w>h
-nnoremap <silent> <A-Up> <c-w>k
-nnoremap <silent> <A-Down> <c-w>j
-
+" switch splits
 nnoremap <silent> <A-h> <c-w>h
 nnoremap <silent> <A-j> <c-w>j
 nnoremap <silent> <A-k> <c-w>k
 nnoremap <silent> <A-l> <c-w>l
+
+" disable arrow keys
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
+imap <up> <nop>
+imap <down> <nop>
+imap <left> <nop>
+imap <right> <nop>
