@@ -69,7 +69,8 @@ let g:syntastic_python_checkers =  ['pyflakes']
 
 " Auto-commands
 """""""""""""""""""""""""""""""""""""""""""""
-
+autocmd InsertEnter * :set norelativenumber
+autocmd InsertLeave * :set relativenumber
 
 " Mappings
 """""""""""""""""""""""""""""""""""""""""""""
