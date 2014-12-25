@@ -16,6 +16,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'digitaltoad/vim-jade'
+Plugin 'Raimondi/delimitMate'
 call vundle#end()
 filetype plugin indent on
 

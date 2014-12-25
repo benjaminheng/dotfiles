@@ -1,2 +1,4 @@
-dotfiles
-========
+# dotfiles
+
+- Autohotkey scripts
+- Vim configs
