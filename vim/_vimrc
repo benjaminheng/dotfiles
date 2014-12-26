@@ -20,7 +20,7 @@ Plugin 'Raimondi/delimitMate'
 call vundle#end()
 filetype plugin indent on
 
-" General General stuff
+" General stuff
 """""""""""""""""""""""""""""""""""""""""""""
 set gfn=Consolas:h10:cANSI
 set encoding=utf-8
@@ -31,7 +31,7 @@ endif
 
 " General options
 """""""""""""""""""""""""""""""""""""""""""""
-colorscheme wombat
+colorscheme jellybeans
 filetype on
 syntax on
 set guioptions-=T
@@ -80,6 +80,7 @@ nmap <F7> :TagbarToggle<CR>
 nmap <F8> :NERDTreeToggle<CR>
 nmap <Leader>f :CtrlP<Space>
 nmap <F2> :wa<Bar>exe "mksession! " . v:this_session<CR>
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
 
 " map Shift-J/K to move up/down 10 lines
 nnoremap <S-J> 10j
