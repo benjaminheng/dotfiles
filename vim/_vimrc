@@ -68,6 +68,9 @@ let g:airline_powerline_fonts = 1
 let g:ctrlp_regexp = 1
 let g:ctrlp_prompt_mappings = { 'PrtAdd(".*")': ['<space>'] }
 let g:ctrlp_map = '<c-p>'
+let g:ctrlp_custom_ignore = {
+\   'dir': 'node_modules'
+\ }
 
 let g:syntastic_python_checkers =  ['pyflakes']
 
