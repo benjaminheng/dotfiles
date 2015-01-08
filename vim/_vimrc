@@ -42,11 +42,12 @@ set shiftwidth=4
 set expandtab
 set softtabstop=4
 set nobackup
-
 set laststatus=2
 set winaltkeys=no
 set number 
 set relativenumber
+set ignorecase
+set smartcase
 
 " Variable definitions
 """""""""""""""""""""""""""""""""""""""""""""
@@ -87,10 +88,6 @@ nmap <Leader>f :CtrlP<Space>
 nmap <F2> :wa<Bar>exe "mksession! " . v:this_session<CR>
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 
-" map Shift-J/K to move up/down 10 lines
-nnoremap <S-J> 10j
-nnoremap <S-K> 10k
-
 " map jk to <Esc>
 inoremap jk <Esc>
 
@@ -103,6 +100,13 @@ nnoremap <silent> <C-h> <c-w>h
 nnoremap <silent> <C-j> <c-w>j
 nnoremap <silent> <C-k> <c-w>k
 nnoremap <silent> <C-l> <c-w>l
+
+" yank/paste to/from clipboard
+vmap <leader>y "*y
+nmap <leader>p "*p
+
+" clear search highlighting
+nmap <silent> <leader>/ :nohlsearch<CR>
 
 " disable arrow keys
 map <up> <nop>
