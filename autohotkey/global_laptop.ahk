@@ -6,6 +6,21 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Initialization                     ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;if FileExist("config.ini") = ""
+;{
+;    str = 
+;    (
+;`; Config file for global autohotkey scripts
+;[bookmarks]
+;    )
+;    FileAppend, %str%, config.ini
+;}
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Variables / Toggles                ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -45,10 +60,10 @@ if (A_PriorHotKey = "AppsKey" AND A_TimeSincePriorHotkey < 250)
 KeyWait AppsKey
 return
 
-; Shutdown upon double LAlt+F1
+; Hibernate upon double LAlt+F1
 LAlt & F1::
 if (A_PriorHotKey = "LAlt & F1" AND A_TimeSincePriorHotkey < 250) 
-	Shutdown, 1
+    DllCall("PowrProf\SetSuspendState", "int", 1, "int", 0, "int", 0)
 KeyWait F1
 return
 
@@ -71,13 +86,6 @@ return
 #v::EditWithSublime()
 Tab:: SendInput, !d
 #IfWinActive
-
-; command prompt
-; enables ctrl+v paste
-#IfWinActive ahk_class ConsoleWindowClass
-^V::SendInput {Raw}%clipboard%
-#IfWinActive
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Functions                          ;
