@@ -4,22 +4,6 @@
 #SingleInstance force
 #NoEnv  ; Performance & future compatibility.
 
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-; Initialization                     ;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;if FileExist("config.ini") = ""
-;{
-;    str = 
-;    (
-;`; Config file for global autohotkey scripts
-;[bookmarks]
-;    )
-;    FileAppend, %str%, config.ini
-;}
-
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Variables / Toggles                ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -80,9 +64,7 @@ return
 
 ; NOTE: Needs Lib/Explorer.ahk to function. Also needs autohotkey with unicode support
 ; Hotkey for Windows Explorer
-; win+c opens cmd prompt at current location, win+v edits currently selected file
 #IfWinActive ahk_class CabinetWClass
-#c::CmdPromptDir()
 #v::EditWithSublime()
 Tab:: SendInput, !d
 #IfWinActive
