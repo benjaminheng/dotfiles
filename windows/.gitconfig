@@ -1,0 +1,19 @@
+[user]
+	email = benjheng@gmail.com
+	name = Ben
+[push]
+	default = simple
+[core]
+	autocrlf = true
+	excludesfile = 
+	editor = gvim
+[diff] 
+	tool = meld 
+[difftool "meld"] 
+    cmd = D:\\\\Applications\\\\Meld\\\\Meld.exe $LOCAL $REMOTE
+[alias]
+	diffdir = difftool --dir-diff
+[merge]
+	tool = meld
+[mergetool "meld"]
+	path = D:\\Applications\\Meld\\Meld.exe
