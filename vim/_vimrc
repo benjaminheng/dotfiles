@@ -9,13 +9,12 @@ call vundle#begin(path)
 Plugin 'gmarik/Vundle.vim'
 " Add plugins below
 Plugin 'kien/ctrlp.vim'
-Plugin 'majutsushi/tagbar'
 Plugin 'bling/vim-airline'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'digitaltoad/vim-jade'
-Plugin 'Raimondi/delimitMate'
+Plugin 'cohama/lexima.vim'
+Plugin 'Shougo/neocomplete.vim'
 call vundle#end()
 filetype plugin indent on
 filetype indent on
@@ -35,7 +34,6 @@ colorscheme jellybeans
 filetype on
 syntax on
 set guioptions-=T
-set smartindent
 set autoindent
 set tabstop=4
 set shiftwidth=4
@@ -54,15 +52,10 @@ set tw=0
 
 " Variable definitions
 """""""""""""""""""""""""""""""""""""""""""""
-let &showbreak = repeat(' ', 3)
+let &showbreak = '--- '
 let mapleader = ","
 let $HOME="C:\\Users\\Ben"
 
-let g:tagbar_ctags_bin="D:\\Applications\\Vim\\vimfiles\\custom\\ctags58\\ctags.exe"
-let g:tagbar_left=1
-let g:tagbar_width=30
-let g:tagbar_indent=1
-let g:tagbar_expand=1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#syntastic#enabled = 0
 let g:airline#extensions#tabline#show_buffers = 0
@@ -78,14 +71,18 @@ let g:ctrlp_custom_ignore = {
 
 let g:syntastic_python_checkers =  ['pyflakes']
 
+let g:neocomplete#enable_auto_select = 1
+let g:neocomplete#enable_at_startup = 1
+
 " Auto-commands
 """""""""""""""""""""""""""""""""""""""""""""
 autocmd InsertEnter * :set norelativenumber
 autocmd InsertLeave * :set relativenumber
+" neocomplete-related
+autocmd FileType html setlocal omnifunc=htmlcomplete#CompleteTags
 
 " Mappings
 """""""""""""""""""""""""""""""""""""""""""""
-nmap <F7> :TagbarToggle<CR>
 nmap <F8> :NERDTreeToggle<CR>
 nmap <Leader>f :CtrlP<Space>
 nmap <F2> :wa<Bar>exe "mksession! " . v:this_session<CR>
@@ -113,13 +110,3 @@ nmap <leader>p "*p
 
 " clear search highlighting
 nmap <silent> <leader>/ :nohlsearch<CR>
-
-" disable arrow keys
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
-imap <up> <nop>
-imap <down> <nop>
-imap <left> <nop>
-imap <right> <nop>
