@@ -2,8 +2,10 @@
 
 Setup tips, in case I forget.
 
-- Plugin `neocomplete`
-    - Requires Vim 7.3+ compiled with Lua support, and the `LuaXX.dll` included in the same directory as `gvim.exe`
 - Installing plugins
     - Download `Vundle.vim` to `.vim/bundle/` or your OS equivalent
     - Run `:PluginInstall`
+- Setting up eslint for javascript files
+    - **Unused**, but kept for posterity
+    - `npm install -g eslint babel-eslint eslint-plugin-react`
+    - Add `.eslintrc` to somewhere up the directory tree from the file you're editing

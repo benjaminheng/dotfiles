@@ -14,7 +14,6 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'cohama/lexima.vim'
-Plugin 'Shougo/neocomplete.vim'
 call vundle#end()
 filetype plugin indent on
 filetype indent on
@@ -46,6 +45,7 @@ set number
 set relativenumber
 set ignorecase
 set smartcase
+set linebreak       " word wrap
 set hlsearch
 set scrolloff=1
 set tw=0
@@ -71,15 +71,10 @@ let g:ctrlp_custom_ignore = {
 
 let g:syntastic_python_checkers =  ['pyflakes']
 
-let g:neocomplete#enable_auto_select = 1
-let g:neocomplete#enable_at_startup = 1
-
 " Auto-commands
 """""""""""""""""""""""""""""""""""""""""""""
 autocmd InsertEnter * :set norelativenumber
 autocmd InsertLeave * :set relativenumber
-" neocomplete-related
-autocmd FileType html setlocal omnifunc=htmlcomplete#CompleteTags
 
 " Mappings
 """""""""""""""""""""""""""""""""""""""""""""
