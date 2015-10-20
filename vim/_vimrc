@@ -14,6 +14,7 @@ Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'cohama/lexima.vim'
 Plugin 'pangloss/vim-javascript'
+Plugin 'SirVer/ultisnips'
 call vundle#end()
 filetype plugin indent on
 filetype indent on
@@ -55,6 +56,11 @@ set tw=0
 let &showbreak = '--- '
 let mapleader = ","
 let $HOME="C:\\Users\\Ben"
+
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsEditSplit="vertical"
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#syntastic#enabled = 0
