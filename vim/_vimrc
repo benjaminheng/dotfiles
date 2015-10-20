@@ -50,10 +50,15 @@ set linebreak       " word wrap
 set hlsearch
 set scrolloff=1
 set tw=0
+set incsearch       " Search before pressing enter
+
+if v:version > 703 || v:version == 703 && has("patch541")
+  set formatoptions+=j " Delete comment character when joining commented lines
+endif
 
 " Variable definitions
 """""""""""""""""""""""""""""""""""""""""""""
-let &showbreak = '--- '
+let &showbreak = '--→ '
 let mapleader = ","
 let $HOME="C:\\Users\\Ben"
 
