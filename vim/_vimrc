@@ -14,7 +14,6 @@ Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'cohama/lexima.vim'
 Plugin 'pangloss/vim-javascript'
-Plugin 'Valloric/YouCompleteMe'
 call vundle#end()
 filetype plugin indent on
 filetype indent on
@@ -50,16 +49,12 @@ set linebreak       " word wrap
 set hlsearch
 set scrolloff=1
 set tw=0
-set fileformats=unix,dos
 
 " Variable definitions
 """""""""""""""""""""""""""""""""""""""""""""
 let &showbreak = '--- '
 let mapleader = ","
 let $HOME="C:\\Users\\Ben"
-
-" Plugin 'Valloric/YouCompleteMe'
-let g:ycm_path_to_python_interpreter = 'C:\\Python27\\python.exe'
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#syntastic#enabled = 0
