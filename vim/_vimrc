@@ -7,7 +7,7 @@ let path='D:/Applications/Vim/vimfiles/bundle'
 call vundle#begin(path)
 Plugin 'gmarik/Vundle.vim'
 " Add plugins below
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'bling/vim-airline'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
@@ -33,7 +33,10 @@ endif
 colorscheme jellybeans
 filetype on
 syntax on
-set guioptions-=T
+set guioptions-=T       " Remove toolbar
+set guioptions-=m       " Remove menu
+set guioptions-=L       " Remove left scroll-bar
+set guioptions-=r       " Remove right scroll-bar
 set autoindent
 set tabstop=4
 set shiftwidth=4
@@ -84,6 +87,9 @@ let g:syntastic_python_checkers =  ['pyflakes']
 
 " Plugin 'pangloss/vim-javascript'
 let b:javascript_fold = 0
+
+" Plugin 'cohama/lexima.vim'
+let g:lexima_enable_basic_rules = 0
 
 " Auto-commands
 """""""""""""""""""""""""""""""""""""""""""""
