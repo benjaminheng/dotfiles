@@ -1,9 +1,8 @@
-; Command List: http://www.autohotkey.com/docs/commands.htm
+﻿; Command List: http://www.autohotkey.com/docs/commands.htm
 ; Key List:     http://www.autohotkey.com/docs/KeyList.htm
 
 #SingleInstance force
 #NoEnv  ; Performance & future compatibility.
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Variables / Toggles                ;
@@ -24,8 +23,7 @@ SetWorkingDir %A_ScriptDir% ; Consistent starting directory
 ;Media_Stop:: TrayTip, Stop Disabled, -,, 1
 ;Media_Next:: TrayTip, Next Disabled, -,, 1
 
-
-; Opens general todo list in GVim with a double tap of RCtrl.
+; Opens your todo list in GVim
 ~RCtrl:: 
 if (A_PriorHotKey = "~RCtrl" AND A_TimeSincePriorHotkey < 250) 
 	Run, "D:\Applications\Vim\vim74\gvim.exe" "D:\Dropbox\todo.txt"
@@ -33,12 +31,11 @@ if (A_PriorHotKey = "~RCtrl" AND A_TimeSincePriorHotkey < 250)
 KeyWait RCtrl
 return
 
-; Opens school todo list
 AppsKey:: 
 if (A_PriorHotKey = "AppsKey" AND A_TimeSincePriorHotkey < 250) 
 	Run, "D:\Applications\Vim\vim74\gvim.exe" "D:\Dropbox\school.txt"
 	;Run, "D:\Applications\Sublime Text 3\sublime_text.exe" "D:\Dropbox\school.txt"
-KeyWait AppsKey
+KeyWait RCtrl
 return
 
 ; Date/time hotstrings
@@ -63,7 +60,7 @@ return
 Tab:: SendInput, !d
 #IfWinActive
 
-; cmd window
+; cmd
 #IfWinActive ahk_class ConsoleWindowClass
 ^V::SendInput {Raw}%clipboard%
 #IfWinActive
@@ -74,17 +71,12 @@ Tab:: SendInput, !d
 
 #include D:\Applications\AutoHotkey\Lib\Explorer.ahk
 
-; Open command prompt at current location
 CmdPromptDir() {
-    WinGetText, text, A
-    RegExMatch(text, "Address: .*", full_path)
-    full_path := RegExReplace(full_path, "^Address: ", "")
-    StringSplit, array, full_path, \
-    ;Run, cmd /K "%array1% & cd `"%full_path%`""
-    Run, cmd /K cd /d `"%full_path%`"
+    ControlGetText, _Path, toolbarwindow322, ahk_class CabinetWClass
+    StringReplace, _Path, _Path, % "Address: ",% ""
+    Run %comspec%, %_Path%
 }
 
-; edit currently selected file in windows explorer
 EditWithGVim() {
     sel := Explorer_GetSelected()
     ;Run, "D:\Applications\Sublime Text 3\sublime_text.exe" `"%sel%`",,, pid
