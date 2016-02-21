@@ -15,6 +15,7 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'cohama/lexima.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'SirVer/ultisnips'
+Plugin 'shime/vim-livedown'
 call vundle#end()
 filetype plugin indent on
 filetype indent on
