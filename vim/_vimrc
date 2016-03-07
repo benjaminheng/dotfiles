@@ -16,6 +16,7 @@ Plugin 'cohama/lexima.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'SirVer/ultisnips'
 Plugin 'shime/vim-livedown'
+Plugin 'ajh17/VimCompletesMe'
 call vundle#end()
 filetype plugin indent on
 filetype indent on
@@ -66,7 +67,7 @@ let &showbreak = '--→ '
 let mapleader = ","
 let $HOME="C:\\Users\\Ben"
 
-let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsExpandTrigger="<C-s>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsEditSplit="vertical"
@@ -126,3 +127,6 @@ nmap <leader>p "*p
 
 " clear search highlighting
 nmap <silent> <leader>/ :nohlsearch<CR>
+
+" Close autocomplete popup with <C-Space>
+inoremap <expr><C-Space> pumvisible() ? "\<C-y>" : "\<C-Space>"
