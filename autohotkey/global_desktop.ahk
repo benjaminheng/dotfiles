@@ -9,6 +9,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 Menu, Tray, tip, [Ben-Desktop]`nGlobal AHK script
+;SetNumLockState AlwaysOn
 SendMode Input ; Superior speed & reliability
 SetWorkingDir %A_ScriptDir% ; Consistent starting directory
 
@@ -74,7 +75,9 @@ Tab:: SendInput, !d
 CmdPromptDir() {
     ControlGetText, _Path, toolbarwindow322, ahk_class CabinetWClass
     StringReplace, _Path, _Path, % "Address: ",% ""
-    Run %comspec%, %_Path%
+    Run, "D:\Applications\ConEmuPack.160211\conemu64.exe" /dir `"%_Path%`",,, pid
+    WinWait, ahk_pid %pid%
+    WinActivate, ahk_pid %pid%
 }
 
 EditWithGVim() {
