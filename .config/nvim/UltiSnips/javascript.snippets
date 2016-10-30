@@ -1,0 +1,37 @@
+snippet clog "Console log" b
+console.log($1);
+endsnippet
+
+snippet if "if" b
+if ($1) {
+  $2
+}
+endsnippet
+
+snippet constructor "constructor" b
+constructor(props) {
+  super(props);
+  $1
+}
+endsnippet
+
+snippet bind "bind function in constructor" !b
+this.$1 = this.$1.bind(this);
+endsnippet
+
+snippet component "react component" !b
+import React, { Component, PropTypes } from "react";
+
+class $1 extends Component {
+  render() {
+    return (
+      <div></div>
+    );
+  }
+}
+
+$1.propTypes = {
+};
+
+export default $1;
+endsnippet
