@@ -27,11 +27,25 @@ snippet " "Triple-quote comment" w
 """$1"""
 endsnippet
 
-snippet bp "Breakpoint" b
+snippet bp "ipdb breakpoint" b
+import ipdb; ipdb.set_trace()
+endsnippet
+
+snippet pdb "pdb breakpoint" b
 import pdb; pdb.set_trace()
 endsnippet
 
 snippet init "def __init__" !b
 def __init__(self$1):
 	$2
+endsnippet
+
+snippet apitestmodule "Test module for REST API" !b
+from rest_framework.test import APITestCase
+from django.core.urlresolvers import reverse
+
+
+class Test$1(APITestCase):
+	def setUp(self):
+		self.url = reverse('$2')
 endsnippet
