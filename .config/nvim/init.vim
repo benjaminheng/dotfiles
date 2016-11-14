@@ -5,6 +5,7 @@ call plug#begin('~/.config/nvim/plugged')
 " call vundle#begin()
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'benjaminheng/vim-smyteql-syntax'
 Plug 'neomake/neomake'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -13,16 +14,19 @@ Plug 'majutsushi/tagbar'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'cohama/lexima.vim'
 Plug 'mxw/vim-jsx'
-Plug 'pangloss/vim-javascript'
+Plug 'pangloss/vim-javascript', { 'commit': 'd7f4728' }
 Plug 'SirVer/ultisnips'
 Plug 'shime/vim-livedown'
 Plug 'hynek/vim-python-pep8-indent'
 " Plug 'mhinz/vim-grepper'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-repeat'
 Plug 'benjie/neomake-local-eslint.vim'
 Plug 'mhinz/vim-startify'
 Plug 'mileszs/ack.vim'
+Plug 'terryma/vim-expand-region'
 call plug#end()
 " call vundle#end()
 filetype plugin indent on
@@ -66,7 +70,7 @@ set completeopt-=preview    " remove scratchpad preview from omnicomplete
 set ttimeoutlen=10  " Keycode delay
 set formatoptions+=j " Delete comment character when joining commented lines
 set cursorline
-set lazyredraw      " Performance
+" set lazyredraw      " Performance
 set ttyfast         " Performance in terminals
 
 " Persistent undo
@@ -150,6 +154,11 @@ let g:startify_bookmarks = [
 \   {'b5': '~/dev/Carousell-Django-2'},
 \ ]
 
+" Plug 'terryma/vim-expand-region'
+" Use v and C-v to increase and decrease region expansion
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
+
 " Auto-commands
 """""""""""""""""""""""""""""""""""""""""""""
 autocmd InsertEnter * :set norelativenumber
@@ -166,6 +175,7 @@ autocmd FileType python setlocal omnifunc=python3complete#Complete
 nnoremap <silent> <Leader>t :Tags<CR>
 nnoremap <silent> <Leader>f :Files<CR>
 nnoremap <silent> <Leader>a :Ag<CR>
+nnoremap <silent> <Leader>b :Buffers<CR>
 
 nmap <F8> :NERDTreeToggle<CR>
 nmap <C-F9> :TagbarToggle<CR>
