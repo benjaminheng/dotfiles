@@ -1,0 +1,7 @@
+snippet rule "Create a new rule" b
+WHEN RULE $1
+  WHERE $2
+  WITH REASON "$3"
+BLOCK ACTION
+PENDING "$4" TO SessionActor;
+endsnippet

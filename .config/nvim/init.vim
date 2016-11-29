@@ -1,8 +1,4 @@
-" filetype off
-" set rtp+=~/.config/nvim/bundle/Vundle.vim
-" Add plugins below
 call plug#begin('~/.config/nvim/plugged')
-" call vundle#begin()
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'benjaminheng/vim-smyteql-syntax'
@@ -16,19 +12,18 @@ Plug 'cohama/lexima.vim'
 Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript', { 'commit': 'd7f4728' }
 Plug 'SirVer/ultisnips'
-Plug 'shime/vim-livedown'
 Plug 'hynek/vim-python-pep8-indent'
-" Plug 'mhinz/vim-grepper'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
 Plug 'benjie/neomake-local-eslint.vim'
 Plug 'mhinz/vim-startify'
 Plug 'mileszs/ack.vim'
 Plug 'terryma/vim-expand-region'
+Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 call plug#end()
-" call vundle#end()
 filetype plugin indent on
 filetype indent on
 
@@ -139,8 +134,6 @@ let g:startify_list_order = [
 \   'sessions',
 \   ['   Bookmarks'],
 \   'bookmarks',
-\   ['   MRUs'],
-\   'files',
 \   ['   Commands'],
 \   'commands'
 \ ]
@@ -159,13 +152,21 @@ let g:startify_bookmarks = [
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 
+" Plug 'vimwiki/vimwiki'
+let wiki = {}
+let wiki.path = '~/Dropbox/Miscellaneous/vimwiki/'
+let wiki.syntax = 'markdown'
+let wiki.ext = '.md'
+let g:vimwiki_list = [wiki]
+let g:vimwiki_hl_headers = 1
+let g:vimwiki_hl_cb_checked = 1
+
 " Auto-commands
 """""""""""""""""""""""""""""""""""""""""""""
 autocmd InsertEnter * :set norelativenumber
 autocmd InsertLeave * :set relativenumber
 " autocmd filetype javascript setlocal sw=2 sws=2 ts=2
-autocmd filetype javascript setlocal sw=2 ts=2
-autocmd filetype yaml setlocal sw=2 ts=2
+autocmd FileType javascript,sqrl,yaml setlocal sw=2 ts=2
 autocmd FileType python setlocal omnifunc=python3complete#Complete
 
 " Mappings
