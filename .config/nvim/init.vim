@@ -86,6 +86,7 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsSnippetsDir="~/.config/nvim/UltiSnips/"
 
 " Plugin 'bling/vim-airline'
 let g:airline#extensions#tabline#enabled = 1
@@ -126,6 +127,9 @@ let g:lexima_enable_basic_rules = 0
 let g:ackprg = 'ag --vimgrep'
 let g:ackhighlight = 1
 
+" Plug 'mxw/vim-jsx'
+let g:jsx_ext_required = 0
+
 " Plugin 'mhinz/vim-startify'
 let g:startify_change_to_vcs_root = 1
 let g:startify_custom_indices = map(range(1,100), 'string(v:val)')
@@ -156,7 +160,6 @@ vmap <C-v> <Plug>(expand_region_shrink)
 let wiki = {}
 let wiki.path = '~/Dropbox/Miscellaneous/vimwiki/'
 let wiki.syntax = 'markdown'
-let wiki.ext = '.md'
 let g:vimwiki_list = [wiki]
 let g:vimwiki_hl_headers = 1
 let g:vimwiki_hl_cb_checked = 1
@@ -168,6 +171,7 @@ autocmd InsertLeave * :set relativenumber
 " autocmd filetype javascript setlocal sw=2 sws=2 ts=2
 autocmd FileType javascript,sqrl,yaml setlocal sw=2 ts=2
 autocmd FileType python setlocal omnifunc=python3complete#Complete
+autocmd FileType sqrl setlocal commentstring=#\ %s
 
 " Mappings
 """""""""""""""""""""""""""""""""""""""""""""
