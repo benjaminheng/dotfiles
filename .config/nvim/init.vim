@@ -1,6 +1,7 @@
 call plug#begin('~/.config/nvim/plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/vim-slash'
 Plug 'benjaminheng/vim-smyteql-syntax'
 Plug 'neomake/neomake'
 Plug 'bling/vim-airline'
@@ -10,7 +11,7 @@ Plug 'majutsushi/tagbar'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'cohama/lexima.vim'
 Plug 'mxw/vim-jsx'
-Plug 'pangloss/vim-javascript', { 'commit': 'd7f4728' }
+Plug 'pangloss/vim-javascript'
 Plug 'SirVer/ultisnips'
 Plug 'hynek/vim-python-pep8-indent'
 Plug 'tpope/vim-commentary'
@@ -111,6 +112,8 @@ hi NeomakeErrorSign ctermfg=red ctermbg=236
 hi NeomakeWarningSign ctermfg=yellow ctermbg=236
 hi NeomakeMessageSign ctermfg=white ctermbg=NONE
 hi NeomakeInfoSign ctermfg=white ctermbg=NONE
+hi NeomakeError cterm=underline
+hi NeomakeWarning cterm=underline
 autocmd! BufWritePost * Neomake
 
 " Neovim-related options
@@ -160,6 +163,7 @@ vmap <C-v> <Plug>(expand_region_shrink)
 let wiki = {}
 let wiki.path = '~/Dropbox/Miscellaneous/vimwiki/'
 let wiki.syntax = 'markdown'
+let wiki.nested_syntaxes = {'python': 'python', 'js': 'javascript'}
 let g:vimwiki_list = [wiki]
 let g:vimwiki_hl_headers = 1
 let g:vimwiki_hl_cb_checked = 1
@@ -169,7 +173,7 @@ let g:vimwiki_hl_cb_checked = 1
 autocmd InsertEnter * :set norelativenumber
 autocmd InsertLeave * :set relativenumber
 " autocmd filetype javascript setlocal sw=2 sws=2 ts=2
-autocmd FileType javascript,sqrl,yaml setlocal sw=2 ts=2
+autocmd FileType javascript,sqrl,yaml,htmldjango setlocal sw=2 ts=2
 autocmd FileType python setlocal omnifunc=python3complete#Complete
 autocmd FileType sqrl setlocal commentstring=#\ %s
 
