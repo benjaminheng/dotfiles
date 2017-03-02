@@ -98,7 +98,7 @@ let g:airline#extensions#whitespace#checks = ['indent']
 
 " Plugin 'ludovicchabant/vim-gutentags'
 let g:gutentags_cache_dir = '~/.config/nvim/tags/'
-let g:gutentags_exclude = ['node_modules', 'env']
+let g:gutentags_ctags_exclude = ['node_modules', 'env']
 
 " Plug 'neomake/neomake'
 let g:neomake_javascript_enabled_makers = ['eslint']
