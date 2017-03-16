@@ -24,15 +24,10 @@ Plug 'mhinz/vim-startify'
 Plug 'mileszs/ack.vim'
 Plug 'terryma/vim-expand-region'
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
+Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 filetype plugin indent on
 filetype indent on
-
-if has('nvim')
-    " Hack to get C-h working in NeoVim
-    nmap <BS> <C-W>h
-    nmap <C-W><BS> :tabprevious<CR>
-endif
 
 " set encoding=utf-8
 " set fileencoding=utf-8
