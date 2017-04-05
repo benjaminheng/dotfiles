@@ -20,7 +20,7 @@ endsnippet
 
 snippet ifmain "ifmain" b
 if __name__ == '__main__':
-	$1
+    $1
 endsnippet
 
 snippet " "Triple-quote comment" w
@@ -37,7 +37,7 @@ endsnippet
 
 snippet init "def __init__" !b
 def __init__(self$1):
-	$2
+    $2
 endsnippet
 
 snippet apitestcase "Test module for REST API" !b
@@ -46,8 +46,8 @@ from django.core.urlresolvers import reverse
 
 
 class Test$1(APITestCase):
-	def setUp(self):
-		self.url = reverse('$2')
+    def setUp(self):
+        self.url = reverse('$2')
 endsnippet
 
 snippet testcase "Test module" b
@@ -55,6 +55,6 @@ from unittest import TestCase
 
 
 class Test$1(TestCase):
-	def setUp(self):
-		pass
+    def setUp(self):
+        pass
 endsnippet
