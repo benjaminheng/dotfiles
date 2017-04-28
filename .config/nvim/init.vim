@@ -93,7 +93,7 @@ let g:airline#extensions#whitespace#checks = ['indent']
 
 " Plugin 'ludovicchabant/vim-gutentags'
 let g:gutentags_cache_dir = '~/.config/nvim/tags/'
-let g:gutentags_ctags_exclude = ['node_modules', 'env']
+let g:gutentags_ctags_exclude = ['node_modules', 'env', 'env2', 'vendor']
 
 " Plug 'neomake/neomake'
 let g:neomake_javascript_enabled_makers = ['eslint']
@@ -163,6 +163,9 @@ let g:vimwiki_list = [wiki]
 let g:vimwiki_hl_headers = 1
 let g:vimwiki_hl_cb_checked = 1
 
+" Plug 'christoomey/vim-tmux-navigator'
+let g:tmux_navigator_disable_when_zoomed = 1
+
 " Auto-commands
 """""""""""""""""""""""""""""""""""""""""""""
 autocmd InsertEnter * :set norelativenumber
@@ -208,6 +211,3 @@ nmap <leader>p "+p
 
 " clear search highlighting
 nmap <silent> <leader>/ :nohlsearch<CR>
-
-" Close autocomplete popup with <C-Space>
-inoremap <expr><C-Space> pumvisible() ? "\<C-y>" : "\<C-Space>"
