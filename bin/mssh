@@ -3,7 +3,7 @@
 
 multi_ssh() {
     if [ -z "$HOSTS" ]; then
-       echo -n "Please provide of list of hosts separated by spaces [ENTER]: "
+       echo "Please provide of list of hosts separated by spaces [ENTER]: "
        read HOSTS
     fi
 
@@ -16,7 +16,7 @@ multi_ssh() {
         tmux split-window -h  "ssh -t benh@$i"
         tmux select-layout tiled > /dev/null
     done
-    tmux select-pane -t 0
+    tmux select-pane -t 1
     tmux set-window-option synchronize-panes on > /dev/null
 
 }
