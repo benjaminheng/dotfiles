@@ -63,7 +63,7 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export PATH=$PATH:/usr/local/sbin
 export PATH=$PATH:~/Documents/apache-storm-1.0.2/bin
-export KW_MONITOR="arunkumar@10.240.110.1"
+export PATH=$PATH:~/bin
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -95,6 +95,9 @@ alias vim="nvim"
 
 # Disable flow control (allow keys like Ctrl+S)
 stty -ixon
+
+# Attach to session named $1 if exists, else create new one
+tnew() { tmux new-session -A -s $1; }
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
