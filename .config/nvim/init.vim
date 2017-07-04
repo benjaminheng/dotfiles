@@ -20,7 +20,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'benjie/neomake-local-eslint.vim'
-Plug 'mhinz/vim-startify'
+" Plug 'mhinz/vim-startify'
 Plug 'mileszs/ack.vim'
 Plug 'terryma/vim-expand-region'
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
@@ -127,27 +127,6 @@ let g:ackhighlight = 1
 
 " Plug 'mxw/vim-jsx'
 let g:jsx_ext_required = 0
-
-" Plugin 'mhinz/vim-startify'
-let g:startify_change_to_vcs_root = 1
-let g:startify_custom_indices = map(range(1,100), 'string(v:val)')
-let g:startify_list_order = [
-\   ['   Sessions'],
-\   'sessions',
-\   ['   Bookmarks'],
-\   'bookmarks',
-\   ['   Commands'],
-\   'commands'
-\ ]
-let g:startify_bookmarks = [
-\   {'t': '~/todo.md'},
-\   {'b0': '~/.config/nvim/init.vim'},
-\   {'b1': '~/dev/l-client'},
-\   {'b2': '~/dev/l-backend'},
-\   {'b3': '~/dev/Flaggings'},
-\   {'b4': '~/dev/Snitch'},
-\   {'b5': '~/dev/Carousell-Django-2'},
-\ ]
 
 " Plug 'terryma/vim-expand-region'
 " Use v and C-v to increase and decrease region expansion
