@@ -64,6 +64,7 @@ export LANG=en_US.UTF-8
 export PATH=$PATH:/usr/local/sbin
 export PATH=$PATH:~/Documents/apache-storm-1.0.2/bin
 export PATH=$PATH:~/bin
+export PATH="$HOME/.yarn/bin:$PATH"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -111,4 +112,5 @@ if [ -f /Users/Carousell/Downloads/google-cloud-sdk/completion.zsh.inc ]; then
   source '/Users/Carousell/Downloads/google-cloud-sdk/completion.zsh.inc'
 fi
 
-export PATH="$HOME/.yarn/bin:$PATH"
+# Custom completions
+compdef _hosts mssh
