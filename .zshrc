@@ -59,12 +59,19 @@ plugins=(git zsh-completions zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 # Exports
+export VISUAL=nvim
+export EDITOR="$VISUAL"
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export PATH=$PATH:/usr/local/sbin
 export PATH=$PATH:~/Documents/apache-storm-1.0.2/bin
 export PATH=$PATH:~/bin
 export PATH="$HOME/.yarn/bin:$PATH"
+
+export GOPATH="$HOME/dev/go"
+export GOBIN="$GOPATH/bin"
+export PATH="$GOBIN:$PATH"
+export PATH="$HOME/.gotools:$PATH"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -90,6 +97,7 @@ export PATH="$HOME/.yarn/bin:$PATH"
 alias g="git"
 alias ls="ls -G"
 alias vim="nvim"
+alias godev="cd $HOME/dev/go/src/github.com/carousell/"
 # List hosts from /etc/hosts
 alias hosts="cat /etc/hosts | grep -Ev '^#|^$' | awk '{print \$2}'";
 

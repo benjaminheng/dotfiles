@@ -3,6 +3,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-slash'
 Plug 'benjaminheng/vim-smyteql-syntax'
+Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'neomake/neomake'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -20,11 +21,11 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'benjie/neomake-local-eslint.vim'
-" Plug 'mhinz/vim-startify'
 Plug 'mileszs/ack.vim'
 Plug 'terryma/vim-expand-region'
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'ctrlpvim/ctrlp.vim'
 call plug#end()
 filetype plugin indent on
 filetype indent on
@@ -144,6 +145,20 @@ let g:vimwiki_hl_cb_checked = 1
 
 " Plug 'christoomey/vim-tmux-navigator'
 let g:tmux_navigator_disable_when_zoomed = 1
+
+" Plug 'fatih/vim-go'
+let g:go_fmt_command = "goimports"
+let g:go_fmt_fail_silently = 1
+let g:go_highlight_functions = 1
+autocmd FileType go nmap <leader>gb  <Plug>(go-build)
+autocmd FileType go nmap <leader>gr  <Plug>(go-run)
+autocmd FileType go nmap <leader>gd  :GoDeclsDir<CR>
+autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
+
+" Plug 'ctrlpvim/ctrlp.vim'
+" Disable ctrlp, we're only using this for vim-go's :GoDecls command
+" Other fuzzy navigation is handled by fzf
+let g:ctrlp_map = ''
 
 " Auto-commands
 """""""""""""""""""""""""""""""""""""""""""""
