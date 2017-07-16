@@ -99,6 +99,7 @@ let g:gutentags_ctags_exclude = ['node_modules', 'env', 'env2', 'vendor']
 " Plug 'neomake/neomake'
 let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_python_enabled_makers = ['flake8']
+let g:neomake_go_enabled_makers = ['go', 'golint', 'govet']
 let g:neomake_place_signs = 1
 let g:neomake_error_sign = {'text': '● ', 'texthl': 'NeomakeErrorSign'}
 let g:neomake_warning_sign = {'text': '● ', 'texthl': 'NeomakeWarningSign'}
