@@ -161,6 +161,16 @@ autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
 " Other fuzzy navigation is handled by fzf
 let g:ctrlp_map = ''
 
+" Functions
+"""""""""""""""""""""""""""""""""""""""""""""
+function! Prettier()
+    " store cursor position
+    let l:curPos = getpos('.')
+    silent %!prettier --stdin --trailing-comma='all' --single-quote=false --parser='babylon'
+    " restore cursor position
+    call cursor(l:curPos[1], l:curPos[2])
+endfunction
+
 " Auto-commands
 """""""""""""""""""""""""""""""""""""""""""""
 autocmd InsertEnter * :set norelativenumber
@@ -169,6 +179,7 @@ autocmd InsertLeave * :set relativenumber
 autocmd FileType javascript,sqrl,yaml,htmldjango setlocal sw=2 ts=2
 autocmd FileType python setlocal omnifunc=python3complete#Complete
 autocmd FileType sqrl setlocal commentstring=#\ %s
+autocmd FileType javascript nnoremap <silent> <leader>gf :call Prettier()<CR>
 
 " Mappings
 """""""""""""""""""""""""""""""""""""""""""""
