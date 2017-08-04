@@ -63,7 +63,7 @@ const mapStateToProps = (state, ownProps) => {
 export default connect(mapStateToProps)($1);
 endsnippet
 
-snippet stateless-component "React stateless component" b
+snippet statelesscomponent "React stateless component" b
 import React, { PropTypes } from "react";
 
 const $1 = ({}) => {
@@ -76,4 +76,20 @@ $1.propTypes = {
 };
 
 export default $1;
+endsnippet
+
+snippet mapDispatchToProps "bindActionCreators" b
+const mapDispatchToProps = (dispatch) => {
+  return {
+    actions: bindActionCreators({
+    }, dispatch),
+  };
+};
+endsnippet
+
+snippet childrenprop "children prop types" b
+children: PropTypes.oneOfType([
+  PropTypes.arrayOf(PropTypes.element),
+  PropTypes.element,
+]),
 endsnippet
