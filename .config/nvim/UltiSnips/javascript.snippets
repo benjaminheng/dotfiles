@@ -24,7 +24,8 @@ this.$1 = this.$1.bind(this);
 endsnippet
 
 snippet component "react component" !b
-import React, { Component, PropTypes } from "react";
+import PropTypes from "prop-types";
+import React, { Component } from "react";
 
 class $1 extends Component {
   render() {
@@ -41,7 +42,8 @@ export default $1;
 endsnippet
 
 snippet container "react container" b
-import React, { Component, PropTypes } from "react";
+import PropTypes from "prop-types";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 
 class $1 extends Component {
@@ -64,7 +66,8 @@ export default connect(mapStateToProps)($1);
 endsnippet
 
 snippet statelesscomponent "React stateless component" b
-import React, { PropTypes } from "react";
+import PropTypes from "prop-types";
+import React from "react";
 
 const $1 = ({}) => {
   return (
@@ -92,4 +95,26 @@ children: PropTypes.oneOfType([
   PropTypes.arrayOf(PropTypes.element),
   PropTypes.element,
 ]),
+endsnippet
+
+snippet render "render function" b
+render() {
+  return (
+    <div></div>
+  );
+}
+endsnippet
+
+snippet rendera "render arrow function" b
+render$1 = () => {
+  return (
+    <div></div>
+  );
+};
+endsnippet
+
+snippet func "arrow function" b
+$1 = ($2) => {
+  $3
+};
 endsnippet
