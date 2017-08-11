@@ -17,6 +17,8 @@ brew update
 
 # General packages
 echo "Installing general packages..."
+brew tap universal-ctags/universal-ctags
+brew install --HEAD universal-ctags
 packages=(
     git
     neovim
