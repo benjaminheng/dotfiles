@@ -28,6 +28,7 @@ packages=(
     wget
     pyenv
     diff-so-fancy
+    cmus
 )
 brew install ${packages[@]}
 
@@ -50,6 +51,7 @@ pip install ${packages[@]}
 # Dotfiles
 echo "Pulling dotfiles..."
 mkdir -p $HOME/.config/nvim
+mkdir -p $HOME/.config/cmus
 git clone git@github.com:benjaminheng/dotfiles.git $HOME/dev/dotfiles
 ln -s $HOME/dev/dotfiles/bin $HOME/bin
 ln -s $HOME/dev/dotfiles/.tmux.conf $HOME/.tmux.conf
@@ -57,6 +59,7 @@ ln -s $HOME/dev/dotfiles/.zshrc $HOME/.zshrc
 ln -s $HOME/dev/dotfiles/.config/nvim/init.vim $HOME/.config/nvim/init.vim
 ln -s $HOME/dev/dotfiles/.config/nvim/colors $HOME/.config/nvim/colors
 ln -s $HOME/dev/dotfiles/.config/nvim/UltiSnips $HOME/.config/nvim/UltiSnips
+ln -s $HOME/dev/dotfiles/.config/cmus/rc $HOME/.config/cmus/rc
 
 # Vim
 echo "Setting up Vim..."

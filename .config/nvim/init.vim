@@ -191,10 +191,7 @@ nnoremap <silent> <Leader>f :Files<CR>
 nnoremap <silent> <Leader>a :Ag<CR>
 nnoremap <silent> <Leader>b :Buffers<CR>
 
-nmap <F8> :NERDTreeToggle<CR>
-nmap <C-F9> :TagbarToggle<CR>
-nmap <F9> :TagbarOpen fjc<CR>
-nmap <F2> :wa<Bar>exe "mksession! " . v:this_session<CR>
+nnoremap <Leader>mt :NERDTreeToggle<CR>
 
 " fix for properly indenting lines starting with # on a new line
 inoremap # X#
