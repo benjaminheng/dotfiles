@@ -20,7 +20,6 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'w0rp/ale'
-Plug 'mileszs/ack.vim'
 Plug 'terryma/vim-expand-region'
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 Plug 'christoomey/vim-tmux-navigator'
@@ -120,10 +119,6 @@ let b:javascript_fold = 0
 
 " Plugin 'cohama/lexima.vim'
 let g:lexima_enable_basic_rules = 0
-
-" Plugin 'mileszs/ack.vim'
-let g:ackprg = 'ag --vimgrep'
-let g:ackhighlight = 1
 
 " Plug 'mxw/vim-jsx'
 let g:jsx_ext_required = 0
