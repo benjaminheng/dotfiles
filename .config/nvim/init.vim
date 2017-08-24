@@ -4,7 +4,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-slash'
 Plug 'benjaminheng/vim-smyteql-syntax'
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
-Plug 'neomake/neomake'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
@@ -20,7 +19,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-Plug 'benjie/neomake-local-eslint.vim'
+Plug 'w0rp/ale'
 Plug 'mileszs/ack.vim'
 Plug 'terryma/vim-expand-region'
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
@@ -97,22 +96,20 @@ let g:gutentags_cache_dir = '~/.config/nvim/tags/'
 let g:gutentags_ctags_exclude = ['node_modules', 'env', 'env2', 'vendor']
 let g:gutentags_file_list_command = { 'markers': { '.git': 'git ls-files | grep -v "^vendor/"' } }
 
-" Plug 'neomake/neomake'
-let g:neomake_javascript_enabled_makers = ['eslint']
-let g:neomake_python_enabled_makers = ['flake8']
-let g:neomake_go_enabled_makers = ['go', 'golint', 'govet']
-let g:neomake_place_signs = 1
-let g:neomake_error_sign = {'text': '● ', 'texthl': 'NeomakeErrorSign'}
-let g:neomake_warning_sign = {'text': '● ', 'texthl': 'NeomakeWarningSign'}
-let g:neomake_message_sign = {'text': 'M ', 'texthl': 'NeomakeMessageSign'}
-let g:neomake_info_sign = {'text': 'I ', 'texthl': 'NeomakeInfoSign'}
-hi NeomakeErrorSign ctermfg=red ctermbg=236
-hi NeomakeWarningSign ctermfg=yellow ctermbg=236
-hi NeomakeMessageSign ctermfg=white ctermbg=NONE
-hi NeomakeInfoSign ctermfg=white ctermbg=NONE
-hi NeomakeError cterm=underline
-hi NeomakeWarning cterm=underline
-autocmd! BufWritePost * Neomake
+" Plug 'w0rp/ale'
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_sign_error = '● '
+let g:ale_sign_warning = '● '
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\   'python': ['flake8'],
+\   'go': ['go', 'golint', 'govet'],
+\}
+hi ALEErrorSign ctermfg=red ctermbg=236
+hi ALEWarningSign ctermfg=yellow ctermbg=236
+hi ALEErrorSign ctermbg=236
+hi ALEError cterm=underline ctermbg=none
+hi ALEWarning cterm=underline ctermbg=none
 
 " Neovim-related options
 let g:python_host_prog='/usr/bin/python'
