@@ -147,7 +147,7 @@ let g:go_highlight_functions = 1
 autocmd FileType go nmap <leader>gb  <Plug>(go-build)
 autocmd FileType go nmap <leader>gr  <Plug>(go-run)
 autocmd FileType go nmap <leader>gd  :GoDeclsDir<CR>
-autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
+autocmd FileType go setlocal noexpandtab sw=8 ts=8
 
 " Plug 'ctrlpvim/ctrlp.vim'
 " Disable ctrlp, we're only using this for vim-go's :GoDecls command
