@@ -149,6 +149,11 @@ autocmd FileType go nmap <leader>gr  <Plug>(go-run)
 autocmd FileType go nmap <leader>gd  :GoDeclsDir<CR>
 autocmd FileType go setlocal noexpandtab sw=8 ts=8
 
+" Plug 'machakann/vim-sandwich'
+call operator#sandwich#set('delete', 'all', 'highlight', 0)
+call operator#sandwich#set('add', 'all', 'highlight', 2)
+call operator#sandwich#set('replace', 'all', 'highlight', 2)
+
 " Functions
 """""""""""""""""""""""""""""""""""""""""""""
 function! Prettier()
