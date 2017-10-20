@@ -18,7 +18,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-surround'
+Plug 'machakann/vim-sandwich'
 Plug 'w0rp/ale'
 Plug 'terryma/vim-expand-region'
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
@@ -51,17 +51,17 @@ set number
 set relativenumber
 set ignorecase
 set smartcase
-set linebreak       " word wrap
+set linebreak               " word wrap
 set hlsearch
 set scrolloff=1
 set tw=0
-set incsearch       " Search before pressing enter
+set incsearch               " Search before pressing enter
 set completeopt-=preview    " remove scratchpad preview from omnicomplete
-set ttimeoutlen=10  " Keycode delay
-set formatoptions+=j " Delete comment character when joining commented lines
+set ttimeoutlen=10          " Keycode delay
+set formatoptions+=j        " Delete comment character when joining commented lines
 set cursorline
-" set lazyredraw      " Performance
-set ttyfast         " Performance in terminals
+" set lazyredraw
+set ttyfast
 
 " Persistent undo
 set undodir=~/.config/nvim/undodir
@@ -87,7 +87,7 @@ let g:UltiSnipsSnippetsDir="~/.config/nvim/UltiSnips/"
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#tabline#show_splits = 0
-let g:airline#extensions#branch#enabled = 0 " disable branch in statusline
+let g:airline#extensions#branch#enabled = 0
 let g:airline#extensions#whitespace#checks = ['indent']
 
 " Plugin 'ludovicchabant/vim-gutentags'
@@ -132,7 +132,7 @@ vmap <C-v> <Plug>(expand_region_shrink)
 let wiki = {}
 let wiki.path = '~/Dropbox/Miscellaneous/vimwiki/'
 let wiki.syntax = 'markdown'
-let wiki.nested_syntaxes = {'python': 'python', 'js': 'javascript'}
+let wiki.nested_syntaxes = {'python': 'python', 'js': 'javascript', 'sql': 'sql'}
 let g:vimwiki_list = [wiki]
 let g:vimwiki_hl_headers = 1
 let g:vimwiki_hl_cb_checked = 1
@@ -149,11 +149,6 @@ autocmd FileType go nmap <leader>gr  <Plug>(go-run)
 autocmd FileType go nmap <leader>gd  :GoDeclsDir<CR>
 autocmd FileType go setlocal noexpandtab sw=8 ts=8
 
-" Plug 'ctrlpvim/ctrlp.vim'
-" Disable ctrlp, we're only using this for vim-go's :GoDecls command
-" Other fuzzy navigation is handled by fzf
-let g:ctrlp_map = ''
-
 " Functions
 """""""""""""""""""""""""""""""""""""""""""""
 function! Prettier()
@@ -168,7 +163,6 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""
 autocmd InsertEnter * :set norelativenumber
 autocmd InsertLeave * :set relativenumber
-" autocmd filetype javascript setlocal sw=2 sws=2 ts=2
 autocmd FileType javascript,sqrl,yaml,htmldjango setlocal sw=2 ts=2
 autocmd FileType python setlocal omnifunc=python3complete#Complete
 autocmd FileType sqrl setlocal commentstring=#\ %s
@@ -177,7 +171,6 @@ autocmd FileType javascript nnoremap <silent> <leader>gf :call Prettier()<CR>
 " Mappings
 """""""""""""""""""""""""""""""""""""""""""""
 " Plugin 'junegunn/fzf.vim'
-" nnoremap <silent> <Leader><space> :Files<CR>
 nnoremap <silent> <Leader>t :Tags<CR>
 nnoremap <silent> <Leader>f :Files<CR>
 nnoremap <silent> <Leader>a :Ag<CR>
