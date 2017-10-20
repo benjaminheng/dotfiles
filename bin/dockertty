@@ -1,0 +1,11 @@
+#!/bin/bash
+
+image_name=$1
+container_id=`docker ps | awk -v image_name="$1" '$2 == image_name' | awk '{print $1}'`
+if [[ ! -z $container_id ]]
+then
+    eval $(docker-machine env default)
+    docker exec -it $container_id bash
+else
+    echo 'no container found'
+fi

@@ -1,5 +1,5 @@
+#!/bin/bash
 # a script to ssh multiple servers over multiple tmux panes
-
 
 multi_ssh() {
     if [ -z "$HOSTS" ]; then
@@ -9,7 +9,6 @@ multi_ssh() {
 
     local hosts=( $HOSTS )
 
-
     tmux new-window "ssh -t benh@${hosts[0]}"
     unset hosts[0];
     for i in "${hosts[@]}"; do
@@ -18,7 +17,6 @@ multi_ssh() {
     done
     tmux select-pane -t 1
     tmux set-window-option synchronize-panes on > /dev/null
-
 }
 
 HOSTS=${HOSTS:=$*}
