@@ -102,7 +102,7 @@ let g:ale_sign_warning = '● '
 let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'python': ['flake8'],
-\   'go': ['go', 'golint', 'govet'],
+\   'go': ['go', 'golint', 'go vet'],
 \}
 hi ALEErrorSign ctermfg=red ctermbg=236
 hi ALEWarningSign ctermfg=yellow ctermbg=236
@@ -146,13 +146,15 @@ let g:go_fmt_fail_silently = 1
 let g:go_highlight_functions = 1
 autocmd FileType go nmap <leader>gb  <Plug>(go-build)
 autocmd FileType go nmap <leader>gr  <Plug>(go-run)
-autocmd FileType go nmap <leader>gd  :GoDeclsDir<CR>
+autocmd FileType go nmap <leader>gi  <Plug>(go-info)
 autocmd FileType go setlocal noexpandtab sw=8 ts=8
 
 " Plug 'machakann/vim-sandwich'
 call operator#sandwich#set('delete', 'all', 'highlight', 0)
 call operator#sandwich#set('add', 'all', 'highlight', 2)
 call operator#sandwich#set('replace', 'all', 'highlight', 2)
+nmap s <NOP>
+xmap s <NOP>
 
 " Functions
 """""""""""""""""""""""""""""""""""""""""""""
