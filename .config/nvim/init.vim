@@ -156,6 +156,9 @@ call operator#sandwich#set('replace', 'all', 'highlight', 2)
 nmap s <NOP>
 xmap s <NOP>
 
+" Plug 'tpope/vim-commentary'
+autocmd FileType sqrl,gitcommit setlocal commentstring=#\ %s
+
 " Functions
 """""""""""""""""""""""""""""""""""""""""""""
 function! Prettier()
@@ -172,7 +175,6 @@ autocmd InsertEnter * :set norelativenumber
 autocmd InsertLeave * :set relativenumber
 autocmd FileType javascript,sqrl,yaml,htmldjango setlocal sw=2 ts=2
 autocmd FileType python setlocal omnifunc=python3complete#Complete
-autocmd FileType sqrl setlocal commentstring=#\ %s
 autocmd FileType javascript nnoremap <silent> <leader>gf :call Prettier()<CR>
 
 " Mappings
