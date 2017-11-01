@@ -147,6 +147,7 @@ let g:go_highlight_functions = 1
 autocmd FileType go nmap <leader>gb  <Plug>(go-build)
 autocmd FileType go nmap <leader>gr  <Plug>(go-run)
 autocmd FileType go nmap <leader>gi  <Plug>(go-info)
+autocmd FileType go nmap <leader>gt  <Plug>(go-test)
 autocmd FileType go setlocal noexpandtab sw=8 ts=8
 
 " Plug 'machakann/vim-sandwich'

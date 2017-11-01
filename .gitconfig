@@ -1,0 +1,10 @@
+[user]
+	name = myname
+	email = email@example.com
+[pager]
+	diff = diff-so-fancy | less
+[alias]
+    fix-conflicts = !git diff --name-only | uniq | xargs nvim
+    logfzf = !gitfzflog
+[url "git@github.com:"]
+	insteadOf = https://github.com/
