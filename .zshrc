@@ -100,7 +100,6 @@ alias vim="nvim"
 alias godev="cd $HOME/dev/go/src/github.com/carousell/"
 alias scratchpad="cd $HOME/dev/tmp/scratchpad && . env/bin/activate"
 # List hosts from /etc/hosts
-alias hosts="cat /etc/hosts | grep -Ev '^#|^$' | awk '{print \$2}'";
 alias allhosts="cat /tmp/allhosts | grep -Ev '^#|^$'";
 
 # Disable flow control (allow keys like Ctrl+S)
