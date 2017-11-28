@@ -60,7 +60,6 @@ set completeopt-=preview    " remove scratchpad preview from omnicomplete
 set ttimeoutlen=10          " Keycode delay
 set formatoptions+=j        " Delete comment character when joining commented lines
 set cursorline
-" set lazyredraw
 set ttyfast
 
 " Persistent undo
@@ -141,13 +140,25 @@ let g:vimwiki_hl_cb_checked = 1
 let g:tmux_navigator_disable_when_zoomed = 1
 
 " Plug 'fatih/vim-go'
+" run :GoBuild or :GoTestCompile based on the go file
+function! s:build_go_files()
+  let l:file = expand('%')
+  if l:file =~# '^\f\+_test\.go$'
+    call go#test#Test(0, 1)
+  elseif l:file =~# '^\f\+\.go$'
+    call go#cmd#Build(0)
+  endif
+endfunction
+
 let g:go_fmt_command = "goimports"
 let g:go_fmt_fail_silently = 1
 let g:go_highlight_functions = 1
-autocmd FileType go nmap <leader>gb  <Plug>(go-build)
+autocmd FileType go nmap <leader>gb :<C-u>call <SID>build_go_files()<CR>
 autocmd FileType go nmap <leader>gr  <Plug>(go-run)
 autocmd FileType go nmap <leader>gi  <Plug>(go-info)
 autocmd FileType go nmap <leader>gt  <Plug>(go-test)
+autocmd FileType go nmap <leader>gT  <Plug>(go-test-func)
+autocmd FileType go nmap <leader>gtc  <Plug>(go-coverage-toggle)
 autocmd FileType go setlocal noexpandtab sw=8 ts=8
 
 " Plug 'machakann/vim-sandwich'
