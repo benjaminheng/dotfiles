@@ -153,13 +153,16 @@ endfunction
 let g:go_fmt_command = "goimports"
 let g:go_fmt_fail_silently = 1
 let g:go_highlight_functions = 1
-autocmd FileType go nmap <leader>gb :<C-u>call <SID>build_go_files()<CR>
-autocmd FileType go nmap <leader>gr  <Plug>(go-run)
-autocmd FileType go nmap <leader>gi  <Plug>(go-info)
-autocmd FileType go nmap <leader>gt  <Plug>(go-test)
-autocmd FileType go nmap <leader>gT  <Plug>(go-test-func)
-autocmd FileType go nmap <leader>gtc  <Plug>(go-coverage-toggle)
-autocmd FileType go setlocal noexpandtab sw=8 ts=8
+augroup filetype_go
+    autocmd!
+    autocmd FileType go nmap <leader>gb :<C-u>call <SID>build_go_files()<CR>
+    autocmd FileType go nmap <leader>gr  <Plug>(go-run)
+    autocmd FileType go nmap <leader>gi  <Plug>(go-info)
+    autocmd FileType go nmap <leader>gt  <Plug>(go-test)
+    autocmd FileType go nmap <leader>gT  <Plug>(go-test-func)
+    autocmd FileType go nmap <leader>gtc  <Plug>(go-coverage-toggle)
+    autocmd FileType go setlocal noexpandtab sw=8 ts=8
+augroup END
 
 " Plug 'machakann/vim-sandwich'
 call operator#sandwich#set('delete', 'all', 'highlight', 0)
@@ -183,11 +186,14 @@ endfunction
 
 " Auto-commands
 """""""""""""""""""""""""""""""""""""""""""""
-autocmd InsertEnter * :set norelativenumber
-autocmd InsertLeave * :set relativenumber
+augroup toggle_relative_number
+    autocmd InsertEnter * :set norelativenumber
+    autocmd InsertLeave * :set relativenumber
+augroup END
 autocmd FileType javascript,sqrl,yaml,htmldjango setlocal sw=2 ts=2
 autocmd FileType python setlocal omnifunc=python3complete#Complete
 autocmd FileType javascript nnoremap <silent> <leader>gf :call Prettier()<CR>
+autocmd FileType qf wincmd J " quickfix window always at bottom
 
 " Mappings
 """""""""""""""""""""""""""""""""""""""""""""
