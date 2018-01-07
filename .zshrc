@@ -99,8 +99,9 @@ alias ls="ls -G"
 alias vim="nvim"
 alias godev="cd $HOME/dev/go/src/github.com/carousell/"
 alias scratchpad="cd $HOME/dev/tmp/scratchpad && . env/bin/activate"
-# List hosts from /etc/hosts
-alias allhosts="cat /tmp/allhosts | grep -Ev '^#|^$'";
+alias goscratch="cd $HOME/dev/tmp/scratchpad/goscratchpad && vim main.go"
+alias allhosts="cat /tmp/allhosts | grep -Ev '^#|^$'" # List hosts from /etc/hosts
+
 
 # Disable flow control (allow keys like Ctrl+S)
 stty -ixon
