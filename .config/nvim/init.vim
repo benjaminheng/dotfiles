@@ -23,7 +23,6 @@ Plug 'w0rp/ale'
 Plug 'terryma/vim-expand-region'
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'ctrlpvim/ctrlp.vim'
 call plug#end()
 filetype plugin indent on
 filetype indent on
@@ -93,6 +92,7 @@ let g:airline#extensions#whitespace#checks = ['indent']
 let g:gutentags_cache_dir = '~/.config/nvim/tags/'
 let g:gutentags_ctags_exclude = ['node_modules', 'env', 'env2', 'vendor']
 let g:gutentags_file_list_command = { 'markers': { '.git': 'git ls-files | grep -v "^vendor/"' } }
+let g:gutentags_generate_on_empty_buffer = 1
 
 " Plug 'w0rp/ale'
 let g:ale_lint_on_text_changed = 'never'
@@ -131,7 +131,7 @@ vmap <C-v> <Plug>(expand_region_shrink)
 let wiki = {}
 let wiki.path = '~/Dropbox/Miscellaneous/vimwiki/'
 let wiki.syntax = 'markdown'
-let wiki.nested_syntaxes = {'python': 'python', 'js': 'javascript', 'sql': 'sql'}
+let wiki.nested_syntaxes = {'python': 'python', 'js': 'javascript', 'sql': 'sql', 'go': 'go', 'bash': 'sh'}
 let g:vimwiki_list = [wiki]
 let g:vimwiki_hl_headers = 1
 let g:vimwiki_hl_cb_checked = 1
@@ -153,6 +153,7 @@ endfunction
 let g:go_fmt_command = "goimports"
 let g:go_fmt_fail_silently = 1
 let g:go_highlight_functions = 1
+let g:go_gocode_unimported_packages = 1
 augroup filetype_go
     autocmd!
     autocmd FileType go nmap <leader>gb :<C-u>call <SID>build_go_files()<CR>
