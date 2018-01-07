@@ -4,8 +4,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-slash'
 Plug 'benjaminheng/vim-smyteql-syntax'
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
-Plug 'bling/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
 Plug 'ludovicchabant/vim-gutentags'
@@ -80,6 +79,49 @@ let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsSnippetsDir="~/.config/nvim/UltiSnips/"
+
+" Plug 'itchyny/lightline.vim'
+function! LightlineALEErrors()
+    let l:counts = ale#statusline#Count(bufnr(''))
+    let l:error_counts = l:counts.error + l:counts.style_error
+    return l:error_counts > 0 ? printf('W:' . '%d', l:error_counts) : ""
+endfunction
+function! LightlineALEWarnings()
+    let l:counts = ale#statusline#Count(bufnr(''))
+    let l:warning_counts = l:counts.warning + l:counts.style_warning
+    return l:warning_counts > 0 ? printf('W:' . '%d', l:warning_counts) : ""
+endfunction
+function! LightlineMode()
+    return &filetype ==# 'fzf' ? 'FZF' : lightline#mode()
+endfunction
+function! LightlineFilename()
+  let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
+  return &filetype ==# 'fzf' ? '' : filename
+endfunction
+let g:lightline = {
+            \ 'colorscheme': 'jellybeans',
+            \ 'active': {
+            \   'right': [ [ 'lineinfo' ],
+            \              [ 'linter_errors', 'linter_warnings' ],
+            \              [ 'fileformat', 'fileencoding', 'filetype' ] ]
+            \ },
+            \ 'inactive': {
+            \   'right': [ [ 'lineinfo' ] ]
+            \ },
+            \ 'component_function': {
+            \   'filename': 'LightlineFilename',
+            \   'mode': 'LightlineMode',
+            \ },
+            \ 'component_expand': {
+            \   'linter_errors': 'LightlineALEErrors',
+            \   'linter_warnings': 'LightlineALEWarnings',
+            \ },
+            \ 'component_type': {
+            \   'linter_errors': 'error',
+            \   'linter_warnings': 'warning',
+            \ },
+            \ }
+autocmd User ALELint call lightline#update()
 
 " Plugin 'bling/vim-airline'
 let g:airline#extensions#tabline#enabled = 1
