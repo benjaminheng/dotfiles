@@ -58,6 +58,7 @@ ln -s $HOME/dev/dotfiles/.tmux.conf $HOME/.tmux.conf
 ln -s $HOME/dev/dotfiles/.zshrc $HOME/.zshrc
 ln -s $HOME/dev/dotfiles/.config/nvim/init.vim $HOME/.config/nvim/init.vim
 ln -s $HOME/dev/dotfiles/.config/nvim/colors $HOME/.config/nvim/colors
+ln -s $HOME/dev/dotfiles/.config/nvim/autoload/lightline $HOME/.config/nvim/autoload/
 ln -s $HOME/dev/dotfiles/.config/nvim/UltiSnips $HOME/.config/nvim/UltiSnips
 ln -s $HOME/dev/dotfiles/.config/cmus/rc $HOME/.config/cmus/rc
 
