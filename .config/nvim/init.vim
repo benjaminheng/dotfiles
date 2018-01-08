@@ -1,4 +1,5 @@
 call plug#begin('~/.config/nvim/plugged')
+Plug 'nanotech/jellybeans.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-slash'
@@ -95,7 +96,7 @@ function! LightlineMode()
     return &filetype ==# 'fzf' ? 'FZF' : lightline#mode()
 endfunction
 function! LightlineFilename()
-  let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
+  let filename = @% !=# '' ? @% : '[No Name]'
   return &filetype ==# 'fzf' ? '' : filename
 endfunction
 let g:lightline = {
