@@ -85,7 +85,7 @@ let g:UltiSnipsSnippetsDir="~/.config/nvim/UltiSnips/"
 function! LightlineALEErrors()
     let l:counts = ale#statusline#Count(bufnr(''))
     let l:error_counts = l:counts.error + l:counts.style_error
-    return l:error_counts > 0 ? printf('W:' . '%d', l:error_counts) : ""
+    return l:error_counts > 0 ? printf('E:' . '%d', l:error_counts) : ""
 endfunction
 function! LightlineALEWarnings()
     let l:counts = ale#statusline#Count(bufnr(''))
@@ -99,18 +99,30 @@ function! LightlineFilename()
   let filename = @% !=# '' ? @% : '[No Name]'
   return &filetype ==# 'fzf' ? '' : filename
 endfunction
+function! LightlineFileformat()
+  return winwidth(0) > 90 ? &fileformat : ''
+endfunction
+
+function! LightlineFileencoding()
+  return winwidth(0) > 90 ? &fileencoding : ''
+endfunction
 let g:lightline = {
             \ 'colorscheme': 'jellybeans',
             \ 'active': {
-            \   'right': [ [ 'lineinfo' ],
+            \   'right': [ [ 'lineinfo', 'truncate_here' ],
             \              [ 'linter_errors', 'linter_warnings' ],
             \              [ 'fileformat', 'fileencoding', 'filetype' ] ]
             \ },
             \ 'inactive': {
             \   'right': [ [ 'lineinfo' ] ]
             \ },
+            \ 'component': {
+            \   'truncate_here': '%<',
+            \ },
             \ 'component_function': {
             \   'filename': 'LightlineFilename',
+            \   'fileformat': 'LightlineFileformat',
+            \   'fileencoding': 'LightlineFileencoding',
             \   'mode': 'LightlineMode',
             \ },
             \ 'component_expand': {
@@ -120,6 +132,10 @@ let g:lightline = {
             \ 'component_type': {
             \   'linter_errors': 'error',
             \   'linter_warnings': 'warning',
+			\   'truncate_here': 'raw',
+            \ },
+            \ 'component_visible_condition': {
+			\   'truncate_here': 0,
             \ },
             \ }
 autocmd User ALELint call lightline#update()
@@ -238,6 +254,14 @@ autocmd FileType javascript,sqrl,yaml,htmldjango setlocal sw=2 ts=2
 autocmd FileType python setlocal omnifunc=python3complete#Complete
 autocmd FileType javascript nnoremap <silent> <leader>gf :call Prettier()<CR>
 autocmd FileType qf wincmd J " quickfix window always at bottom
+
+" Syntax highlighting overrides
+"""""""""""""""""""""""""""""""""""""""""""""
+hi Tag        ctermfg=04
+hi xmlTag     ctermfg=04
+hi xmlTagName ctermfg=04
+hi xmlEndTag  ctermfg=04
+hi xmlEqual   ctermfg=110
 
 " Mappings
 """""""""""""""""""""""""""""""""""""""""""""
