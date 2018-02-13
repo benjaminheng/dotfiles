@@ -64,7 +64,6 @@ export EDITOR="$VISUAL"
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export PATH=$PATH:/usr/local/sbin
-export PATH=$PATH:~/Documents/apache-storm-1.0.2/bin
 export PATH=$PATH:~/bin
 export PATH="$HOME/.yarn/bin:$PATH"
 
@@ -112,13 +111,13 @@ tnew() { tmux new-session -A -s $1; }
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f /Users/Carousell/Downloads/google-cloud-sdk/path.zsh.inc ]; then
-  source '/Users/Carousell/Downloads/google-cloud-sdk/path.zsh.inc'
+if [ -f /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc ]; then
+  source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
 fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f /Users/Carousell/Downloads/google-cloud-sdk/completion.zsh.inc ]; then
-  source '/Users/Carousell/Downloads/google-cloud-sdk/completion.zsh.inc'
+if [ -f /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc ]; then
+  source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
 fi
 
 # Custom completions
