@@ -59,7 +59,7 @@ set completeopt-=preview    " remove scratchpad preview from omnicomplete
 set ttimeoutlen=10          " Keycode delay
 set formatoptions+=j        " Delete comment character when joining commented lines
 set cursorline
-set ttyfast
+set guicursor=
 
 " Persistent undo
 set undodir=~/.config/nvim/undodir
@@ -139,13 +139,6 @@ let g:lightline = {
             \ },
             \ }
 autocmd User ALELint call lightline#update()
-
-" Plugin 'bling/vim-airline'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_buffers = 0
-let g:airline#extensions#tabline#show_splits = 0
-let g:airline#extensions#branch#enabled = 0
-let g:airline#extensions#whitespace#checks = ['indent']
 
 " Plugin 'ludovicchabant/vim-gutentags'
 let g:gutentags_cache_dir = '~/.config/nvim/tags/'
