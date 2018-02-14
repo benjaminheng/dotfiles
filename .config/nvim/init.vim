@@ -23,6 +23,7 @@ Plug 'w0rp/ale'
 Plug 'terryma/vim-expand-region'
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'elubow/cql-vim'
 call plug#end()
 filetype plugin indent on
 filetype indent on
@@ -183,7 +184,14 @@ vmap <C-v> <Plug>(expand_region_shrink)
 let wiki = {}
 let wiki.path = '~/Dropbox/Miscellaneous/vimwiki/'
 let wiki.syntax = 'markdown'
-let wiki.nested_syntaxes = {'python': 'python', 'js': 'javascript', 'sql': 'sql', 'go': 'go', 'bash': 'sh'}
+let wiki.nested_syntaxes = {
+            \ 'python': 'python',
+            \ 'js': 'javascript',
+            \ 'sql': 'sql',
+            \ 'go': 'go',
+            \ 'bash': 'sh',
+            \ 'cql': 'cql',
+            \ }
 let g:vimwiki_list = [wiki]
 let g:vimwiki_hl_headers = 1
 let g:vimwiki_hl_cb_checked = 1
