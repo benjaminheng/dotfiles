@@ -245,6 +245,9 @@ function! Prettier()
     call cursor(l:curPos[1], l:curPos[2])
 endfunction
 
+command Github call githubbrowser#show_in_github()
+command -range GithubRange <line1>,<line2>call githubbrowser#show_in_github_with_range()
+
 " Auto-commands
 """""""""""""""""""""""""""""""""""""""""""""
 augroup toggle_relative_number
