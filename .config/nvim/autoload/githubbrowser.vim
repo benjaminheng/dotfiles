@@ -25,8 +25,10 @@ endfunction
 function! githubbrowser#get_path() abort
     let rel_path = @%
     let root = substitute(system('git rev-parse --show-prefix'), '\n\+$', '', '')
-    if !root
+    if root == ''
         let root = '/'
+    elseif root !~ '^\/'
+        let root = '/' . root
     endif
     return root . rel_path
 endfunction
