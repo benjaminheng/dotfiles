@@ -4,6 +4,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-slash'
 Plug 'benjaminheng/vim-smyteql-syntax'
+Plug 'benjaminheng/vim-githubbrowse'
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'itchyny/lightline.vim'
 Plug 'scrooloose/nerdtree'
@@ -234,6 +235,7 @@ xmap s <NOP>
 
 " Plug 'tpope/vim-commentary'
 autocmd FileType sqrl,gitcommit setlocal commentstring=#\ %s
+autocmd FileType proto setlocal commentstring=//\ %s
 
 " Functions
 """""""""""""""""""""""""""""""""""""""""""""
@@ -244,9 +246,6 @@ function! Prettier()
     " restore cursor position
     call cursor(l:curPos[1], l:curPos[2])
 endfunction
-
-command Github call githubbrowser#show_in_github()
-command -range GithubRange <line1>,<line2>call githubbrowser#show_in_github_with_range()
 
 " Auto-commands
 """""""""""""""""""""""""""""""""""""""""""""
