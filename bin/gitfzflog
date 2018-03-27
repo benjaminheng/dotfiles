@@ -1,8 +1,0 @@
-#!/bin/bash
-# git log with fzf, git show selections
-hashes=$(git log --color=always --format="%C(auto)%h %C(auto)%<(16,trunc)%an %<(80,trunc)%s %C(black)%C(bold)%cr" "$@" | fzf --ansi --no-sort --height=40% --min-height=20 --multi | awk '{print $1}')
-while read -r hash; do
-    if [[ ! -z "$hash" ]]; then
-        git show $hash
-    fi
-done <<< "$hashes"
