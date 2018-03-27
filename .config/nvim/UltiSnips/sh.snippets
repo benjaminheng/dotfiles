@@ -15,3 +15,9 @@ while getopts ":a:" opt; do
 done
 shift $((OPTIND-1))
 endsnippet
+
+snippet if "If statement" b
+if [ $1 ]; then
+	$2
+fi
+endsnippet
