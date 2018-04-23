@@ -96,9 +96,8 @@ export PATH="$HOME/.gotools:$PATH"
 alias g="git"
 alias ls="ls -G"
 alias vim="nvim"
-alias godev="cd $HOME/dev/go/src/github.com/carousell/"
+alias godev="cd $GOPATH/src/github.com/carousell/"
 alias scratchpad="cd $HOME/dev/tmp/scratchpad && . env/bin/activate"
-alias goscratch="cd $HOME/dev/tmp/scratchpad/goscratchpad && vim main.go"
 alias allhosts="cat /tmp/allhosts | grep -Ev '^#|^$'" # List hosts from /etc/hosts
 
 
