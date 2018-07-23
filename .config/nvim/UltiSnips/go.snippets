@@ -2,3 +2,52 @@
 snippet ctx "ctx context.Context" w
 ctx context.Context
 endsnippet
+
+snippet ifok "If ok then" b
+if ${2:v}, ok := ${1}; ok {
+	${0:${VISUAL}}
+}
+endsnippet
+
+snippet orionsvcmeth "Orion service method definition" b
+func ($1 $2) $3(ctx context.Context, req *proto.$3Request) (*proto.$3Response, error) {
+	resp := &proto.$3Response{}
+	$4
+	return resp, nil
+}
+endsnippet
+
+snippet testcases "table tests struct" b
+cases := []struct {
+	$1
+}{
+	{},
+}
+
+for _, c := range cases {
+
+}
+endsnippet
+
+snippet spew "spew.Dump" b
+spew.Dump($1)
+endsnippet
+
+snippet createrule "Trust service create rule" b
+state.CreateRule(Rule{
+	Name: "",
+	Func: func(state *State) bool {
+		return false
+	},
+	RolloutPercent: 0,
+	Reason:         "",
+})
+endsnippet
+
+snippet whenrule "Trust service when rule" b
+state.WhenRule([]string{
+	""
+},
+	NewLabelAction("label_name", CreatedContentLabelTarget, PendingLabelState),
+)
+endsnippet
