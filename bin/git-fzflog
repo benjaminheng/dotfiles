@@ -21,7 +21,7 @@ shift $((OPTIND-1))
 if [[ preview -eq 0 ]]; then
     hashes=$(git log --color=always --format="%C(auto)%h %C(auto)%<(16,trunc)%an %<(80,trunc)%s %C(black)%C(bold)%cr" "$@" | fzf --ansi --height=40% --min-height=20 --multi | awk '{print $1}')
 else
-    hashes=$(git log --color=always --format="%C(auto)%h %C(auto)%<(16,trunc)%an %<(80,trunc)%s %C(black)%C(bold)%cr" | fzf --ansi --preview 'git show --color=always $(echo {} | cut -d " " -f1)' --multi | awk '{print $1}')
+    hashes=$(git log --color=always --format="%C(auto)%h %C(auto)%<(16,trunc)%an %<(80,trunc)%s %C(black)%C(bold)%cr" | fzf --bind ctrl-d:preview-page-down --bind ctrl-u:preview-page-up --ansi --preview 'git show --color=always $(echo {} | cut -d " " -f1)' --multi | awk '{print $1}')
 fi
 while read -r hash; do
     if [[ ! -z "$hash" ]]; then
