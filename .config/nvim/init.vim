@@ -76,6 +76,7 @@ let mapleader = ","
 " Plug 'junegunn/fzf.vim'
 " respect .gitignore, among others
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+command! -nargs=1 AgRaw call fzf#vim#ag_raw(<f-args>)
 
 " Plugin 'SirVer/ultisnips'
 let g:UltiSnipsExpandTrigger="<tab>"
