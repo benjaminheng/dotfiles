@@ -1,0 +1,10 @@
+#!/bin/bash
+
+tmpfiles=()
+for path in "$@"
+do
+    fname=$(basename $path)
+    gron ${path} > /tmp/${fname}_gron
+    tmpfiles=("${tmpfiles[@]}" "/tmp/${fname}_gron")
+done
+git diff ${tmpfiles[@]}
