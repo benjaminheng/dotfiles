@@ -110,6 +110,7 @@ endfunction
 function! LightlineFileencoding()
   return winwidth(0) > 90 ? &fileencoding : ''
 endfunction
+
 let g:lightline = {
             \ 'colorscheme': 'jellybeans',
             \ 'active': {
@@ -128,6 +129,7 @@ let g:lightline = {
             \   'fileformat': 'LightlineFileformat',
             \   'fileencoding': 'LightlineFileencoding',
             \   'mode': 'LightlineMode',
+            \   'currenttag': 'TagbarCurrentTag',
             \ },
             \ 'component_expand': {
             \   'linter_errors': 'LightlineALEErrors',
@@ -143,6 +145,9 @@ let g:lightline = {
             \ },
             \ }
 autocmd User ALELint call lightline#update()
+
+" Plug 'majutsushi/tagbar'
+command! CurrentTag echo tagbar#currenttag('%s', '')
 
 " Plugin 'ludovicchabant/vim-gutentags'
 let g:gutentags_cache_dir = '~/.config/nvim/tags/'
@@ -236,6 +241,7 @@ nmap s <NOP>
 xmap s <NOP>
 
 " Plug 'tpope/vim-commentary'
+autocmd FileType sql setlocal commentstring=--\ %s
 autocmd FileType sqrl,gitcommit setlocal commentstring=#\ %s
 autocmd FileType proto setlocal commentstring=//\ %s
 
@@ -273,7 +279,7 @@ hi xmlEqual   ctermfg=110
 " Plugin 'junegunn/fzf.vim'
 nnoremap <silent> <Leader>t :Tags<CR>
 nnoremap <silent> <Leader>f :Files<CR>
-nnoremap <silent> <Leader>a :Ag<CR>
+nnoremap <Leader>a :Ag 
 nnoremap <silent> <Leader>b :Buffers<CR>
 
 nnoremap <Leader>mt :NERDTreeToggle<CR>
