@@ -306,3 +306,8 @@ nmap <leader>p "+p
 
 " clear search highlighting
 nmap <silent> <leader>/ :nohlsearch<CR>
+
+" add commands for incrementing and decrementing numbers, because <C-a> is my
+" tmux prefix. <C-x> is added for consistency.
+command! Incr normal! <C-a>
+command! Decr normal! <C-x>
