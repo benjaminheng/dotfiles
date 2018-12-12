@@ -61,6 +61,7 @@ source $ZSH/oh-my-zsh.sh
 # Exports
 export VISUAL=nvim
 export EDITOR="$VISUAL"
+export GIT_EDITOR="$VISUAL"
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export PATH=$PATH:/usr/local/sbin
