@@ -51,3 +51,33 @@ state.WhenRule([]string{
 	NewLabelAction("label_name", CreatedContentLabelTarget, PendingLabelState),
 )
 endsnippet
+
+snippet ffjson "Parse to json and print" b
+b, _ := json.MarshalIndent($1, "", "  ")
+fmt.Printf("$1 = %+v\n", string(b))
+endsnippet
+
+# test table snippet
+snippet tt
+var tests = []struct {
+	name string
+	expected string
+	given string
+}{
+	{
+		"${1}",
+		"",
+		"",
+	},
+}
+for _, tt := range tests {
+	tt := tt
+	t.Run(tt.name, func(t *testing.T){
+		result := ${0:${VISUAL}}(tt.given)
+		if result != tt.expected {
+				t.Errorf("$0(%+v): expected %+v, got %+v", tt.given, tt.expected, result)
+		}
+
+	})
+}
+endsnippet
