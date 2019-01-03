@@ -147,7 +147,7 @@ let g:lightline = {
 autocmd User ALELint call lightline#update()
 
 " Plug 'majutsushi/tagbar'
-command! CurrentTag echo tagbar#currenttag('%s', '')
+command! CurrentTag echo tagbar#currenttag('%s', '', 'f')
 
 " Plugin 'ludovicchabant/vim-gutentags'
 let g:gutentags_cache_dir = '~/.config/nvim/tags/'
