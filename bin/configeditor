@@ -35,6 +35,11 @@ while IFS='' read -r line || [[ -n "$line" ]]; do
     IFS=':' read -r file contents <<< "$line"
     IFS=' ' read -r cmd_tmp file_tmp <<< "$file"
 
+    # skip empty lines
+    if [ -z "$file" ]; then
+        continue
+    fi
+
     # determine operation to perform
     cmd=""
     case "$cmd_tmp" in
@@ -59,6 +64,10 @@ while IFS='' read -r line || [[ -n "$line" ]]; do
             ;;
         create)
             echo "CREATE \"$line\""
+            dir=$(dirname "$file")
+            if [ ! -d "$dir" ]; then
+                mkdir -p "$dir"
+            fi
             echo "$contents" > "$file"
             ;;
         update)
