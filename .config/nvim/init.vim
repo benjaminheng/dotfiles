@@ -63,6 +63,7 @@ set formatoptions+=j        " Delete comment character when joining commented li
 set cursorline
 set guicursor=
 set inccommand=nosplit      " show substitutions incrementally, nvim only
+set nofoldenable            " disable folding unless enabled using `zi`
 
 " Persistent undo
 set undodir=~/.config/nvim/undodir
@@ -200,9 +201,14 @@ let wiki.nested_syntaxes = {
             \ 'bash': 'sh',
             \ 'cql': 'cql',
             \ }
-let g:vimwiki_list = [wiki]
+let worklog_wiki = {}
+let worklog_wiki.path = '~/dev/worklog/ben'
+let worklog_wiki.syntax = 'markdown'
+let worklog_wiki.ext = '.md'
+let g:vimwiki_list = [wiki, worklog_wiki]
 let g:vimwiki_hl_headers = 1
 let g:vimwiki_hl_cb_checked = 1
+let g:vimwiki_global_ext = 0
 
 " Plug 'christoomey/vim-tmux-navigator'
 let g:tmux_navigator_disable_when_zoomed = 1
