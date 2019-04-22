@@ -73,6 +73,8 @@ export GOBIN="$GOPATH/bin"
 export PATH="$GOBIN:$PATH"
 export PATH="$HOME/.gotools:$PATH"
 
+export HISTSIZE=20000
+
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 

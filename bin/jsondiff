@@ -7,4 +7,4 @@ do
     gron ${path} > /tmp/${fname}_gron
     tmpfiles=("${tmpfiles[@]}" "/tmp/${fname}_gron")
 done
-git diff ${tmpfiles[@]}
+git -c color.ui=always diff ${tmpfiles[@]}

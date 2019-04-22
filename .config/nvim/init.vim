@@ -287,6 +287,8 @@ nnoremap <silent> <Leader>t :Tags<CR>
 nnoremap <silent> <Leader>f :Files<CR>
 nnoremap <Leader>a :Ag 
 nnoremap <silent> <Leader>b :Buffers<CR>
+nnoremap <silent> <Leader>lt :BTags<CR>
+nnoremap <silent> <Leader>la :BLines<CR>
 
 nnoremap <Leader>mt :NERDTreeToggle<CR>
 
@@ -317,3 +319,6 @@ nmap <silent> <leader>/ :nohlsearch<CR>
 " tmux prefix. <C-x> is added for consistency.
 command! Incr normal! <C-a>
 command! Decr normal! <C-x>
+
+" temporary mapping
+nnoremap <Leader>n :let @1='# ' . expand('%') . '::' . tagbar#currenttag('%s', '', 'f')<CR>
