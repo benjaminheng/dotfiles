@@ -17,4 +17,4 @@ echo "new branch:  ${branch}"
 
 git fetch
 git rev-parse --verify ${branch} || (echo "branch ${branch} does not exist" && exit 1)
-git diff --name-status master..test-diff | awk '{print $2}' | fzf --ansi --preview "git show ${base_branch}:{} > /tmp/${base_branch}; git show ${branch}:{} > /tmp/${branch}; echo -e \"File: {}\n\"; jsondiff /tmp/${base_branch} /tmp/${branch}"
+git diff --name-status ${base_branch}..${branch} | awk '{print $2}' | fzf --ansi --preview "git show ${base_branch}:{} > /tmp/${base_branch}; git show ${branch}:{} > /tmp/${branch}; echo -e \"File: {}\n\"; jsondiff /tmp/${base_branch} /tmp/${branch}"
