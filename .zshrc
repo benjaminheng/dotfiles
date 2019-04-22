@@ -98,8 +98,10 @@ alias g="git"
 alias ls="ls -G"
 alias vim="nvim"
 alias godev="cd $GOPATH/src/github.com/carousell/"
-alias scratchpad="cd $HOME/dev/tmp/scratchpad && . env/bin/activate"
-alias allhosts="cat /tmp/allhosts | grep -Ev '^#|^$'" # List hosts from /etc/hosts
+alias scratchpad="cd $HOME/dev/tmp/scratchpad"
+alias allhosts="cat /Users/Carousell/dev/tmp/scratchpad/tmp/allhosts | grep -Ev '^#|^$'" # List hosts from /etc/hosts
+alias wl="worklog"
+alias worklogbrowse="worklog list | grep -E '(ben|cyrandy|siawyoung|ronald)' | fzf --preview 'worklog show {}' --preview-window wrap"
 
 
 # Disable flow control (allow keys like Ctrl+S)
