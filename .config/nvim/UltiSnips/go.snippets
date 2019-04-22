@@ -61,8 +61,8 @@ endsnippet
 snippet tt
 var tests = []struct {
 	name string
-	expected string
 	given string
+	expected string
 }{
 	{
 		"${1}",
@@ -75,7 +75,7 @@ for _, tt := range tests {
 	t.Run(tt.name, func(t *testing.T){
 		result := ${0:${VISUAL}}(tt.given)
 		if result != tt.expected {
-				t.Errorf("$0(%+v): expected %+v, got %+v", tt.given, tt.expected, result)
+			t.Errorf("$0(%+v): expected %+v, got %+v", tt.given, tt.expected, result)
 		}
 
 	})
