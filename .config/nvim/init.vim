@@ -165,6 +165,9 @@ let g:ale_linters = {
 \   'python': ['flake8'],
 \   'go': ['go', 'golint', 'go vet'],
 \}
+if getcwd() == "/Users/Carousell/dev/go/src/github.com/carousell/shared-proto"
+    let g:ale_proto_protoc_gen_lint_options = '-I /Users/Carousell/dev/go/src/github.com/carousell/shared-proto'
+endif
 hi ALEErrorSign ctermfg=red ctermbg=236
 hi ALEWarningSign ctermfg=yellow ctermbg=236
 hi ALEErrorSign ctermbg=236
