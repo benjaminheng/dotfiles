@@ -78,6 +78,7 @@ let mapleader = ","
 " respect .gitignore, among others
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 command! -nargs=1 AgRaw call fzf#vim#ag_raw(<f-args>)
+autocmd FileType fzf setlocal nonumber norelativenumber
 
 " Plugin 'SirVer/ultisnips'
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -231,6 +232,8 @@ let g:go_fmt_command = "goimports"
 let g:go_fmt_fail_silently = 1
 let g:go_highlight_functions = 1
 let g:go_gocode_unimported_packages = 1
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
 augroup filetype_go
     autocmd!
     autocmd FileType go nmap <leader>gb :<C-u>call <SID>build_go_files()<CR>
