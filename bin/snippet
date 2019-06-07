@@ -1,0 +1,80 @@
+#!/bin/bash
+
+config_base_path="$HOME/.config/pet"
+config_template="
+[General]
+  snippetfile = \"$config_base_path/{{group}}_snippet.toml\"
+  editor = \"nvim\"
+  column = 40
+  selectcmd = \"fzf --ansi\"
+  backend = \"gist\"
+"
+group_config_file="$config_base_path/{{group}}_config.toml"
+group_snippet_file="$config_base_path/{{group}}_snippet.toml"
+
+
+function show_help {
+    echo "snippet - a wrapper around github.com/knqyf263/pet"
+    echo
+    echo "Usage:"
+    echo "  snippet [help|list]"
+    echo
+    echo "Commands:"
+    echo "  snippet config <group>          Open the snippet file for a group"
+    echo "  snippet list <group>            List snippets for a group"
+    echo "  snippet create-group <group>    Create config for a new group"
+    echo "  snippet help                    Show this screen"
+}
+
+function create-group {
+    if [ -z "$1" ]; then
+        echo "Usage: snippet create-group <group>"
+        exit 1
+    fi
+    config_file="${group_config_file/\{\{group\}\}/$1}"
+    snippet_file="${group_snippet_file/\{\{group\}\}/$1}"
+    if [ ! -f "$config_file" ]; then
+        config_file_contents="${config_template/\{\{group\}\}/$1}"
+        echo "$config_file_contents" > "$config_file"
+        echo "Config file created at $config_file"
+    else
+        echo "$config_file already exists."
+    fi
+
+    if [ ! -f "$snippet_file" ]; then
+        touch "$snippet_file"
+        echo "Snippet file created at $snippet_file"
+    else
+        echo "$snippet_file already exists."
+    fi
+}
+
+function passthrough {
+    if [ "$#" -lt 2 ]; then
+        echo "Usage: snippet <group> <args>"
+        exit 1
+    fi
+    group=$1
+    config_file="${group_config_file/\{\{group\}\}/$group}"
+    if [ ! -f "$config_file" ]; then
+        echo "$config_file does not exist."
+        echo "Create it with \"snippet create-group <group>\""
+        exit 1
+    fi
+    shift
+    pet --config "$config_file" $@
+}
+
+case "$1" in
+    help)
+        show_help
+        ;;
+
+    create-group)
+        create-group $2
+        ;;
+
+    *)
+        passthrough $@
+        ;;
+esac
