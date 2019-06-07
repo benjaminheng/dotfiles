@@ -14,16 +14,18 @@ group_snippet_file="$config_base_path/{{group}}_snippet.toml"
 
 
 function show_help {
-    echo "snippet - a wrapper around github.com/knqyf263/pet"
+    echo "snippet - a wrapper around github.com/knqyf263/pet
+
+This script adds group capability to the 'pet' command."
     echo
     echo "Usage:"
-    echo "  snippet [help|list]"
+    echo "  snippet [command]"
+    echo "  snippet <group> <args>"
     echo
     echo "Commands:"
-    echo "  snippet config <group>          Open the snippet file for a group"
-    echo "  snippet list <group>            List snippets for a group"
     echo "  snippet create-group <group>    Create config for a new group"
     echo "  snippet help                    Show this screen"
+    echo "  snippet <group> <args>          The 'pet' command is invoked for the given group with <args> passed as arguments."
 }
 
 function create-group {
