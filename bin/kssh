@@ -1,6 +1,6 @@
 #!/bin/bash
 
-raw_selection=$(kubectl get pods | grep -v ^NAME | fzf --multi)
+raw_selection=$(kubectl get pods | grep -v ^NAME | fzf --multi --query="$@")
 selection=()
 
 arr=($raw_selection)
