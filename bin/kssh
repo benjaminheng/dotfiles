@@ -1,6 +1,7 @@
 #!/bin/bash
 
-raw_selection=$(kubectl get pods | grep -v ^NAME | fzf --multi --query="$@")
+current_context=$(kubectl config current-context)
+raw_selection=$(kubectl get pods | grep -v ^NAME | fzf --multi --query="$@" --header="$current_context")
 selection=()
 
 arr=($raw_selection)
