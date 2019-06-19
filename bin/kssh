@@ -1,19 +1,12 @@
 #!/bin/bash
 
 current_context=$(kubectl config current-context)
-raw_selection=$(kubectl get pods | grep -v ^NAME | fzf --multi --query="$@" --header="$current_context")
-selection=()
-
-arr=($raw_selection)
-for ((i=0; i<${#arr[@]}; i+=5)); do
-    selection+=("${arr[$i]}")
-done
+selection=($(kubectl get pods | grep -v ^NAME | fzf --multi --query="$@" --header="$current_context" | awk '{print $1}'))
 
 if [ ${#selection[@]} -eq 1 ]; then
     echo "${selection[0]}"
     kubectl exec -ti ${selection[0]} -- bash
 elif [ ${#selection[@]} -gt 1 ]; then
-    echo "${selection[@]}"
     echo "${selection[@]}" | xargs mssh-k8s
 else
     exit 0
