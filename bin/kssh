@@ -1,7 +1,9 @@
 #!/bin/bash
 
+copy_to_clipboard="echo {} | awk '{print \$1}' | xargs echo -n | pbcopy"
+
 current_context=$(kubectl config current-context)
-selection=($(kubectl get pods | grep -v ^NAME | fzf --multi --query="$@" --header="$current_context" | awk '{print $1}'))
+selection=($(kubectl get pods | grep -v ^NAME | fzf --multi --query="$@" --header="$current_context" --bind "ctrl-y:execute-silent($copy_to_clipboard)" | awk '{print $1}'))
 
 if [ ${#selection[@]} -eq 1 ]; then
     echo "${selection[0]}"

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+current_context=$(kubectl config current-context)
+selection=($(kubectl config get-contexts --output=name --no-headers | fzf --query="$@" --header="$current_context" | awk '{print $1}'))
+kubectl config use-context $selection
