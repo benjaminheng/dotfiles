@@ -57,6 +57,7 @@ plugins=(git zsh-completions zsh-syntax-highlighting)
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
+source ~/.config/zshrc/private_exports
 
 # Exports
 export VISUAL=nvim
@@ -74,7 +75,7 @@ export PATH="$GOBIN:$PATH"
 export PATH="$HOME/.gotools:$PATH"
 
 export HISTSIZE=50000
-export HISTFILESIZE=50000
+export SAVEHIST=$HISTSIZE
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -105,6 +106,7 @@ alias scratchpad="cd $HOME/dev/tmp/scratchpad"
 alias allhosts="cat /Users/Carousell/dev/tmp/scratchpad/tmp/allhosts | grep -Ev '^#|^$'" # List hosts from /etc/hosts
 alias wl="worklog"
 alias worklogbrowse="worklog list | grep -E '(ben|cyrandy|siawyoung|ronald)' | fzf --preview 'worklog show {}' --preview-window wrap"
+alias psqlx="snippet psql"
 
 
 # Disable flow control (allow keys like Ctrl+S)
