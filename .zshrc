@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/Carousell/.oh-my-zsh
+export ZSH=/Users/benjaminheng/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -57,7 +57,7 @@ plugins=(git zsh-completions zsh-syntax-highlighting)
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
-source ~/.config/zshrc/private_exports
+# source ~/.config/zshrc/private_exports
 
 # Exports
 export VISUAL=nvim
@@ -103,7 +103,7 @@ alias ls="ls -G"
 alias vim="nvim"
 alias godev="cd $GOPATH/src/github.com/carousell/"
 alias scratchpad="cd $HOME/dev/tmp/scratchpad"
-alias allhosts="cat /Users/Carousell/dev/tmp/scratchpad/tmp/allhosts | grep -Ev '^#|^$'" # List hosts from /etc/hosts
+alias allhosts="cat $HOME/dev/scratchpad/allhosts | grep -Ev '^#|^$'" # List hosts from /etc/hosts
 alias wl="worklog"
 alias worklogbrowse="worklog list | grep -E '(ben|cyrandy|siawyoung|ronald)' | fzf --preview 'worklog show {}' --preview-window wrap"
 alias psqlx="snippet psql"
@@ -117,18 +117,14 @@ tnew() { tmux new-session -A -s $1; }
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc ]; then
-  source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
-fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc ]; then
-  source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
-fi
-
 # Custom completions
 compdef _hosts mssh
 
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/benjaminheng/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/benjaminheng/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/benjaminheng/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/benjaminheng/google-cloud-sdk/completion.zsh.inc'; fi

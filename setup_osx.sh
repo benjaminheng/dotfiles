@@ -33,13 +33,13 @@ packages=(
 brew install ${packages[@]}
 
 # ZSH
-echo "Installing ZSH..."
-brew install zsh zsh-completions
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+echo "Installing ZSH and plugins..."
+brew install zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.oh-my-zsh/custom/plugins/ git clone https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/custom/plugins/
 
 # Python
 echo "Installing Python..."
-pyenv 3.6.2
+pyenv global 3.7.4
 packages=(
     ipython
     ipdb
@@ -51,6 +51,7 @@ pip install ${packages[@]}
 # Dotfiles
 echo "Pulling dotfiles..."
 mkdir -p $HOME/.config/nvim
+mkdir -p $HOME/.config/nvim/autoload
 mkdir -p $HOME/.config/cmus
 git clone git@github.com:benjaminheng/dotfiles.git $HOME/dev/dotfiles
 ln -s $HOME/dev/dotfiles/bin $HOME/bin
@@ -69,10 +70,19 @@ nvim -c "PlugInstall | qa"
 # Golang
 echo "Installing Golang packages..."
 mkdir -p $HOME/dev/go/src/github.com/carousell/
-go get -u github.com/kardianos/govendor
-go get -u github.com/shurcooL/Go-Package-Store/cmd/Go-Package-Store
 go get -u github.com/golang/lint/golint
 go get -u google.golang.org/grpc
 go get -u github.com/golang/protobuf/{proto,protoc-gen-go}
-go get -u github.com/alecthomas/gometalinter
-go get -u github.com/jstemmer/gotags
+
+# Google cloud SDK and kubectl
+echo "Installing google cloud SDK"
+curl https://sdk.cloud.google.com | bash
+exec -l $SHELL
+gcloud init
+gcloud components install kubectl
+
+# Manual TODOs
+echo "Manual TODOs:"
+echo "  1. Install tmux plugins: `<prefix>I`"
+echo "  2. Add generate_hosts.sh script"
+echo "  3. Install docker for mac"
