@@ -158,7 +158,8 @@ let g:gutentags_file_list_command = { 'markers': { '.git': 'git ls-files | grep 
 let g:gutentags_generate_on_empty_buffer = 1
 
 " Plug 'w0rp/ale'
-let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_insert_leave = 0
 let g:ale_sign_error = '● '
 let g:ale_sign_warning = '● '
 let g:ale_linters = {
