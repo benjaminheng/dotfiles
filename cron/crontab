@@ -1,0 +1,1 @@
+0 12 * * * bash /Users/benjaminheng/dev/dotfiles/cron/backup.sh >/tmp/crontab-stdout.log 2>/tmp/crontab-stderr.log
