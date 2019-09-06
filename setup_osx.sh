@@ -62,6 +62,7 @@ ln -s $HOME/dev/dotfiles/.config/nvim/colors $HOME/.config/nvim/colors
 ln -s $HOME/dev/dotfiles/.config/nvim/autoload/lightline $HOME/.config/nvim/autoload/
 ln -s $HOME/dev/dotfiles/.config/nvim/UltiSnips $HOME/.config/nvim/UltiSnips
 ln -s $HOME/dev/dotfiles/.config/cmus/rc $HOME/.config/cmus/rc
+ln -s $HOME/dev/dotfiles/.psqlrc $HOME/.psqlrc
 
 # Vim
 echo "Setting up Vim..."
