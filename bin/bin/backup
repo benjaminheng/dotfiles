@@ -1,0 +1,3 @@
+#!/bin/bash
+
+BACKUP_DIR="$HOME/Dropbox/backup"

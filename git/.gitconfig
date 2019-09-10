@@ -1,6 +1,6 @@
 [user]
-	name = myname
-	email = email@example.com
+	name = "Benjamin Heng"
+	email = "benjamin.heng@thecarousell.com"
 [pager]
 	diff = diff-so-fancy | less
 [alias]
