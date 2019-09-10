@@ -27,7 +27,9 @@ macos-install-packages:
 macos-setup: macos-install-stow macos-install-brew macos-install-ctags macos-install-packages macos-install-zsh install-ohmyzsh install-python stow setup-vim-plugins
 
 install-ohmyzsh:
-	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.oh-my-zsh/custom/plugins/ git clone https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/custom/plugins/
+	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+	git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.oh-my-zsh/custom/plugins/
+	git clone https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/custom/plugins/
 
 install-python:
 	pyenv global 3.7.4
