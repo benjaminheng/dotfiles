@@ -1,3 +1,6 @@
+.PHONY: all
+all: stow
+
 macos-install-stow:
 	brew install stow
 
@@ -53,11 +56,4 @@ crontab:
 
 .PHONY: stow
 stow:
-	stow -R "stow"
-	stow -R "bin"
-	stow -R "cmus"
-	stow -R "git"
-	stow -R "nvim"
-	stow -R "psql"
-	stow -R "tmux"
-	stow -R "zsh"
+	/bin/ls -d */ | awk -F/ '{print $$1}' | xargs -t -I {} stow -R {}
