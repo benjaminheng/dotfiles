@@ -1,0 +1,14 @@
+#!/bin/bash
+
+port=9281
+if [ "$#" -ge 1 ]; then
+    port=$1
+    shift
+fi
+
+current_context=$(kubectl config current-context)
+selection=$(kubectl get pods | grep -v ^NAME | fzf --query="$@" --header="$current_context" | awk '{print $1}')
+
+if [ ! -z "$selection" ]; then
+    kubectl port-forward "$selection" $port
+fi
