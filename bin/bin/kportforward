@@ -7,8 +7,9 @@ if [ "$#" -ge 1 ]; then
 fi
 
 current_context=$(kubectl config current-context)
-selection=$(kubectl get pods | grep -v ^NAME | fzf --query="$@" --header="$current_context" | awk '{print $1}')
+selection=$(kubectl get pods | grep -v ^NAME | fzf -1 --query="$@" --header="$current_context | $port" | awk '{print $1}')
 
 if [ ! -z "$selection" ]; then
+    echo "$selection"
     kubectl port-forward "$selection" $port
 fi
