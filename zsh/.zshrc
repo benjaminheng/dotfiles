@@ -73,6 +73,7 @@ export GOPATH="$HOME/dev/go"
 export GOBIN="$GOPATH/bin"
 export PATH="$GOBIN:$PATH"
 export PATH="$HOME/.gotools:$PATH"
+export PATH="$PATH:$HOME/dev/private-dotfiles/bin"
 
 export HISTSIZE=50000
 export SAVEHIST=$HISTSIZE
