@@ -154,7 +154,7 @@ command! CurrentTag echo tagbar#currenttag('%s', '', 'f')
 " Plugin 'ludovicchabant/vim-gutentags'
 let g:gutentags_cache_dir = '~/.config/nvim/tags/'
 let g:gutentags_ctags_exclude = ['node_modules', 'env', 'env2', 'vendor']
-let g:gutentags_file_list_command = { 'markers': { '.git': 'git ls-files | grep -v "^vendor/"' } }
+let g:gutentags_file_list_command = { 'markers': { '.git': 'git ls-files | grep -v "^vendor/" | grep -v ".pb.go$"' } }
 let g:gutentags_generate_on_empty_buffer = 1
 
 " Plug 'w0rp/ale'
@@ -263,7 +263,7 @@ autocmd FileType proto setlocal commentstring=//\ %s
 function! Prettier()
     " store cursor position
     let l:curPos = getpos('.')
-    silent %!prettier --stdin --trailing-comma='all' --single-quote=false --parser='babylon'
+    silent %!yarn -s prettier --stdin --trailing-comma='all' --single-quote=false --parser='babel'
     " restore cursor position
     call cursor(l:curPos[1], l:curPos[2])
 endfunction
@@ -299,6 +299,12 @@ nnoremap <silent> <Leader>lt :BTags<CR>
 nnoremap <silent> <Leader>la :BLines<CR>
 
 nnoremap <Leader>mt :NERDTreeToggle<CR>
+
+" Start a project-wide search for the current word (<C-R><C-W> == expand('<cword>'))
+nnoremap <Leader>* :Ag <C-R><C-W><CR>
+
+" Start a project-wide search for the selected text in visual mode
+vnoremap <Leader>* y<CR>:Ag <C-R>"
 
 " fix for properly indenting lines starting with # on a new line
 inoremap # X#
