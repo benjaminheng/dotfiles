@@ -10,3 +10,23 @@ message $1Request {
 message $1Response {
 }
 endsnippet
+
+snippet stringvalue "string wrapper" b
+google.protobuf.StringValue $1 = $2;
+endsnippet
+
+snippet int64value "int64 wrapper" b
+google.protobuf.Int64Value $1 = $2;
+endsnippet
+
+snippet doublevalue "double wrapper" b
+google.protobuf.DoubleValue $1 = $2;
+endsnippet
+
+snippet boolvalue "bool wrapper" b
+google.protobuf.BoolValue $1 = $2;
+endsnippet
+
+snippet timestamp "timestamp wrapper" b
+google.protobuf.Timestamp $1 = $2;
+endsnippet
