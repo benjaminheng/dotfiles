@@ -10,6 +10,8 @@ current_context=$(kubectl config current-context)
 selection=$(kubectl get pods | grep -v ^NAME | fzf -1 --query="$@" --header="$current_context | $port" | awk '{print $1}')
 
 if [ ! -z "$selection" ]; then
-    echo "$selection"
+    echo "Context: $current_context"
+    echo "Pod: $selection"
+    echo
     kubectl port-forward "$selection" $port
 fi

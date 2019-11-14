@@ -1,7 +1,7 @@
 #!/bin/bash
 
 name=$1
-basedir="$HOME/dev/tmp/scratchpad/goscratchpad"
+basedir="$HOME/dev/scratchpad/go"
 
 if [ -z $name ]; then
     cd $basedir && nvim main.go
