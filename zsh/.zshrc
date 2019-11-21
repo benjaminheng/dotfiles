@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/benjaminheng/.oh-my-zsh
+export ZSH=/Users/benh/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -125,7 +125,7 @@ eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/benjaminheng/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/benjaminheng/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/Users/benh/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/benh/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/benjaminheng/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/benjaminheng/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '/Users/benh/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/benh/google-cloud-sdk/completion.zsh.inc'; fi

@@ -17,15 +17,7 @@ macos-install-zsh:
 	brew install zsh
 
 macos-install-packages:
-	brew install git
-	brew install neovim
-	brew install tmux
-	brew install htop
-	brew install go
-	brew install wget
-	brew install pyenv
-	brew install diff-so-fancy
-	brew install cmus
+	brew install git neovim tmux htop go wget pyenv diff-so-fancy cmus ag jq
 
 macos-setup: macos-install-stow macos-install-brew macos-install-ctags macos-install-packages macos-install-zsh install-ohmyzsh install-python stow setup-vim-plugins
 
@@ -35,18 +27,19 @@ install-ohmyzsh:
 	git clone https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/custom/plugins/
 
 install-python:
-	pyenv global 3.7.4
-	pip install ipython
-	pip install ipdb
-	pip install requests
-	pip install neovim
+	pyenv install 2.7.9 3.7.4
+	pyenv global 2.7.9 3.7.4
+	pip3 install ipython
+	pip3 install ipdb
+	pip3 install requests
+	pip3 install neovim
 
 setup-vim-plugins:
 	nvim -c "PlugInstall | qa"
 
 install-gcloud:
 	curl https://sdk.cloud.google.com | bash
-	exec -l $SHELL
+	exec -l $$SHELL
 	gcloud init
 	gcloud components install kubectl
 
