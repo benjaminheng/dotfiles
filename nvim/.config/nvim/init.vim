@@ -233,6 +233,8 @@ let g:go_fmt_command = "goimports"
 let g:go_fmt_fail_silently = 1
 let g:go_highlight_functions = 1
 let g:go_gocode_unimported_packages = 1
+let go_highlight_diagnostic_errors = 0
+" let go_highlight_diagnostic_warnings = 0
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
 augroup filetype_go
