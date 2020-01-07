@@ -74,6 +74,7 @@ export GOBIN="$GOPATH/bin"
 export PATH="$GOBIN:$PATH"
 export PATH="$HOME/.gotools:$PATH"
 export PATH="$PATH:$HOME/dev/private-dotfiles/bin"
+export GOPRIVATE=github.com/carousell
 
 export HISTSIZE=50000
 export SAVEHIST=$HISTSIZE
@@ -108,6 +109,7 @@ alias allhosts="cat $HOME/dev/scratchpad/allhosts | grep -Ev '^#|^$'" # List hos
 alias wl="worklog"
 alias worklogbrowse="worklog list | grep -E '(ben|cyrandy|siawyoung|ronald)' | fzf --preview 'worklog show {}' --preview-window wrap"
 alias psqlx="snippet psql"
+alias cdkb="cd ~/dev/knowledge-base"
 
 
 # Disable flow control (allow keys like Ctrl+S)
