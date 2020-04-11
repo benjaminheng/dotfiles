@@ -20,11 +20,12 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-repeat'
 Plug 'machakann/vim-sandwich'
-Plug 'w0rp/ale'
+Plug 'w0rp/ale', {'commit': 'bbe5153f'}
 Plug 'terryma/vim-expand-region'
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'elubow/cql-vim'
+Plug 'cespare/vim-toml'
 call plug#end()
 filetype plugin indent on
 filetype indent on
@@ -77,6 +78,7 @@ let mapleader = ","
 " Plug 'junegunn/fzf.vim'
 " respect .gitignore, among others
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+let g:fzf_preview_window = ''
 command! -nargs=1 AgRaw call fzf#vim#ag_raw(<f-args>)
 autocmd FileType fzf setlocal nonumber norelativenumber
 
@@ -234,7 +236,7 @@ let g:go_fmt_fail_silently = 1
 let g:go_highlight_functions = 1
 let g:go_gocode_unimported_packages = 1
 let go_highlight_diagnostic_errors = 0
-" let go_highlight_diagnostic_warnings = 0
+let go_highlight_diagnostic_warnings = 0
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
 augroup filetype_go
@@ -242,6 +244,7 @@ augroup filetype_go
     autocmd FileType go nmap <leader>gb :<C-u>call <SID>build_go_files()<CR>
     autocmd FileType go nmap <leader>gr  <Plug>(go-run)
     autocmd FileType go nmap <leader>gi  <Plug>(go-info)
+    autocmd FileType go nmap <leader>gI  <Plug>(go-install)
     autocmd FileType go nmap <leader>gt  <Plug>(go-test)
     autocmd FileType go nmap <leader>gT  <Plug>(go-test-func)
     autocmd FileType go nmap <leader>gtc  <Plug>(go-coverage-toggle)
@@ -281,6 +284,7 @@ autocmd FileType python setlocal omnifunc=python3complete#Complete
 autocmd FileType javascript nnoremap <silent> <leader>gf :call Prettier()<CR>
 autocmd FileType qf wincmd J " quickfix window always at bottom
 autocmd filetype crontab setlocal nobackup nowritebackup
+autocmd BufRead,BufNewFile *.scss set filetype=css
 
 " Syntax highlighting overrides
 """""""""""""""""""""""""""""""""""""""""""""
