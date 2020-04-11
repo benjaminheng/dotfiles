@@ -110,6 +110,7 @@ alias wl="worklog"
 alias worklogbrowse="worklog list | grep -E '(ben|cyrandy|siawyoung|ronald)' | fzf --preview 'worklog show {}' --preview-window wrap"
 alias psqlx="snippet psql"
 alias cdkb="cd ~/dev/knowledge-base"
+alias cdkb2="cd ~/dev/private-dotfiles/kb"
 
 
 # Disable flow control (allow keys like Ctrl+S)
