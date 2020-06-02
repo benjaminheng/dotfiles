@@ -101,6 +101,7 @@ export SAVEHIST=$HISTSIZE
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 alias g="git"
+alias k="kubectl"
 alias ls="ls -G"
 alias vim="nvim"
 alias godev="cd $GOPATH/src/github.com/carousell/"
@@ -132,3 +133,5 @@ if [ -f '/Users/benh/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/benh/googl
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/benh/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/benh/google-cloud-sdk/completion.zsh.inc'; fi
+
+export CLOUDSDK_PYTHON=python3
