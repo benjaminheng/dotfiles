@@ -8,3 +8,5 @@
     logfzf = !gitfzflog
 [url "git@github.com:"]
 	insteadOf = https://github.com/
+[url "git@gitlab.carou.sl:"]
+	insteadOf = https://gitlab.carou.sl/
