@@ -209,7 +209,7 @@ let wiki.nested_syntaxes = {
             \ 'cql': 'cql',
             \ }
 let worklog_wiki = {}
-let worklog_wiki.path = '~/dev/worklog/ben'
+let worklog_wiki.path = '~/dev/private-worklog/ben'
 let worklog_wiki.syntax = 'markdown'
 let worklog_wiki.ext = '.md'
 let g:vimwiki_list = [wiki, worklog_wiki]

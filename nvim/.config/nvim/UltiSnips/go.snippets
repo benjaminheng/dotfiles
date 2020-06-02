@@ -9,7 +9,7 @@ if ${2:v}, ok := ${1}; ok {
 }
 endsnippet
 
-snippet orionsvcmeth "Orion service method definition" b
+snippet rpchandler "Orion service method definition" b
 func ($1 $2) $3(ctx context.Context, req *proto.$3Request) (*proto.$3Response, error) {
 	resp := &proto.$3Response{}
 	$4
@@ -82,15 +82,7 @@ for _, tt := range tests {
 }
 endsnippet
 
-snippet span "zipkin span" b
-span, _ := spanutils.NewInternalSpan(ctx, "$1")
-defer span.Finish()
-endsnippet
-
-snippet spanerr "zipkin span defer error tag" b
-defer func() {
-	if err != nil {
-		span.SetTag("error", err.Error())
-	}
-}()
+snippet trun "t.Run()" b
+t.Run("$1", func(t *testing.T) {
+})
 endsnippet
