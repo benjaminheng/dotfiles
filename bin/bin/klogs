@@ -1,13 +1,31 @@
 #!/bin/bash
 
+args=()
+kubectl_args=()
+while [[ $# -gt 0 ]]
+do
+key="$1"
+case $key in
+    --namespace|-n)
+        kubectl_args+=("--namespace=$2")
+        shift
+        shift
+        ;;
+    *)
+        args+=($1)
+        shift
+        ;;
+esac
+done
+
 copy_to_clipboard="echo {} | awk '{print \$1}' | xargs echo -n | pbcopy"
 
 current_context=$(kubectl config current-context)
-selection=($(kubectl get pods | grep -v ^NAME | fzf --query="$@" --header="$current_context" --bind "ctrl-y:execute-silent($copy_to_clipboard)" | awk '{print $1}'))
+selection=($(kubectl ${kubectl_args} get pods | grep -v ^NAME | fzf --query="${args[@]}" --header="$current_context" --bind "ctrl-y:execute-silent($copy_to_clipboard)" | awk '{print $1}'))
 
 if [ ${#selection[@]} -eq 1 ]; then
     echo "${selection[0]}"
-    kubectl logs ${selection[0]} --tail=20 -f
+    kubectl ${kubectl_args} logs ${selection[0]} --tail=20 -f
 else
     exit 0
 fi
