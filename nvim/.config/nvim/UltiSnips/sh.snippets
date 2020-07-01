@@ -25,10 +25,10 @@ endsnippet
 snippet flags "parse flags" b
 while [[ $# -gt 0 ]]
 do
-key="$1"
+key="\$1"
 case $key in
     --some-flag)
-        SOME_FLAG="$2"
+        SOME_FLAG="\$2"
         shift
         shift
         ;;
