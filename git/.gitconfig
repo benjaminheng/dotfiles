@@ -6,6 +6,7 @@
 [alias]
     fix-conflicts = !git diff --name-only | uniq | xargs nvim
     logfzf = !gitfzflog
+    checkoutfzf = !git checkout $(git branch --sort=-committerdate | fzf)
 [url "git@github.com:"]
 	insteadOf = https://github.com/
 [url "git@gitlab.carou.sl:"]
