@@ -86,3 +86,8 @@ snippet trun "t.Run()" b
 t.Run("$1", func(t *testing.T) {
 })
 endsnippet
+
+snippet span "spanutils" b
+span, ctx := spanutils.NewInternalSpan(ctx, "$1")
+defer span.Finish()
+endsnippet
