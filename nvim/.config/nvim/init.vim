@@ -279,7 +279,7 @@ augroup toggle_relative_number
     autocmd InsertEnter * :set norelativenumber
     autocmd InsertLeave * :set relativenumber
 augroup END
-autocmd FileType javascript,sqrl,yaml,htmldjango,sql setlocal sw=2 ts=2
+autocmd FileType javascript,sqrl,yaml,htmldjango,sql,json setlocal sw=2 ts=2
 autocmd FileType python setlocal omnifunc=python3complete#Complete
 autocmd FileType javascript nnoremap <silent> <leader>gf :call Prettier()<CR>
 autocmd FileType qf wincmd J " quickfix window always at bottom
