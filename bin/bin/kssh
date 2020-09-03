@@ -7,7 +7,7 @@ do
 key="$1"
 case $key in
     --namespace|-n)
-        kubectl_args+=("--namespace=$2")
+        kubectl_args+=("--namespace $2")
         shift
         shift
         ;;
@@ -28,7 +28,7 @@ if [ ${#selection[@]} -eq 1 ]; then
     kubectl ${kubectl_args} exec -ti ${selection[0]} -- bash
 elif [ ${#selection[@]} -gt 1 ]; then
     echo "${selection[@]}"
-    echo "${selection[@]}" | xargs mssh-k8s
+    echo "${selection[@]}" | xargs mssh-k8s ${kubectl_args}
 else
     exit 0
 fi
