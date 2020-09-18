@@ -21,7 +21,8 @@ done
 copy_to_clipboard="echo {} | awk '{print \$1}' | xargs echo -n | pbcopy"
 
 current_context=$(kubectl config current-context)
-selection=($(kubectl ${kubectl_args} get pods | grep -v ^NAME | fzf --multi --query="${args[@]}" --header="$current_context" --bind "ctrl-y:execute-silent($copy_to_clipboard)" | awk '{print $1}'))
+query="${args[@]}"
+selection=($(kubectl ${kubectl_args} get pods | grep -v ^NAME | fzf --multi --query="${query}" --header="$current_context" --bind "ctrl-y:execute-silent($copy_to_clipboard)" | awk '{print $1}'))
 
 if [ ${#selection[@]} -eq 1 ]; then
     echo "${selection[0]}"

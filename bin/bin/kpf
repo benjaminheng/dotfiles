@@ -25,7 +25,8 @@ esac
 done
 
 current_context=$(kubectl config current-context)
-selection=$(kubectl ${kubectl_args} get pods | grep -v ^NAME | fzf -1 --query="${args[@]}" --header="$current_context | $port" | awk '{print $1}')
+query="${args[@]}"
+selection=$(kubectl ${kubectl_args} get pods | grep -v ^NAME | fzf -1 --query="${query}" --header="$current_context | $port" | awk '{print $1}')
 
 if [ ! -z "$selection" ]; then
     echo "Context: $current_context"
