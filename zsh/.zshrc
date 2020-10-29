@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/benh/.oh-my-zsh
+export ZSH=/home/ben/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -67,14 +67,11 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export PATH=$PATH:/usr/local/sbin
 export PATH=$PATH:~/bin
-export PATH="$HOME/.yarn/bin:$PATH"
+export PATH=$PATH:~/dev/diff-so-fancy
 
 export GOPATH="$HOME/dev/go"
 export GOBIN="$GOPATH/bin"
 export PATH="$GOBIN:$PATH"
-export PATH="$HOME/.gotools:$PATH"
-export PATH="$PATH:$HOME/dev/private-dotfiles/bin"
-export GOPRIVATE=github.com/carousell
 
 export HISTSIZE=50000
 export SAVEHIST=$HISTSIZE
@@ -101,18 +98,8 @@ export SAVEHIST=$HISTSIZE
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 alias g="git"
-alias k="kubectl"
 alias ls="ls -G"
 alias vim="nvim"
-alias godev="cd $GOPATH/src/github.com/carousell/"
-alias scratchpad="cd $HOME/dev/tmp/scratchpad"
-alias allhosts="cat $HOME/dev/scratchpad/allhosts | grep -Ev '^#|^$'" # List hosts from /etc/hosts
-alias wl="worklog"
-alias worklogbrowse="worklog list | grep -E '(ben|cyrandy|siawyoung|ronald)' | fzf --preview 'worklog show {}' --preview-window wrap"
-alias psqlx="snippet psql"
-alias cdkb="cd ~/dev/knowledge-base"
-alias cdkb2="cd ~/dev/private-dotfiles/kb"
-
 
 # Disable flow control (allow keys like Ctrl+S)
 stty -ixon
@@ -122,16 +109,4 @@ tnew() { tmux new-session -A -s $1; }
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# Custom completions
-compdef _hosts mssh
-
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/benh/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/benh/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/benh/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/benh/google-cloud-sdk/completion.zsh.inc'; fi
-
-export CLOUDSDK_PYTHON=python3
+cd ~

@@ -1,6 +1,6 @@
 [user]
 	name = "Benjamin Heng"
-	email = "benjamin.heng@thecarousell.com"
+	email = "ben@hbenjamin.com"
 [pager]
 	diff = diff-so-fancy | less
 [alias]
@@ -9,5 +9,3 @@
     checkoutfzf = !git checkout $(git branch --sort=-committerdate | fzf)
 [url "git@github.com:"]
 	insteadOf = https://github.com/
-[url "git@gitlab.carou.sl:"]
-	insteadOf = https://gitlab.carou.sl/
