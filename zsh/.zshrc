@@ -104,6 +104,7 @@ alias g="git"
 alias k="kubectl"
 alias ls="ls -G"
 alias vim="nvim"
+alias view="nvim -R"
 alias godev="cd $GOPATH/src/github.com/carousell/"
 alias scratchpad="cd $HOME/dev/tmp/scratchpad"
 alias allhosts="cat $HOME/dev/scratchpad/allhosts | grep -Ev '^#|^$'" # List hosts from /etc/hosts
@@ -112,6 +113,8 @@ alias worklogbrowse="worklog list | grep -E '(ben|cyrandy|siawyoung|ronald)' | f
 alias psqlx="snippet psql"
 alias cdkb="cd ~/dev/knowledge-base"
 alias cdkb2="cd ~/dev/private-dotfiles/kb"
+alias epoch="date -r"
+alias jqless="jq -C | less -R"
 
 
 # Disable flow control (allow keys like Ctrl+S)

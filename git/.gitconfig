@@ -5,9 +5,13 @@
 	diff = diff-so-fancy | less
 [alias]
     fix-conflicts = !git diff --name-only | uniq | xargs nvim
-    logfzf = !git-fzflog
-    checkoutfzf = !git checkout $(git branch --sort=-committerdate | fzf)
+    logf = !git-fzflog
+    checkoutf = !git checkout $(git branch --sort=-committerdate | fzf)
+    mergef = !git merge $(git branch --sort=-committerdate | fzf)
+    fixup = !git commit --fixup $(git log --oneline --color=always | fzf --ansi | awk '{print $1}')
 [url "git@github.com:"]
 	insteadOf = https://github.com/
 [url "git@gitlab.carou.sl:"]
 	insteadOf = https://gitlab.carou.sl/
+[pull]
+	rebase = false
