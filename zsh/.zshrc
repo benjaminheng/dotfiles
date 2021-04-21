@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/benh/.oh-my-zsh
+export ZSH=/Users/benheng/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -131,10 +131,15 @@ compdef _hosts mssh
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
+export CLOUDSDK_PYTHON=python3
+
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/benh/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/benh/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/Users/benheng/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/benheng/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/benh/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/benh/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '/Users/benheng/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/benheng/google-cloud-sdk/completion.zsh.inc'; fi
 
-export CLOUDSDK_PYTHON=python3
+if [ -z "$SSH_AUTH_SOCK" ] ; then
+  eval `ssh-agent -s`
+  ssh-add
+fi
