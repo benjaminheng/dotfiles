@@ -89,7 +89,7 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsSnippetsDir="~/.config/nvim/UltiSnips/"
+let g:UltiSnipsSnippetsDir="/Users/benheng/.config/nvim/UltiSnips/"
 
 " Plug 'itchyny/lightline.vim'
 function! LightlineALEErrors()
@@ -171,8 +171,8 @@ let g:ale_linters = {
 \   'python': ['flake8'],
 \   'go': ['go', 'golint', 'go vet'],
 \}
-if getcwd() == "/Users/benh/dev/shared-proto"
-    let g:ale_proto_protoc_gen_lint_options = '-I /Users/benh/dev/shared-proto'
+if getcwd() == "/Users/benheng/dev/shared-proto"
+    let g:ale_proto_protoc_gen_lint_options = '-I /Users/benheng/dev/shared-proto'
 endif
 hi ALEErrorSign ctermfg=red ctermbg=236
 hi ALEWarningSign ctermfg=yellow ctermbg=236
@@ -182,7 +182,7 @@ hi ALEWarning cterm=underline ctermbg=none
 
 " Neovim-related options
 let g:python_host_prog='/usr/bin/python'
-let g:python3_host_prog='/Users/benh/.pyenv/versions/3.7.4/bin/python3'
+let g:python3_host_prog='/Users/benheng/.pyenv/shims/python3'
 
 " Plugin 'pangloss/vim-javascript'
 let b:javascript_fold = 0
