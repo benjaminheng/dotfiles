@@ -15,3 +15,5 @@
 	insteadOf = https://gitlab.carou.sl/
 [pull]
 	rebase = false
+[init]
+	defaultBranch = master
