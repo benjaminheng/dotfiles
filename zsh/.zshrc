@@ -100,6 +100,9 @@ export SAVEHIST=$HISTSIZE
 alias g="git"
 alias ls="ls -G"
 alias vim="nvim"
+alias view="nvim -R"
+alias epoch="date -r"
+alias jqless="jq -C | less -R"
 
 # Disable flow control (allow keys like Ctrl+S)
 stty -ixon

@@ -26,6 +26,7 @@ Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'elubow/cql-vim'
 Plug 'cespare/vim-toml'
+Plug 'aklt/plantuml-syntax'
 call plug#end()
 filetype plugin indent on
 filetype indent on
@@ -79,6 +80,7 @@ let mapleader = ","
 " respect .gitignore, among others
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 let g:fzf_preview_window = ''
+let g:fzf_layout = { 'window': { 'width': 1, 'height': 0.4, 'yoffset': 1, 'border': 'top' } }
 command! -nargs=1 AgRaw call fzf#vim#ag_raw(<f-args>)
 autocmd FileType fzf setlocal nonumber norelativenumber
 
@@ -87,7 +89,7 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsSnippetsDir="~/.config/nvim/UltiSnips/"
+let g:UltiSnipsSnippetsDir="/Users/benheng/.config/nvim/UltiSnips/"
 
 " Plug 'itchyny/lightline.vim'
 function! LightlineALEErrors()
@@ -169,8 +171,8 @@ let g:ale_linters = {
 \   'python': ['flake8'],
 \   'go': ['go', 'golint', 'go vet'],
 \}
-if getcwd() == "/Users/benh/dev/shared-proto"
-    let g:ale_proto_protoc_gen_lint_options = '-I /Users/benh/dev/shared-proto'
+if getcwd() == "/Users/benheng/dev/shared-proto"
+    let g:ale_proto_protoc_gen_lint_options = '-I /Users/benheng/dev/shared-proto'
 endif
 hi ALEErrorSign ctermfg=red ctermbg=236
 hi ALEWarningSign ctermfg=yellow ctermbg=236
@@ -180,7 +182,7 @@ hi ALEWarning cterm=underline ctermbg=none
 
 " Neovim-related options
 let g:python_host_prog='/usr/bin/python'
-let g:python3_host_prog='/Users/benh/.pyenv/versions/3.7.4/bin/python3'
+let g:python3_host_prog='/Users/benheng/.pyenv/shims/python3'
 
 " Plugin 'pangloss/vim-javascript'
 let b:javascript_fold = 0
@@ -239,12 +241,13 @@ let go_highlight_diagnostic_errors = 0
 let go_highlight_diagnostic_warnings = 0
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
+let g:go_list_type = "quickfix"
 augroup filetype_go
     autocmd!
     autocmd FileType go nmap <leader>gb :<C-u>call <SID>build_go_files()<CR>
-    autocmd FileType go nmap <leader>gr  <Plug>(go-run)
+    autocmd FileType go nmap <leader>gr  <Plug>(go-referrers)
     autocmd FileType go nmap <leader>gi  <Plug>(go-info)
-    autocmd FileType go nmap <leader>gI  <Plug>(go-install)
+    autocmd FileType go nmap <leader>gI  <Plug>(go-implements)
     autocmd FileType go nmap <leader>gt  <Plug>(go-test)
     autocmd FileType go nmap <leader>gT  <Plug>(go-test-func)
     autocmd FileType go nmap <leader>gtc  <Plug>(go-coverage-toggle)
@@ -279,12 +282,12 @@ augroup toggle_relative_number
     autocmd InsertEnter * :set norelativenumber
     autocmd InsertLeave * :set relativenumber
 augroup END
-autocmd FileType javascript,sqrl,yaml,htmldjango,sql,json setlocal sw=2 ts=2
+autocmd FileType javascript,sqrl,yaml,htmldjango,sql,json,html setlocal sw=2 ts=2
 autocmd FileType python setlocal omnifunc=python3complete#Complete
 autocmd FileType javascript nnoremap <silent> <leader>gf :call Prettier()<CR>
 autocmd FileType qf wincmd J " quickfix window always at bottom
 autocmd filetype crontab setlocal nobackup nowritebackup
-autocmd BufRead,BufNewFile *.scss set filetype=css
+" autocmd BufRead,BufNewFile *.scss set filetype=css
 
 " Syntax highlighting overrides
 """""""""""""""""""""""""""""""""""""""""""""

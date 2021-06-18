@@ -53,8 +53,8 @@ state.WhenRule([]string{
 endsnippet
 
 snippet ffjson "Parse to json and print" b
-b, _ := json.MarshalIndent($1, "", "  ")
-fmt.Printf("$1 = %+v\n", string(b))
+b, _ := json.Marshal($1)
+fmt.Println(string(b))
 endsnippet
 
 # test table snippet
