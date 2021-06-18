@@ -110,3 +110,4 @@ tnew() { tmux new-session -A -s $1; }
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 cd ~
+if [ "$TMUX" = "" ]; then tnew ben; fi
