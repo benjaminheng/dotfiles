@@ -1,6 +1,7 @@
 nvim/.config/nvim/plugged/
 nvim/.config/nvim/undodir/
 nvim/.config/nvim/tags/
+nvim/.config/nvim/.netrwhist
 
 cmus/.config/cmus/autosave
 cmus/.config/cmus/cache
