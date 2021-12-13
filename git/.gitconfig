@@ -4,9 +4,10 @@
 [pager]
 	diff = diff-so-fancy | less
 [alias]
+    branchf = !git branch --sort=-committerdate | fzf
     fix-conflicts = !git diff --name-only | uniq | xargs nvim
     logf = !git-fzflog
-    checkoutf = !git checkout $(git branch --sort=-committerdate | fzf)
+    checkoutf = !git checkout $(git branchf)
     mergef = !git merge $(git branch --sort=-committerdate | fzf)
     fixup = !git commit --fixup $(git log --oneline --color=always | fzf --ansi | awk '{print $1}')
 [url "git@github.com:"]
