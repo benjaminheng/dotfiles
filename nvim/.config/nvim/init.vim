@@ -210,11 +210,7 @@ let wiki.nested_syntaxes = {
             \ 'bash': 'sh',
             \ 'cql': 'cql',
             \ }
-let worklog_wiki = {}
-let worklog_wiki.path = '~/dev/private-worklog/ben'
-let worklog_wiki.syntax = 'markdown'
-let worklog_wiki.ext = '.md'
-let g:vimwiki_list = [wiki, worklog_wiki]
+let g:vimwiki_list = [wiki]
 let g:vimwiki_hl_headers = 1
 let g:vimwiki_hl_cb_checked = 1
 let g:vimwiki_global_ext = 0
