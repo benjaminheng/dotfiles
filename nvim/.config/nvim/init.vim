@@ -76,6 +76,9 @@ set undofile
 let &showbreak = '--→ '
 let mapleader = ","
 
+" tpope's markdown syntax highlighting
+let g:markdown_fenced_languages = ['json', 'go', 'sql', 'diff']
+
 " Plug 'junegunn/fzf.vim'
 " respect .gitignore, among others
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'
