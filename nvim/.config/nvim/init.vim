@@ -173,6 +173,7 @@ let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'python': ['flake8'],
 \   'go': ['go', 'golint', 'go vet'],
+\   'bash': ['shellcheck'],
 \}
 if getcwd() == "/Users/benheng/dev/shared-proto"
     let g:ale_proto_protoc_gen_lint_options = '-I /Users/benheng/dev/shared-proto'
