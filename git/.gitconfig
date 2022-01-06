@@ -8,7 +8,7 @@
     fix-conflicts = !git diff --name-only | uniq | xargs nvim
     logf = !git-fzflog
     checkoutf = !git checkout $(git branchf)
-    mergef = !git merge $(git branch --sort=-committerdate | fzf)
+    mergef = !git merge $(git branchf)
     fixup = !git commit --fixup $(git log --oneline --color=always | fzf --ansi | awk '{print $1}')
 [url "git@github.com:"]
 	insteadOf = https://github.com/
