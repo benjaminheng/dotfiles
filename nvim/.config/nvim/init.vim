@@ -27,7 +27,6 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'elubow/cql-vim'
 Plug 'cespare/vim-toml'
 Plug 'aklt/plantuml-syntax'
-Plug 'neovim/nvim-lspconfig'
 call plug#end()
 filetype plugin indent on
 filetype indent on
@@ -236,17 +235,21 @@ endfunction
 
 " Disable vim-go's use of gopls since we're using neovim's built-in LSP
 " instead.
-let g:go_gopls_enabled = 0
 let g:go_fmt_command = "goimports"
 let g:go_fmt_fail_silently = 1
 let g:go_highlight_functions = 1
 let g:go_gocode_unimported_packages = 1
 let go_highlight_diagnostic_errors = 0
 let go_highlight_diagnostic_warnings = 0
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
 let g:go_list_type = "quickfix"
 augroup filetype_go
     autocmd!
     autocmd FileType go nmap <leader>gb :<C-u>call <SID>build_go_files()<CR>
+    autocmd FileType go nmap <leader>gr  <Plug>(go-referrers)
+    autocmd FileType go nmap <leader>gi  <Plug>(go-info)
+    autocmd FileType go nmap <leader>gI  <Plug>(go-implements)
     autocmd FileType go nmap <leader>gt  <Plug>(go-test)
     autocmd FileType go nmap <leader>gT  <Plug>(go-test-func)
     autocmd FileType go nmap <leader>gtc  <Plug>(go-coverage-toggle)
@@ -344,47 +347,3 @@ command! Decr normal! <C-x>
 
 " temporary mapping
 nnoremap <Leader>n :let @1='# ' . expand('%') . '::' . tagbar#currenttag('%s', '', 'f')<CR>
-
-
-" Lua config
-"""""""""""""""""""""""""""""""""""""""""""""
-lua << EOF
-local nvim_lsp = require('lspconfig')
-
--- Disable diagnostics, since we use ale for linting errors
-vim.lsp.handlers["textDocument/publishDiagnostics"] = function() end
-
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
-local on_attach = function(client, bufnr)
-  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-
-  -- Enable completion triggered by <c-x><c-o>
-  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-  -- Mappings.
-  local opts = { noremap=true, silent=true }
-
-  -- See `:help vim.lsp.*` for documentation on any of the below functions
-  buf_set_keymap('n', '<C-]>', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_set_keymap('n', '<leader>gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  buf_set_keymap('n', '<leader>gd', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  buf_set_keymap('n', '<leader>gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  buf_set_keymap('n', '<leader>rr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-end
-
--- Use a loop to conveniently call 'setup' on multiple servers and
--- map buffer local keybindings when the language server attaches
-local servers = {'gopls'}
-for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup {
-    on_attach = on_attach,
-    flags = {
-      debounce_text_changes = 150,
-    }
-  }
-end
-EOF
