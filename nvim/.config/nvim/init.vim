@@ -27,6 +27,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'elubow/cql-vim'
 Plug 'cespare/vim-toml'
 Plug 'aklt/plantuml-syntax'
+Plug 'lervag/wiki.vim'
 call plug#end()
 filetype plugin indent on
 filetype indent on
@@ -216,8 +217,21 @@ let wiki.nested_syntaxes = {
             \ }
 let g:vimwiki_list = [wiki]
 let g:vimwiki_hl_headers = 1
-let g:vimwiki_hl_cb_checked = 1
+let g:vimwiki_hl_cb_checked = 2
 let g:vimwiki_global_ext = 0
+
+" Plug 'lervag/wiki.vim'
+" Use a simpler wiki for my knowledge base. Ideally I'd like to migrate my
+" vimwiki to this as well. I don't use the vast majority of vimwiki features,
+" and those I do use are available in wiki.vim as well.
+let g:wiki_root = '~/dev/knowledge-base/content/'
+let g:wiki_filetypes = ['md']
+let g:wiki_link_target_type = 'md'
+let g:wiki_map_link_create = 'WikiLinkFormat'
+function WikiLinkFormat(text) abort
+    return substitute(tolower(a:text), '\s\+', '-', 'g')
+endfunction
+let g:wiki_mappings_use_defaults = 'local'
 
 " Plug 'christoomey/vim-tmux-navigator'
 let g:tmux_navigator_disable_when_zoomed = 1
