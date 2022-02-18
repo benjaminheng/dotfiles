@@ -29,6 +29,7 @@ Plug 'cespare/vim-toml'
 Plug 'aklt/plantuml-syntax'
 Plug 'lervag/wiki.vim'
 Plug 'neovim/nvim-lspconfig'
+Plug 'junegunn/vim-easy-align'
 call plug#end()
 filetype plugin indent on
 filetype indent on
@@ -79,7 +80,7 @@ let &showbreak = '--→ '
 let mapleader = ","
 
 " tpope's markdown syntax highlighting
-let g:markdown_fenced_languages = ['json', 'go', 'sql', 'diff']
+let g:markdown_fenced_languages = ['json', 'go', 'sql', 'diff', 'bash', 'dot', 'plantuml']
 
 " Plug 'junegunn/fzf.vim'
 " respect .gitignore, among others
@@ -282,6 +283,15 @@ xmap s <NOP>
 autocmd FileType sql setlocal commentstring=--\ %s
 autocmd FileType sqrl,gitcommit setlocal commentstring=#\ %s
 autocmd FileType proto setlocal commentstring=//\ %s
+
+" Plug 'junegunn/vim-easy-align'
+nmap ga <Plug>(EasyAlign)
+xmap ga <Plug>(EasyAlign)
+augroup filetype_markdown
+    autocmd!
+    " Format markdown table
+    autocmd Filetype markdown nmap <leader>gft gaip*<Bar>
+augroup END
 
 " Functions
 """""""""""""""""""""""""""""""""""""""""""""
