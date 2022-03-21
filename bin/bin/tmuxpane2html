@@ -2,6 +2,7 @@
 set -euo pipefail
 
 pane=""
+inline=""
 
 while [[ $# -gt 0 ]]
 do
@@ -14,6 +15,10 @@ case $key in
         shift
         shift
         ;;
+    --inline)
+        inline="true"
+        shift
+        ;;
     *)
         shift
         ;;
@@ -24,4 +29,18 @@ done
 
 tmux capture-pane -t "$pane" -e -b tmuxpane2html_buffer
 tmux save-buffer -b tmuxpane2html_buffer /tmp/tmuxpane2html.output
-~/.pyenv/versions/ansi2html/bin/ansi2html < /tmp/tmuxpane2html.output
+ansi2html_flags=( "-W" )
+if [ "$inline" = "true" ]; then
+    ansi2html_flags+=("-p" "-i")
+fi
+html_output=$(~/.pyenv/versions/ansi2html/bin/ansi2html "${ansi2html_flags[@]}" < /tmp/tmuxpane2html.output)
+
+if [ "$inline" = "true" ]; then
+    echo '<div class="ansi2html">'
+    echo '<pre class="ansi2html-content">'
+    echo "$html_output"
+    echo '</pre>'
+    echo '</div>'
+else
+    echo "$html_output"
+fi
