@@ -30,6 +30,7 @@ Plug 'aklt/plantuml-syntax'
 Plug 'lervag/wiki.vim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'junegunn/vim-easy-align'
+Plug 'udalov/kotlin-vim'
 call plug#end()
 filetype plugin indent on
 filetype indent on
