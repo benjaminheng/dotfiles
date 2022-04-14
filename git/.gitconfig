@@ -12,7 +12,7 @@
     fixup = !git commit --fixup $(git log --oneline --color=always | fzf --ansi | awk '{print $1}')
 [url "git@github.com:"]
 	insteadOf = https://github.com/
-[url "git@gitlab.carou.sl:"]
+[url "git@ssh.gitlab.carousellinternal.com:"]
 	insteadOf = https://gitlab.carou.sl/
 [pull]
 	rebase = false
