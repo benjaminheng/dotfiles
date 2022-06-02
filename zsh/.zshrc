@@ -66,6 +66,7 @@ export GIT_EDITOR="$VISUAL"
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export PATH=$PATH:/usr/local/sbin
+export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:~/bin
 export PATH=$PATH:~/dev/diff-so-fancy
 
