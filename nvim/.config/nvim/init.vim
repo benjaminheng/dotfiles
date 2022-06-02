@@ -81,7 +81,7 @@ let &showbreak = '--→ '
 let mapleader = ","
 
 " tpope's markdown syntax highlighting
-let g:markdown_fenced_languages = ['json', 'go', 'sql', 'diff', 'bash', 'dot', 'plantuml']
+let g:markdown_fenced_languages = ['json', 'go', 'sql', 'diff', 'dot', 'plantuml']
 
 " Plug 'junegunn/fzf.vim'
 " respect .gitignore, among others
