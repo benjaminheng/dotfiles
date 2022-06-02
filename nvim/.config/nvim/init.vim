@@ -27,6 +27,10 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'elubow/cql-vim'
 Plug 'cespare/vim-toml'
 Plug 'aklt/plantuml-syntax'
+Plug 'lervag/wiki.vim'
+" Plug 'neovim/nvim-lspconfig'
+Plug 'junegunn/vim-easy-align'
+Plug 'udalov/kotlin-vim'
 call plug#end()
 filetype plugin indent on
 filetype indent on
@@ -75,6 +79,9 @@ set undofile
 """""""""""""""""""""""""""""""""""""""""""""
 let &showbreak = '--→ '
 let mapleader = ","
+
+" tpope's markdown syntax highlighting
+let g:markdown_fenced_languages = ['json', 'go', 'sql', 'diff', 'bash', 'dot', 'plantuml']
 
 " Plug 'junegunn/fzf.vim'
 " respect .gitignore, among others
@@ -170,6 +177,7 @@ let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'python': ['flake8'],
 \   'go': ['go', 'golint', 'go vet'],
+\   'bash': ['shellcheck'],
 \}
 if getcwd() == "/Users/benheng/dev/shared-proto"
     let g:ale_proto_protoc_gen_lint_options = '-I /Users/benheng/dev/shared-proto'
@@ -210,14 +218,23 @@ let wiki.nested_syntaxes = {
             \ 'bash': 'sh',
             \ 'cql': 'cql',
             \ }
-let worklog_wiki = {}
-let worklog_wiki.path = '~/dev/private-worklog/ben'
-let worklog_wiki.syntax = 'markdown'
-let worklog_wiki.ext = '.md'
-let g:vimwiki_list = [wiki, worklog_wiki]
+let g:vimwiki_list = [wiki]
 let g:vimwiki_hl_headers = 1
-let g:vimwiki_hl_cb_checked = 1
+let g:vimwiki_hl_cb_checked = 2
 let g:vimwiki_global_ext = 0
+
+" Plug 'lervag/wiki.vim'
+" Use a simpler wiki for my knowledge base. Ideally I'd like to migrate my
+" vimwiki to this as well. I don't use the vast majority of vimwiki features,
+" and those I do use are available in wiki.vim as well.
+let g:wiki_root = '~/dev/knowledge-base/content/'
+let g:wiki_filetypes = ['md']
+let g:wiki_link_target_type = 'md'
+let g:wiki_map_link_create = 'WikiLinkFormat'
+function WikiLinkFormat(text) abort
+    return substitute(tolower(a:text), '\s\+', '-', 'g')
+endfunction
+let g:wiki_mappings_use_defaults = 'local'
 
 " Plug 'christoomey/vim-tmux-navigator'
 let g:tmux_navigator_disable_when_zoomed = 1
@@ -233,6 +250,8 @@ function! s:build_go_files()
   endif
 endfunction
 
+" Disable vim-go's use of gopls since we're using neovim's built-in LSP
+" instead.
 let g:go_fmt_command = "goimports"
 let g:go_fmt_fail_silently = 1
 let g:go_highlight_functions = 1
@@ -265,6 +284,15 @@ xmap s <NOP>
 autocmd FileType sql setlocal commentstring=--\ %s
 autocmd FileType sqrl,gitcommit setlocal commentstring=#\ %s
 autocmd FileType proto setlocal commentstring=//\ %s
+
+" Plug 'junegunn/vim-easy-align'
+nmap ga <Plug>(EasyAlign)
+xmap ga <Plug>(EasyAlign)
+augroup filetype_markdown
+    autocmd!
+    " Format markdown table
+    autocmd Filetype markdown nmap <leader>gft gaip*<Bar>
+augroup END
 
 " Functions
 """""""""""""""""""""""""""""""""""""""""""""

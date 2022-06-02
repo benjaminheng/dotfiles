@@ -73,6 +73,7 @@ export PATH=$PATH:~/dev/diff-so-fancy
 export GOPATH="$HOME/dev/go"
 export GOBIN="$GOPATH/bin"
 export PATH="$GOBIN:$PATH"
+export PATH="$HOME/.gotools:$PATH"
 
 export HISTSIZE=50000
 export SAVEHIST=$HISTSIZE
