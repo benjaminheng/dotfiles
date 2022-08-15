@@ -80,6 +80,8 @@ export GOPRIVATE=github.com/carousell
 export HISTSIZE=50000
 export SAVEHIST=$HISTSIZE
 
+export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
