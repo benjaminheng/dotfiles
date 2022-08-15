@@ -31,7 +31,9 @@ Plug 'lervag/wiki.vim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'junegunn/vim-easy-align'
 Plug 'udalov/kotlin-vim'
-Plug 'sebdah/vim-delve'
+" Plug 'sebdah/vim-delve'
+Plug 'mfussenegger/nvim-dap'
+Plug 'rcarriga/nvim-dap-ui'
 call plug#end()
 filetype plugin indent on
 filetype indent on
@@ -274,13 +276,22 @@ augroup filetype_go
     autocmd FileType go setlocal noexpandtab sw=8 ts=8
 
     " Debug commands
-    autocmd FileType go nmap <leader>db  :DlvToggleBreakpoint<CR>
-    autocmd FileType go nmap <leader>dB  :DlvToggleTracepoint<CR>
-    autocmd FileType go nmap <leader>dC  :DlvClearAll<CR>
-    autocmd FileType go nmap <leader>dt  :DlvTest<CR>
-    autocmd FileType go nmap <leader>dT :DlvTestCurrent<CR>
-    autocmd FileType go nmap <leader>ddr :DlvConnect 127.0.0.1:4000
-    autocmd FileType go nmap <leader>ddl :DlvDebug
+    " autocmd FileType go nmap <leader>db  :DlvToggleBreakpoint<CR>
+    " autocmd FileType go nmap <leader>dB  :DlvToggleTracepoint<CR>
+    " autocmd FileType go nmap <leader>dC  :DlvClearAll<CR>
+    " autocmd FileType go nmap <leader>dt  :DlvTest<CR>
+    " autocmd FileType go nmap <leader>dT :DlvTestCurrent<CR>
+    " autocmd FileType go nmap <leader>ddr :DlvConnect 127.0.0.1:4000
+    " autocmd FileType go nmap <leader>ddl :DlvDebug
+    autocmd FileType go nnoremap <silent> <F5> <Cmd>lua require'dap'.continue()<CR>
+    autocmd FileType go nnoremap <silent> <F6> <Cmd>lua require'dap'.step_over()<CR>
+    autocmd FileType go nnoremap <silent> <F7> <Cmd>lua require'dap'.step_into()<CR>
+    autocmd FileType go nnoremap <silent> <F8> <Cmd>lua require'dap'.step_out()<CR>
+    autocmd FileType go nnoremap <silent> <Leader>db <Cmd>lua require'dap'.toggle_breakpoint()<CR>
+    autocmd FileType go nnoremap <silent> <Leader>dB <Cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
+    autocmd FileType go nnoremap <silent> <Leader>dp <Cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
+    autocmd FileType go nnoremap <silent> <Leader>dC <Cmd>lua require'dap'.clear_breakpoints()<CR>
+    autocmd FileType go nnoremap <silent> <Leader>dr <Cmd>lua require'dap'.repl.open()<CR>
 augroup END
 
 " Plug 'machakann/vim-sandwich'
@@ -395,4 +406,5 @@ nnoremap <Leader>n :let @1='# ' . expand('%') . '::' . tagbar#currenttag('%s', '
 """""""""""""""""""""""""""""""""""""""""""""
 lua << EOF
 require('lsp')
+require('debugger')
 EOF
