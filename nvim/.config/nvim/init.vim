@@ -292,6 +292,7 @@ augroup filetype_go
     autocmd FileType go nnoremap <silent> <Leader>dp <Cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
     autocmd FileType go nnoremap <silent> <Leader>dC <Cmd>lua require'dap'.clear_breakpoints()<CR>
     autocmd FileType go nnoremap <silent> <Leader>dr <Cmd>lua require'dap'.repl.open()<CR>
+    autocmd FileType go nnoremap <silent> <Leader>dq <Cmd>lua require'dap'.disconnect()<CR>
 augroup END
 
 " Plug 'machakann/vim-sandwich'
