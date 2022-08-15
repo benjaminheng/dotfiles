@@ -31,6 +31,7 @@ Plug 'lervag/wiki.vim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'junegunn/vim-easy-align'
 Plug 'udalov/kotlin-vim'
+Plug 'sebdah/vim-delve'
 call plug#end()
 filetype plugin indent on
 filetype indent on
@@ -358,6 +359,13 @@ nnoremap <silent> <C-h> <c-w>h
 nnoremap <silent> <C-j> <c-w>j
 nnoremap <silent> <C-k> <c-w>k
 nnoremap <silent> <C-l> <c-w>l
+
+" terminal mappings
+tnoremap <silent> <C-h> <C-\><C-n><c-w>h
+tnoremap <silent> <C-j> <C-\><C-n><c-w>j
+tnoremap <silent> <C-k> <C-\><C-n><c-w>k
+tnoremap <silent> <C-l> <C-\><C-n><c-w>l
+tnoremap <Esc> <C-\><C-n>
 
 " yank/paste to/from clipboard
 vmap <leader>y "+y
