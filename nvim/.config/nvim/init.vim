@@ -272,6 +272,15 @@ augroup filetype_go
     autocmd FileType go nmap <leader>gT  <Plug>(go-test-func)
     autocmd FileType go nmap <leader>gtc  <Plug>(go-coverage-toggle)
     autocmd FileType go setlocal noexpandtab sw=8 ts=8
+
+    " Debug commands
+    autocmd FileType go nmap <leader>db  :DlvToggleBreakpoint<CR>
+    autocmd FileType go nmap <leader>dB  :DlvToggleTracepoint<CR>
+    autocmd FileType go nmap <leader>dC  :DlvClearAll<CR>
+    autocmd FileType go nmap <leader>dt  :DlvTest<CR>
+    autocmd FileType go nmap <leader>dT :DlvTestCurrent<CR>
+    autocmd FileType go nmap <leader>ddr :DlvConnect 127.0.0.1:4000
+    autocmd FileType go nmap <leader>ddl :DlvDebug
 augroup END
 
 " Plug 'machakann/vim-sandwich'
@@ -365,7 +374,6 @@ tnoremap <silent> <C-h> <C-\><C-n><c-w>h
 tnoremap <silent> <C-j> <C-\><C-n><c-w>j
 tnoremap <silent> <C-k> <C-\><C-n><c-w>k
 tnoremap <silent> <C-l> <C-\><C-n><c-w>l
-tnoremap <Esc> <C-\><C-n>
 
 " yank/paste to/from clipboard
 vmap <leader>y "+y
