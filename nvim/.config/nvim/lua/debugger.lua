@@ -89,14 +89,6 @@ require("dapui").setup({
       size = 40, -- 40 columns
       position = "left",
     },
-    {
-      elements = {
-        "repl",
-        "console",
-      },
-      size = 0.25, -- 25% of total lines
-      position = "bottom",
-    },
   },
   floating = {
     max_height = nil, -- These can be integers or a float between 0 and 1.
@@ -123,3 +115,29 @@ end
 dap.listeners.before.event_exited["dapui_config"] = function()
   dapui.close()
 end
+
+-- Highlighting overrides
+-- nvim-dap-ui only sets `guifg=?`, which doesn't work when vim is run in a
+-- terminal without `:set termguicolors`. For 256 color terminals we should set
+-- `ctermfg` instead. However I'll instead just link each highlighting group to
+-- a highlighting group from my colorscheme.
+vim.cmd("hi! link DapUIScope Normal")
+vim.cmd("hi! link DapUIVariable Statement")
+vim.cmd("hi! link DapUIType Type")
+vim.cmd("hi! link DapUIDecoration Normal")
+vim.cmd("hi! link DapUIThread Type")
+vim.cmd("hi! link DapUIStoppedThread Type")
+vim.cmd("hi! link DapUIFrameName Normal")
+vim.cmd("hi! link DapUISource Function")
+vim.cmd("hi! link DapUILineNumber Constant")
+vim.cmd("hi! link DapUIFloatBorder Normal")
+vim.cmd("hi! link DapUIWatchesHeader Normal")
+vim.cmd("hi! link DapUIWatchesEmpty Normal")
+vim.cmd("hi! link DapUIWatchesValue Normal")
+vim.cmd("hi! link DapUIWatchesError Normal")
+vim.cmd("hi! link DapUIWatchesFrame Normal")
+vim.cmd("hi! link DapUIWatchesFrame Normal")
+vim.cmd("hi! link DapUIBreakpointsPath Function")
+vim.cmd("hi! link DapUIBreakpointsInfo Normal")
+vim.cmd("hi! link DapUIBreakpointsCurrentLine Title")
+vim.cmd("hi! link DapUIBreakpointsLine DapUILineNumber")

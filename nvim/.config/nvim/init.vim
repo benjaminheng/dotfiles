@@ -402,7 +402,6 @@ command! Decr normal! <C-x>
 " temporary mapping
 nnoremap <Leader>n :let @1='# ' . expand('%') . '::' . tagbar#currenttag('%s', '', 'f')<CR>
 
-
 " Lua plugins
 """""""""""""""""""""""""""""""""""""""""""""
 lua << EOF
