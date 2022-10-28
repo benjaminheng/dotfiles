@@ -130,8 +130,7 @@ tnew() { tmux new-session -A -s $1; }
 # Custom completions
 compdef _hosts mssh
 
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+eval "$(pyenv init --no-rehash -)"
 
 export CLOUDSDK_PYTHON=python3
 
