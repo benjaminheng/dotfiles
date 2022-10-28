@@ -352,7 +352,7 @@ hi xmlEqual   ctermfg=110
 " Plugin 'junegunn/fzf.vim'
 nnoremap <silent> <Leader>t :Tags<CR>
 nnoremap <silent> <Leader>f :Files<CR>
-nnoremap <Leader>a :Ag 
+nnoremap <Leader>a :Rg 
 nnoremap <silent> <Leader>b :Buffers<CR>
 nnoremap <silent> <Leader>lt :BTags<CR>
 nnoremap <silent> <Leader>la :BLines<CR>
@@ -360,10 +360,10 @@ nnoremap <silent> <Leader>la :BLines<CR>
 nnoremap <Leader>mt :NERDTreeToggle<CR>
 
 " Start a project-wide search for the current word (<C-R><C-W> == expand('<cword>'))
-nnoremap <Leader>* :Ag <C-R><C-W><CR>
+nnoremap <Leader>* :Rg <C-R><C-W><CR>
 
 " Start a project-wide search for the selected text in visual mode
-vnoremap <Leader>* y<CR>:Ag <C-R>"
+vnoremap <Leader>* y<CR>:Rg <C-R>"
 
 " fix for properly indenting lines starting with # on a new line
 inoremap # X#
