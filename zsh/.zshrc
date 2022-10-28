@@ -114,8 +114,7 @@ alias allhosts="cat $HOME/dev/scratchpad/allhosts | grep -Ev '^#|^$'" # List hos
 alias wl="worklog"
 alias worklogbrowse="worklog list | grep -E '(ben|cyrandy|siawyoung|ronald)' | fzf --preview 'worklog show {}' --preview-window wrap"
 alias psqlx="snippet psql"
-alias cdkb="cd ~/dev/knowledge-base"
-alias cdkb2="cd ~/dev/private-dotfiles/kb"
+alias pkb="kb --config ~/.config/kb/private-kb.config.toml"
 alias epoch="date -r"
 alias jqless="jq -C | less -R"
 
