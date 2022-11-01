@@ -7,7 +7,7 @@ Plug 'benjaminheng/vim-smyteql-syntax'
 Plug 'benjaminheng/vim-githubbrowse'
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'itchyny/lightline.vim'
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', {'commit': 'fc85a6f0'}
 Plug 'majutsushi/tagbar'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'cohama/lexima.vim'
