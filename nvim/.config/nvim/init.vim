@@ -34,6 +34,7 @@ Plug 'udalov/kotlin-vim'
 " Plug 'sebdah/vim-delve'
 Plug 'mfussenegger/nvim-dap'
 Plug 'rcarriga/nvim-dap-ui'
+Plug 'terrastruct/d2-vim'
 call plug#end()
 filetype plugin indent on
 filetype indent on
