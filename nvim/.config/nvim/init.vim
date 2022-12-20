@@ -86,6 +86,9 @@ let mapleader = ","
 
 " tpope's markdown syntax highlighting
 let g:markdown_fenced_languages = ['json', 'go', 'sql', 'diff', 'bash', 'dot', 'plantuml']
+" Highlight inline code blocks for better visibility
+hi link markdownCode PreProc
+hi link markdownCodeBlock Normal
 
 " Plug 'junegunn/fzf.vim'
 " respect .gitignore, among others
@@ -403,6 +406,13 @@ command! Decr normal! <C-x>
 
 " temporary mapping
 nnoremap <Leader>n :let @1='# ' . expand('%') . '::' . tagbar#currenttag('%s', '', 'f')<CR>
+
+" Show syntax highlighting group of the character under cursor
+" Invoke with `:call SyntaxHighlightingGroup()`
+function! SyntaxHighlightingGroup()
+    let l:s = synID(line('.'), col('.'), 1)
+    echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
+endfun
 
 " Lua plugins
 """""""""""""""""""""""""""""""""""""""""""""
