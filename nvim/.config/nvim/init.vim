@@ -85,7 +85,7 @@ let &showbreak = '--→ '
 let mapleader = ","
 
 " tpope's markdown syntax highlighting
-let g:markdown_fenced_languages = ['json', 'go', 'sql', 'diff', 'bash', 'dot', 'plantuml']
+let g:markdown_fenced_languages = ['json', 'go', 'sql', 'diff', 'bash', 'dot', 'plantuml', 'proto']
 " Highlight inline code blocks for better visibility
 hi link markdownCode PreProc
 hi link markdownCodeBlock Normal
