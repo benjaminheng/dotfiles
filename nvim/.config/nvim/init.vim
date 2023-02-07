@@ -31,6 +31,7 @@ Plug 'lervag/wiki.vim'
 " Plug 'neovim/nvim-lspconfig'
 Plug 'junegunn/vim-easy-align'
 Plug 'udalov/kotlin-vim'
+Plug 'junegunn/goyo.vim'
 call plug#end()
 filetype plugin indent on
 filetype indent on
@@ -249,6 +250,26 @@ function! s:build_go_files()
     call go#cmd#Build(0)
   endif
 endfunction
+
+" Plug 'jungunn/goyo.vim'
+function! s:goyo_enter()
+    set noshowmode
+    set noshowcmd
+    autocmd InsertLeave * :set norelativenumber
+    nnoremap <buffer> j gj
+    nnoremap <buffer> k gk
+    let &showbreak = ''
+endfunction
+function! s:goyo_leave()
+    set showmode
+    set showcmd
+    autocmd InsertLeave * :set relativenumber
+    nunmap <buffer> j
+    nunmap <buffer> k
+    let &showbreak = '--→ '
+endfunction
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 " Disable vim-go's use of gopls since we're using neovim's built-in LSP
 " instead.
