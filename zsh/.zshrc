@@ -105,6 +105,8 @@ alias vim="nvim"
 alias view="nvim -R"
 alias epoch="date -r"
 alias jqless="jq -C | less -R"
+alias enable-writing-mode="source ~/enable-writing-mode"
+alias disable-writing-mode="source ~/disable-writing-mode"
 
 # Disable flow control (allow keys like Ctrl+S)
 stty -ixon

@@ -9,3 +9,6 @@ cmus/.config/cmus/command-history
 cmus/.config/cmus/lib.pl
 cmus/.config/cmus/playlists/
 cmus/.config/cmus/search-history
+
+win32yank.exe
+languagetool-commandline.jar

@@ -1,38 +1,19 @@
 call plug#begin('~/.config/nvim/plugged')
-Plug 'nanotech/jellybeans.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-slash'
-Plug 'benjaminheng/vim-smyteql-syntax'
-Plug 'benjaminheng/vim-githubbrowse'
-Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'itchyny/lightline.vim'
 Plug 'scrooloose/nerdtree'
-Plug 'majutsushi/tagbar'
 Plug 'ludovicchabant/vim-gutentags'
-Plug 'cohama/lexima.vim'
-Plug 'mxw/vim-jsx'
-Plug 'pangloss/vim-javascript'
-Plug 'SirVer/ultisnips'
-Plug 'hynek/vim-python-pep8-indent'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-repeat'
 Plug 'machakann/vim-sandwich'
 Plug 'w0rp/ale', {'commit': 'bbe5153f'}
 Plug 'terryma/vim-expand-region'
-Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'elubow/cql-vim'
-Plug 'cespare/vim-toml'
-Plug 'aklt/plantuml-syntax'
-Plug 'lervag/wiki.vim'
-" Plug 'neovim/nvim-lspconfig'
-Plug 'junegunn/vim-easy-align'
-Plug 'udalov/kotlin-vim'
 Plug 'junegunn/goyo.vim'
 Plug 'rhysd/vim-grammarous'
+Plug 'NLNguyen/papercolor-theme'
 call plug#end()
 filetype plugin indent on
 filetype indent on
@@ -44,7 +25,8 @@ set directory=/tmp
 
 " General options
 """""""""""""""""""""""""""""""""""""""""""""
-colorscheme jellybeans
+set background=light
+colorscheme PaperColor
 filetype on
 syntax on
 set mouse=a
@@ -72,6 +54,7 @@ set cursorline
 set guicursor=
 set inccommand=nosplit      " show substitutions incrementally, nvim only
 set nofoldenable            " disable folding unless enabled using `zi`
+set noshowcmd
 
 " Persistent undo
 set undodir=~/.config/nvim/undodir
@@ -79,7 +62,6 @@ set undofile
 
 " Variable definitions
 """""""""""""""""""""""""""""""""""""""""""""
-let &showbreak = '--→ '
 let mapleader = ","
 
 " tpope's markdown syntax highlighting
@@ -92,13 +74,6 @@ let g:fzf_preview_window = ''
 let g:fzf_layout = { 'window': { 'width': 1, 'height': 0.4, 'yoffset': 1, 'border': 'top' } }
 command! -nargs=1 AgRaw call fzf#vim#ag_raw(<f-args>)
 autocmd FileType fzf setlocal nonumber norelativenumber
-
-" Plugin 'SirVer/ultisnips'
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsSnippetsDir="/Users/benheng/.config/nvim/UltiSnips/"
 
 " Plug 'itchyny/lightline.vim'
 function! LightlineALEErrors()
@@ -127,7 +102,7 @@ function! LightlineFileencoding()
 endfunction
 
 let g:lightline = {
-            \ 'colorscheme': 'jellybeans',
+            \ 'colorscheme': 'PaperColor',
             \ 'active': {
             \   'right': [ [ 'lineinfo', 'truncate_here' ],
             \              [ 'linter_errors', 'linter_warnings' ],
@@ -159,10 +134,6 @@ let g:lightline = {
 			\   'truncate_here': 0,
             \ },
             \ }
-autocmd User ALELint call lightline#update()
-
-" Plug 'majutsushi/tagbar'
-command! CurrentTag echo tagbar#currenttag('%s', '', 'f')
 
 " Plugin 'ludovicchabant/vim-gutentags'
 let g:gutentags_cache_dir = '~/.config/nvim/tags/'
@@ -170,132 +141,24 @@ let g:gutentags_ctags_exclude = ['node_modules', 'env', 'env2', 'vendor']
 let g:gutentags_file_list_command = { 'markers': { '.git': 'git ls-files | grep -v "^vendor/" | grep -v ".pb.go$"' } }
 let g:gutentags_generate_on_empty_buffer = 1
 
-" Plug 'w0rp/ale'
-let g:ale_lint_on_text_changed = 0
-let g:ale_lint_on_insert_leave = 0
-let g:ale_sign_error = '● '
-let g:ale_sign_warning = '● '
-let g:ale_linters = {
-\   'javascript': ['eslint'],
-\   'python': ['flake8'],
-\   'go': ['go', 'golint', 'go vet'],
-\   'bash': ['shellcheck'],
-\}
-if getcwd() == "/Users/benheng/dev/shared-proto"
-    let g:ale_proto_protoc_gen_lint_options = '-I /Users/benheng/dev/shared-proto'
-endif
-hi ALEErrorSign ctermfg=red ctermbg=236
-hi ALEWarningSign ctermfg=yellow ctermbg=236
-hi ALEErrorSign ctermbg=236
-hi ALEError cterm=underline ctermbg=none
-hi ALEWarning cterm=underline ctermbg=none
-
 " Neovim-related options
 let g:python_host_prog='/usr/bin/python'
 let g:python3_host_prog='/Users/benheng/.pyenv/shims/python3'
-
-" Plugin 'pangloss/vim-javascript'
-let b:javascript_fold = 0
-
-" Plugin 'cohama/lexima.vim'
-let g:lexima_enable_basic_rules = 0
-
-" Plug 'mxw/vim-jsx'
-let g:jsx_ext_required = 0
 
 " Plug 'terryma/vim-expand-region'
 " Use v and C-v to increase and decrease region expansion
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 
-" Plug 'vimwiki/vimwiki'
-let wiki = {}
-let wiki.path = '~/Dropbox/Miscellaneous/vimwiki/'
-let wiki.syntax = 'markdown'
-let wiki.nested_syntaxes = {
-            \ 'python': 'python',
-            \ 'js': 'javascript',
-            \ 'sql': 'sql',
-            \ 'go': 'go',
-            \ 'bash': 'sh',
-            \ 'cql': 'cql',
-            \ }
-let g:vimwiki_list = [wiki]
-let g:vimwiki_hl_headers = 1
-let g:vimwiki_hl_cb_checked = 2
-let g:vimwiki_global_ext = 0
-
-" Plug 'lervag/wiki.vim'
-" Use a simpler wiki for my knowledge base. Ideally I'd like to migrate my
-" vimwiki to this as well. I don't use the vast majority of vimwiki features,
-" and those I do use are available in wiki.vim as well.
-let g:wiki_root = '~/dev/knowledge-base/content/'
-let g:wiki_filetypes = ['md']
-let g:wiki_link_target_type = 'md'
-let g:wiki_map_link_create = 'WikiLinkFormat'
-function WikiLinkFormat(text) abort
-    return substitute(tolower(a:text), '\s\+', '-', 'g')
-endfunction
-let g:wiki_mappings_use_defaults = 'local'
-
-" Plug 'christoomey/vim-tmux-navigator'
-let g:tmux_navigator_disable_when_zoomed = 1
-
-" Plug 'fatih/vim-go'
-" run :GoBuild or :GoTestCompile based on the go file
-function! s:build_go_files()
-  let l:file = expand('%')
-  if l:file =~# '^\f\+_test\.go$'
-    call go#test#Test(0, 1)
-  elseif l:file =~# '^\f\+\.go$'
-    call go#cmd#Build(0)
-  endif
-endfunction
-
 " Plug 'jungunn/goyo.vim'
 function! s:goyo_enter()
-    set noshowmode
-    set noshowcmd
-    set spell
     autocmd InsertLeave * :set norelativenumber
-    nnoremap <buffer> j gj
-    nnoremap <buffer> k gk
-    let &showbreak = ''
 endfunction
 function! s:goyo_leave()
-    set showmode
-    set showcmd
-    set nospell
     autocmd InsertLeave * :set relativenumber
-    nunmap <buffer> j
-    nunmap <buffer> k
-    let &showbreak = '--→ '
 endfunction
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
-
-" Disable vim-go's use of gopls since we're using neovim's built-in LSP
-" instead.
-let g:go_fmt_command = "goimports"
-let g:go_fmt_fail_silently = 1
-let g:go_highlight_functions = 1
-let g:go_gocode_unimported_packages = 1
-let go_highlight_diagnostic_errors = 0
-let go_highlight_diagnostic_warnings = 0
-let g:go_def_mode='gopls'
-let g:go_info_mode='gopls'
-let g:go_list_type = "quickfix"
-augroup filetype_go
-    autocmd!
-    autocmd FileType go nmap <leader>gb :<C-u>call <SID>build_go_files()<CR>
-    autocmd FileType go nmap <leader>gr  <Plug>(go-referrers)
-    autocmd FileType go nmap <leader>gi  <Plug>(go-info)
-    autocmd FileType go nmap <leader>gI  <Plug>(go-implements)
-    autocmd FileType go nmap <leader>gt  <Plug>(go-test)
-    autocmd FileType go nmap <leader>gT  <Plug>(go-test-func)
-    autocmd FileType go nmap <leader>gtc  <Plug>(go-coverage-toggle)
-    autocmd FileType go setlocal noexpandtab sw=8 ts=8
-augroup END
 
 " Plug 'machakann/vim-sandwich'
 call operator#sandwich#set('delete', 'all', 'highlight', 0)
@@ -303,11 +166,6 @@ call operator#sandwich#set('add', 'all', 'highlight', 2)
 call operator#sandwich#set('replace', 'all', 'highlight', 2)
 nmap s <NOP>
 xmap s <NOP>
-
-" Plug 'tpope/vim-commentary'
-autocmd FileType sql setlocal commentstring=--\ %s
-autocmd FileType sqrl,gitcommit setlocal commentstring=#\ %s
-autocmd FileType proto setlocal commentstring=//\ %s
 
 " Plug 'junegunn/vim-easy-align'
 nmap ga <Plug>(EasyAlign)
@@ -318,36 +176,21 @@ augroup filetype_markdown
     autocmd Filetype markdown nmap <leader>gft gaip*<Bar>
 augroup END
 
-" Functions
-"""""""""""""""""""""""""""""""""""""""""""""
-function! Prettier()
-    " store cursor position
-    let l:curPos = getpos('.')
-    silent %!yarn -s prettier --stdin --trailing-comma='all' --single-quote=false --parser='babel'
-    " restore cursor position
-    call cursor(l:curPos[1], l:curPos[2])
-endfunction
-
 " Auto-commands
 """""""""""""""""""""""""""""""""""""""""""""
 augroup toggle_relative_number
     autocmd InsertEnter * :set norelativenumber
     autocmd InsertLeave * :set relativenumber
 augroup END
-autocmd FileType javascript,sqrl,yaml,htmldjango,sql,json,html setlocal sw=2 ts=2
-autocmd FileType python setlocal omnifunc=python3complete#Complete
-autocmd FileType javascript nnoremap <silent> <leader>gf :call Prettier()<CR>
 autocmd FileType qf wincmd J " quickfix window always at bottom
-autocmd filetype crontab setlocal nobackup nowritebackup
-" autocmd BufRead,BufNewFile *.scss set filetype=css
 
 " Syntax highlighting overrides
 """""""""""""""""""""""""""""""""""""""""""""
-hi Tag        ctermfg=04
-hi xmlTag     ctermfg=04
-hi xmlTagName ctermfg=04
-hi xmlEndTag  ctermfg=04
-hi xmlEqual   ctermfg=110
+" hi Tag        ctermfg=04
+" hi xmlTag     ctermfg=04
+" hi xmlTagName ctermfg=04
+" hi xmlEndTag  ctermfg=04
+" hi xmlEqual   ctermfg=110
 
 " Mappings
 """""""""""""""""""""""""""""""""""""""""""""
@@ -358,6 +201,13 @@ nnoremap <Leader>a :Ag
 nnoremap <silent> <Leader>b :Buffers<CR>
 nnoremap <silent> <Leader>lt :BTags<CR>
 nnoremap <silent> <Leader>la :BLines<CR>
+
+nnoremap <buffer> j gj
+nnoremap <buffer> k gk
+vnoremap <buffer> j gj
+vnoremap <buffer> k gk
+nnoremap <silent> <Leader>gs :set spell!<CR>
+nnoremap <silent> <Leader>gc :GrammarousCheck<CR>
 
 nnoremap <Leader>mt :NERDTreeToggle<CR>
 
@@ -389,11 +239,3 @@ nmap <leader>p "+p
 
 " clear search highlighting
 nmap <silent> <leader>/ :nohlsearch<CR>
-
-" add commands for incrementing and decrementing numbers, because <C-a> is my
-" tmux prefix. <C-x> is added for consistency.
-command! Incr normal! <C-a>
-command! Decr normal! <C-x>
-
-" temporary mapping
-nnoremap <Leader>n :let @1='# ' . expand('%') . '::' . tagbar#currenttag('%s', '', 'f')<CR>
