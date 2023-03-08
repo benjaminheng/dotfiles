@@ -4,8 +4,11 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-slash'
 Plug 'itchyny/lightline.vim'
 Plug 'scrooloose/nerdtree'
+Plug 'majutsushi/tagbar'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-repeat'
 Plug 'machakann/vim-sandwich'
 Plug 'w0rp/ale', {'commit': 'bbe5153f'}
@@ -140,6 +143,7 @@ let g:gutentags_cache_dir = '~/.config/nvim/tags/'
 let g:gutentags_ctags_exclude = ['node_modules', 'env', 'env2', 'vendor']
 let g:gutentags_file_list_command = { 'markers': { '.git': 'git ls-files | grep -v "^vendor/" | grep -v ".pb.go$"' } }
 let g:gutentags_generate_on_empty_buffer = 1
+let g:gutentags_project_root = ['.gutentags']
 
 " Neovim-related options
 let g:python_host_prog='/usr/bin/python'
@@ -202,10 +206,10 @@ nnoremap <silent> <Leader>b :Buffers<CR>
 nnoremap <silent> <Leader>lt :BTags<CR>
 nnoremap <silent> <Leader>la :BLines<CR>
 
-nnoremap <buffer> j gj
-nnoremap <buffer> k gk
-vnoremap <buffer> j gj
-vnoremap <buffer> k gk
+nnoremap <silent> j gj
+nnoremap <silent> k gk
+vnoremap <silent> j gj
+vnoremap <silent> k gk
 nnoremap <silent> <Leader>gs :set spell!<CR>
 nnoremap <silent> <Leader>gc :GrammarousCheck<CR>
 
