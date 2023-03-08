@@ -107,6 +107,7 @@ alias epoch="date -r"
 alias jqless="jq -C | less -R"
 alias enable-writing-mode="source ~/enable-writing-mode"
 alias disable-writing-mode="source ~/disable-writing-mode"
+alias write="cd /mnt/c/Users/Ben/Dropbox/stories && vim -u ~/.config/nvim/writing-mode.vim"
 
 # Disable flow control (allow keys like Ctrl+S)
 stty -ixon
