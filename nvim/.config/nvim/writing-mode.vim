@@ -174,6 +174,7 @@ xmap s <NOP>
 " Plug 'junegunn/vim-easy-align'
 nmap ga <Plug>(EasyAlign)
 xmap ga <Plug>(EasyAlign)
+nnoremap <silent> <Leader>gy :Goyo<CR>
 augroup filetype_markdown
     autocmd!
     " Format markdown table
