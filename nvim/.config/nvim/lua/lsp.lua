@@ -27,16 +27,10 @@ local on_attach = function(client, bufnr)
   print('Attached to LSP')
 end
 
--- There are no LSPs configured for now:
--- 1. For Go, I use vim-go instead to provide LSP bindings.
--- 2. For Python, I regularly work on a Python 2 codebase, and none of the
---    Python LSPs support Python 2 anymore.
-local servers = {}
-for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup {
+-- Python
+nvim_lsp.pyright.setup{
     on_attach = on_attach,
     flags = {
       debounce_text_changes = 150,
     }
-  }
-end
+}
