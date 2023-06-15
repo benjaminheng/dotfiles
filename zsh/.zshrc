@@ -77,7 +77,7 @@ export PATH="$PATH:$HOME/dev/private-dotfiles/bin"
 export PATH="$(pyenv root)/shims:$PATH"
 export GOPRIVATE=github.com/carousell
 
-export HISTSIZE=50000
+export HISTSIZE=150000
 export SAVEHIST=$HISTSIZE
 
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
@@ -117,6 +117,7 @@ alias psqlx="snippet psql"
 alias pkb="kb --config ~/.config/kb/private-kb.config.toml"
 alias epoch="date -r"
 alias jqless="jq -C | less -R"
+alias fly-apps="fly ls apps --json | jq -r '.[].ID'"
 
 
 # Disable flow control (allow keys like Ctrl+S)

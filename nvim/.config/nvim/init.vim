@@ -183,7 +183,7 @@ let g:ale_sign_warning = '● '
 let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'python': ['flake8'],
-\   'go': ['go', 'golint', 'go vet'],
+\   'go': ['go build', 'go vet'],
 \   'bash': ['shellcheck'],
 \   'java': [],
 \}
