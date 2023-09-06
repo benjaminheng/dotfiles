@@ -86,7 +86,7 @@ hi link markdownCodeBlock Normal
 
 " Plug 'junegunn/fzf.vim'
 " respect .gitignore, among others
-let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+" let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 let g:fzf_preview_window = ''
 let g:fzf_layout = { 'window': { 'width': 1, 'height': 0.4, 'yoffset': 1, 'border': 'top' } }
 command! -nargs=1 AgRaw call fzf#vim#ag_raw(<f-args>)
