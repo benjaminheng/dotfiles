@@ -1,0 +1,36 @@
+#!/bin/bash
+
+args=()
+kubectl_args=()
+port=9281
+while [[ $# -gt 0 ]]
+do
+key="$1"
+case $key in
+    --namespace|-n)
+        kubectl_args+=("--namespace=$2")
+        shift
+        shift
+        ;;
+    --port|-p)
+        port=$2
+        shift
+        shift
+        ;;
+    *)
+        args+=($1)
+        shift
+        ;;
+esac
+done
+
+current_context=$(kubectl config current-context)
+query="${args[@]}"
+selection=$(kubectl ${kubectl_args} get pods | grep -v ^NAME | fzf -1 --query="${query}" --header="$current_context | $port" | awk '{print $1}')
+
+if [ ! -z "$selection" ]; then
+    echo "Context: $current_context"
+    echo "Pod: $selection"
+    echo
+    kubectl ${kubectl_args} port-forward "$selection" $port
+fi

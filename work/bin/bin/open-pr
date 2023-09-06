@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Hacky, hardcoded organizations.
+
+remote=$(git remote -v | grep "(fetch)" | awk '{print $2}')
+repo=$(basename `git rev-parse --show-toplevel`)
+branch=$(git rev-parse --abbrev-ref HEAD)
+
+url=""
+if [[ "$remote" =~ "gitlab.carousellinternal.com:carousell" ]]; then
+    url="https://gitlab.carousellinternal.com/carousell/${repo}/merge_requests/new?merge_request%5Bsource_branch%5D=${branch}"
+elif [[ "$remote" =~ "github.com:carousell" ]]; then
+    url="https://github.com/carousell/${repo}/compare/${branch}?expand=1"
+fi
+
+if [[ ! -z "$url" ]]; then
+    echo "$url"
+    open "$url"
+fi

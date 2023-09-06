@@ -1,0 +1,146 @@
+#!/bin/bash
+
+CONFIG="$HOME/.config/worklog/config"
+if [ ! -z "$XDG_CONFIG_HOME" ]; then
+    CONFIG="$XDG_CONFIG_HOME/worklog/config"
+fi
+
+. "$CONFIG"
+if [ -z "$worklog_author" ]; then
+    echo "Malformed config: worklog_author not defined."
+elif [ -z "$worklog_root" ]; then
+    echo "Malformed config: worklog_root not defined."
+fi
+
+WORKLOG_ROOT="$worklog_root"
+AUTHOR="$worklog_author"
+PAGER="$PAGER"  # Override this if you have a custom pager.
+
+WORKLOG_DIR="$WORKLOG_ROOT/$AUTHOR"
+WORKLOG_INDEX="$WORKLOG_DIR/README.md"
+
+function show_help {
+    echo "Usage:"
+    echo "  worklog [help|index|show <author>|list|pull|push|diff]"
+    echo
+    echo "Commands:"
+    echo "  worklog                 Edit your worklog for the current day"
+    echo "  worklog index           Edit your index file"
+    echo "  worklog list            List available authors"
+    echo "  worklog show <author>   Show the worklog for <author>"
+    echo "  worklog pull            Pull changes from upstream"
+    echo "  worklog push            Commit and push your changes upstream"
+    echo "  worklog diff            View a diff of your changes"
+    echo "  worklog help            Show this screen"
+}
+
+function build_index {
+    curr_year=""
+    curr_month=""
+    for i in $(ls -r $WORKLOG_DIR/entries/*.md); do
+        filename=$(basename $i)
+        year=$(echo $filename | sed 's/\(.\{4\}\)-.\{2\}-.\{2\}.md/\1/g')
+        month=$(echo $filename | sed 's/.\{4\}-\(.\{2\}\)-.\{2\}.md/\1/g')
+        if [[ "$year" != "$curr_year" ]]; then
+            if [[ ! -z "$curr_year" ]]; then
+                # Prevent newline at the start of the file
+                echo
+            fi
+            echo -e "# $year"
+            curr_year=$year
+            curr_month="" # reset month if moving to a new year
+        fi
+        if [[ "$month" != "$curr_month" ]]; then
+            # Print verbose month as header (eg. January)
+            entry_date=$(echo $filename | sed 's/^\(.*\).md/\1/')
+            friendly_month=$(date -j -f "%Y-%m-%d" "$entry_date" "+%B")
+            echo -e "\n## $friendly_month\n"
+            curr_month=$month
+        fi
+        line=$(echo $filename | sed 's/^\(.*\).md/- [\1](entries\/\1.md)/')
+        echo "$line"
+    done
+}
+
+function update_index {
+    index=$(build_index)
+    echo "$index" > $WORKLOG_INDEX
+}
+
+function edit_file {
+    case "$EDITOR" in
+        vim|nvim)
+            $EDITOR "$1" -c ":lcd $WORKLOG_DIR"
+            ;;
+        *)
+            $EDITOR "$1"
+            ;;
+    esac
+}
+
+function show_author_entries {
+    author=$1
+    if [ -f "$WORKLOG_ROOT/$author/README.md" ]; then
+        # Show last 10 entries, insert newline between entries, view in pager
+        ls -r $WORKLOG_ROOT/$author/entries/*.md | head -n 10 | xargs -n1 -I{} sh -c "cat {}; echo" | $PAGER
+    else
+        echo "$author does not exist"
+        exit 1
+    fi
+}
+
+if [ "$#" -eq 0 ]; then
+    file="$WORKLOG_DIR/entries/$(date +%Y-%m-%d).md"
+    if [ ! -f "$file" ]; then
+        echo "# $(date +%Y-%m-%d)" > "$file"
+    fi
+    edit_file "$file"
+    exit 0
+fi
+
+case "$1" in
+  help)
+      show_help
+    ;;
+
+  index)
+      update_index
+      edit_file "$WORKLOG_INDEX"
+    ;;
+
+  show)
+      author=$2
+      if [ -z $author ]; then
+          echo "Usage: $0 show <author>"
+      fi
+      show_author_entries $author
+    ;;
+
+  list)
+      (cd $WORKLOG_ROOT && ls -d */ | cut -f1 -d'/' | sort)
+    ;;
+
+  pull)
+      cd $WORKLOG_DIR
+      git pull
+    ;;
+
+  push)
+      update_index
+      cd $WORKLOG_DIR
+      git pull
+      git add .
+      git commit -m "Update worklog"
+      git push
+    ;;
+
+  diff)
+      cd $WORKLOG_DIR
+      git diff
+      git status
+    ;;
+
+  *)
+    show_help
+    ;;
+esac

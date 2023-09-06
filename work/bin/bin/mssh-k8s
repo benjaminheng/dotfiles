@@ -1,0 +1,41 @@
+#!/bin/bash
+# a script to ssh to multiple k8s nodes over multiple tmux panes
+
+args=()
+kubectl_args=()
+while [[ $# -gt 0 ]]
+do
+key="$1"
+case $key in
+    --namespace|-n)
+        kubectl_args+=("--namespace $2")
+        shift
+        shift
+        ;;
+    *)
+        args+=($1)
+        shift
+        ;;
+esac
+done
+
+multi_ssh() {
+    if [ -z "$HOSTS" ]; then
+       echo "Please provide of list of hosts separated by spaces [ENTER]: "
+       read HOSTS
+    fi
+
+    local hosts=( $HOSTS )
+
+    tmux new-window "kubectl ${kubectl_args[@]} exec -ti ${hosts[0]} -- bash"
+    unset hosts[0];
+    for i in "${hosts[@]}"; do
+        tmux split-window -h  "kubectl ${kubectl_args[@]} exec -ti $i -- bash"
+        tmux select-layout tiled > /dev/null
+    done
+    tmux select-pane -t 1
+    tmux set-window-option synchronize-panes on > /dev/null
+}
+
+HOSTS=${args[@]}
+multi_ssh
