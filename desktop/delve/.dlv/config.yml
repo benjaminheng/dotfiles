@@ -1,6 +1,6 @@
 aliases: {}
 substitute-path:
-  - {from: /go/src/github.com/carousell, to: /Users/benheng/dev}
+  - {from: /go/src/github.com/benjaminheng, to: /home/ben/dev}
 show-location-expr: false
 source-list-line-color: null
 source-list-keyword-color: "\x1b[0m"
