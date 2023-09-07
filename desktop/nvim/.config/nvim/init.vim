@@ -11,7 +11,7 @@ Plug 'majutsushi/tagbar'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'cohama/lexima.vim'
 Plug 'pangloss/vim-javascript'
-" Plug 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips'
 Plug 'hynek/vim-python-pep8-indent'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
@@ -93,11 +93,11 @@ command! -nargs=1 AgRaw call fzf#vim#ag_raw(<f-args>)
 autocmd FileType fzf setlocal nonumber norelativenumber
 
 " Plugin 'SirVer/ultisnips'
-" let g:UltiSnipsExpandTrigger="<tab>"
-" let g:UltiSnipsJumpForwardTrigger="<tab>"
-" let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-" let g:UltiSnipsEditSplit="vertical"
-" let g:UltiSnipsSnippetsDir="/Users/benheng/.config/nvim/UltiSnips/"
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsSnippetsDir="/home/ben/.config/nvim/UltiSnips/"
 
 " Plug 'itchyny/lightline.vim'
 function! LightlineALEErrors()
@@ -188,8 +188,8 @@ hi ALEError cterm=underline ctermbg=none
 hi ALEWarning cterm=underline ctermbg=none
 
 " Neovim-related options
-" let g:python_host_prog='/usr/bin/python'
-" let g:python3_host_prog='/Users/benheng/.pyenv/shims/python3'
+let g:python_host_prog='/home/ben/dev/python-virtualenvs/neovim/bin/python'
+let g:python3_host_prog='/home/ben/dev/python-virtualenvs/neovim/bin/python'
 
 " Plugin 'pangloss/vim-javascript'
 let b:javascript_fold = 0
