@@ -1,0 +1,7 @@
+import:
+  - ~/.config/alacritty/alacritty.yml
+
+window:
+  dimensions:
+    columns: 120
+    lines: 34

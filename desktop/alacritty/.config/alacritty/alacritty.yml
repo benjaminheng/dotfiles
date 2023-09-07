@@ -1,0 +1,8 @@
+import:
+  - ~/.config/alacritty/theme_dracula.yaml
+
+env:
+  TERM: xterm-256color
+
+shell:
+  program: /usr/bin/zsh
