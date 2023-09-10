@@ -1,6 +1,8 @@
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
+set -o emacs
+
 # Aliases
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -10,16 +12,10 @@ alias g="git"
 alias ls="ls -G"
 alias vim="nvim"
 alias view="nvim -R"
-alias godev="cd $GOPATH/src/github.com/carousell/"
 alias scratchpad="cd $HOME/dev/tmp/scratchpad"
-alias allhosts="cat $HOME/dev/scratchpad/allhosts | grep -Ev '^#|^$'" # List hosts from /etc/hosts
-alias wl="worklog"
-alias worklogbrowse="worklog list | grep -E '(ben|cyrandy|siawyoung|ronald)' | fzf --preview 'worklog show {}' --preview-window wrap"
-alias psqlx="snippet psql"
-alias pkb="kb --config ~/.config/kb/private-kb.config.toml"
 alias epoch="date -r"
 alias jqless="jq -C | less -R"
-alias fly-apps="fly ls apps --json | jq -r '.[].ID'"
+alias open="xdg-open"
 
 
 # Disable flow control (allow keys like Ctrl+S)
