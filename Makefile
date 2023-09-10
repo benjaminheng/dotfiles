@@ -11,3 +11,6 @@ desktop:
 		-R cmus \
 		-R alacritty \
 		2> >(grep -v 'BUG in find_stowed_path? Absolute/relative mismatch' 1>&2)
+
+desktop-installed-packages:
+	pacman -Qe > desktop/do-not-stow/installed-packages
