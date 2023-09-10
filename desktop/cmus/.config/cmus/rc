@@ -5,3 +5,4 @@ bind -f common + vol +5%
 bind -f common = vol +5%
 bind -f common - vol -5%
 bind -f common o win-activate
+set mouse=true
