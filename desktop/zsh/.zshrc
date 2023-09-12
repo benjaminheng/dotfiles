@@ -78,6 +78,7 @@ alias ls="ls -G"
 
 # Exports
 export PATH=$PATH:~/bin
+export PATH=$PATH:~/dev/private-dotfiles/bin
 export GOPATH="$HOME/dev/go"
 export GOBIN="$GOPATH/bin"
 export PATH="$GOBIN:$PATH"

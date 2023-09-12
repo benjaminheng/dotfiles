@@ -1,5 +1,0 @@
-#!/bin/bash
-
-# rclone copy --progress --filter "- *.db" "/var/run/media/data/photos/archive/2023" "backblaze-b2-backup:hbenjamin-general/photos/archive/2023"
-# rclone copy --progress --filter "- *.db" "/var/run/media/data/photos/raw/2023" "backblaze-b2-backup:hbenjamin-general/photos/raw/2023"
-rclone copy --progress --filter "- *.db" /var/run/media/data/music backblaze-b2-backup:hbenjamin-general/music
