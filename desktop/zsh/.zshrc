@@ -16,7 +16,8 @@ alias scratchpad="cd $HOME/dev/tmp/scratchpad"
 alias epoch="date -r"
 alias jqless="jq -C | less -R"
 alias open="xdg-open"
-
+alias ccopy="xclip -i -selection clipboard"
+alias cpaste="xclip -o -selection clipboard"
 
 # Disable flow control (allow keys like Ctrl+S)
 stty -ixon

@@ -10,6 +10,7 @@ desktop:
 		-R bin \
 		-R cmus \
 		-R alacritty \
+		-R desktop-entries \
 		2> >(grep -v 'BUG in find_stowed_path? Absolute/relative mismatch' 1>&2)
 
 desktop-installed-packages:
