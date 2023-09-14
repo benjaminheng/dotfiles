@@ -9,7 +9,7 @@ set -o emacs
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 alias g="git"
-alias ls="ls -G"
+alias ls="ls -G --color=auto"
 alias vim="nvim"
 alias view="nvim -R"
 alias scratchpad="cd $HOME/dev/tmp/scratchpad"
@@ -71,12 +71,6 @@ stty -ixon
 tnew() { tmux new-session -A -s $1; }
 
 [ -f ~/.fzf/shell/key-bindings.zsh ] && source ~/.fzf/shell/key-bindings.zsh
-
-# Aliases
-alias vim="nvim"
-alias view="nvim -R"
-alias g="git"
-alias ls="ls -G"
 
 # Exports
 export PATH=$PATH:~/bin
