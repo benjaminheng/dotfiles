@@ -19,6 +19,7 @@ alias open="xdg-open"
 alias ccopy="xclip -i -selection clipboard"
 alias cpaste="xclip -o -selection clipboard"
 alias arch-news='open "https://archlinux.org/news/"'
+alias calc='qalc'
 
 # Disable flow control (allow keys like Ctrl+S)
 stty -ixon
