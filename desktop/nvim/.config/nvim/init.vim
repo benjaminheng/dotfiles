@@ -29,6 +29,7 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'junegunn/vim-easy-align'
 Plug 'mfussenegger/nvim-dap'
 Plug 'rcarriga/nvim-dap-ui'
+Plug 'junegunn/goyo.vim'
 call plug#end()
 filetype plugin indent on
 filetype indent on
@@ -309,6 +310,28 @@ augroup filetype_markdown
     autocmd Filetype markdown nmap <leader>gft gaip*<Bar>
 augroup END
 
+" Plug 'jungunn/goyo.vim'
+function! s:goyo_enter()
+    set noshowmode
+    set noshowcmd
+    set spell
+    autocmd InsertLeave * :set norelativenumber
+    nnoremap <buffer> j gj
+    nnoremap <buffer> k gk
+    let &showbreak = ''
+endfunction
+function! s:goyo_leave()
+    set showmode
+    set showcmd
+    set nospell
+    autocmd InsertLeave * :set relativenumber
+    nunmap <buffer> j
+    nunmap <buffer> k
+    let &showbreak = '--→ '
+endfunction
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
 " Functions
 """""""""""""""""""""""""""""""""""""""""""""
 function! Prettier()
@@ -387,10 +410,10 @@ nmap <leader>p "+p
 " clear search highlighting
 nmap <silent> <leader>/ :nohlsearch<CR>
 
-" add commands for incrementing and decrementing numbers, because <C-a> is my
-" tmux prefix. <C-x> is added for consistency.
-command! Incr normal! <C-a>
-command! Decr normal! <C-x>
+" Rebind <C-a> to <C-q>, because <C-a> is my tmux prefix.
+nnoremap <C-q> <C-a>
+vnoremap <C-q> <C-a>
+vnoremap g<C-q> g<C-a>
 
 " temporary mapping
 nnoremap <Leader>n :let @1='# ' . expand('%') . '::' . tagbar#currenttag('%s', '', 'f')<CR>
