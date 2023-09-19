@@ -1,0 +1,7 @@
+//@theme "/usr/share/rofi/themes/Arc-Dark.rasi"
+//@theme "/usr/share/rofi/themes/Paper.rasi"
+@theme "/usr/share/rofi/themes/gruvbox-dark.rasi"
+
+configuration {
+    modes: "drun,calc";
+}

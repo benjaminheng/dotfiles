@@ -11,6 +11,7 @@ desktop:
 		-R cmus \
 		-R alacritty \
 		-R desktop-entries \
+		-R rofi \
 		2> >(grep -v 'BUG in find_stowed_path? Absolute/relative mismatch' 1>&2)
 
 desktop-installed-packages:
