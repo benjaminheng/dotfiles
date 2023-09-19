@@ -3,5 +3,5 @@
 @theme "/usr/share/rofi/themes/gruvbox-dark.rasi"
 
 configuration {
-    modes: "drun,calc";
+    modes: "drun,calc,window";
 }
