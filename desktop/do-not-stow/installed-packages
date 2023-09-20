@@ -9,6 +9,7 @@ breeze-gtk 5.27.8-1
 breeze-plymouth 5.27.8-1
 calibre 6.26.0-1
 cmus 2.10.0-4
+cmusfm 0.4.1-1
 ctags 1:6.0.0-1
 darktable 2:4.4.2-3
 digikam 8.1.0-1
@@ -50,6 +51,7 @@ libkscreen 5.27.8-1
 libksysguard 5.27.8-1
 linux 6.5.3.arch1-1
 linux-firmware 20230804.7be2766d-2
+linux-headers 6.5.3.arch1-1
 man-db 2.11.2-1
 man-pages 6.05.01-1
 milou 5.27.8-1
@@ -82,6 +84,7 @@ powerdevil 5.27.8-1
 rclone 1.63.1-1
 ripgrep 13.0.0-3
 rofi 1.7.5-2
+rofi-calc 2.2.0-1
 sddm 0.20.0-2
 sddm-kcm 5.27.8-1
 spectacle 23.08.0-1
@@ -96,6 +99,7 @@ wget 1.21.4-1
 which 2.21-6
 xclip 0.13-4
 xdg-desktop-portal-kde 5.27.8-1
+xone-dkms-git 0.3.r2.gbbf0dcc-1
 xorg-server 21.1.8-2
 yay 12.1.2-1
 zsh 5.9-4
