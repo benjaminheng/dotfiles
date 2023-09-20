@@ -20,7 +20,9 @@
 [delta]
     commit-style                  = raw
     file-style                    = brightyellow
-    hunk-header-style             = bold syntax
+    hunk-header-style             = line-number syntax
+    hunk-header-decoration-style  =
+    hunk-label                    = @@
     minus-style                   = bold red
     minus-non-emph-style          = bold red
     minus-emph-style              = bold red 52
