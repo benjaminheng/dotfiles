@@ -72,6 +72,7 @@ stty -ixon
 tnew() { tmux new-session -A -s $1; }
 
 [ -f ~/.fzf/shell/key-bindings.zsh ] && source ~/.fzf/shell/key-bindings.zsh
+[ -f ~/.fzf/shell/completion.zsh ] && source ~/.fzf/shell/completion.zsh
 
 # Exports
 export PATH=$PATH:~/bin
