@@ -30,6 +30,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'mfussenegger/nvim-dap'
 Plug 'rcarriga/nvim-dap-ui'
 Plug 'junegunn/goyo.vim'
+Plug 'robertmeta/nofrils'
 call plug#end()
 filetype plugin indent on
 filetype indent on
@@ -341,6 +342,11 @@ function! Prettier()
     " restore cursor position
     call cursor(l:curPos[1], l:curPos[2])
 endfunction
+
+function! WritingMode()
+    color nofrils-light
+endfunction
+command! WritingMode :call WritingMode()
 
 " Auto-commands
 """""""""""""""""""""""""""""""""""""""""""""
