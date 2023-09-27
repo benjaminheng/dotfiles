@@ -1,7 +1,7 @@
 [Desktop Entry]
 Categories=Multimedia;
 Comment=View YouTube subscriptions
-Exec=alacritty --class "yt-rss" --title "yt-rss" --option "window.dimensions.columns=130" --option "window.dimensions.lines=24" --option "font.size=10" --command "/home/ben/dev/go/bin/yt-rss"
+Exec=alacritty --class "yt-rss" --title "yt-rss" --option "window.dimensions.columns=126" --option "window.dimensions.lines=24" --option "font.size=10" --command "/home/ben/dev/go/bin/yt-rss"
 GenericName=YouTube subscriptions
 Icon=
 Name=yt-rss
