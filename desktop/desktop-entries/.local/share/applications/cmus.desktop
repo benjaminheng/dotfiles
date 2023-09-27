@@ -2,7 +2,7 @@
 Categories=Multimedia;
 Comment[en_US]=Small, fast and powerful console music player
 Comment=Small, fast and powerful console music player
-Exec=sh -c 'alacritty --class "cmus" --title "cmus" --config-file "/home/ben/.config/alacritty/cmus_config.yml" --command "cmus"'
+Exec=alacritty --class "cmus" --title "cmus" --option "window.dimensions.columns=100" --option "window.dimensions.lines=30" --command "cmus"
 GenericName[en_US]=cmus
 GenericName=cmus
 Icon=goodvibes
