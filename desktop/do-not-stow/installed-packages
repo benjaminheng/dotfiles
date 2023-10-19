@@ -51,6 +51,7 @@ kwrited 5.27.8-2
 layer-shell-qt 5.27.8-1
 libkscreen 5.27.8-2
 libksysguard 5.27.8-2
+libva-mesa-driver 1:23.2.1-2
 linux 6.5.7.arch1-1
 linux-firmware 20230804.7be2766d-2
 linux-headers 6.5.7.arch1-1
@@ -60,8 +61,6 @@ milou 5.27.8-2
 mpv 1:0.36.0-1
 neovim 0.9.4-2
 noto-fonts-cjk 20230817-1
-nvidia 535.113.01-5
-nvidia-settings 535.113.01-1
 nvme-cli 2.6-1
 nvtop 3.0.2-1
 oh-my-zsh-git r6969.6a7aab47d-1
@@ -84,6 +83,7 @@ plasma-workspace-wallpapers 5.27.8-1
 plymouth-kcm 5.27.8-1
 polkit-kde-agent 5.27.8-2
 powerdevil 5.27.8-2
+qt5-imageformats 5.15.11+kde+r12-1
 rclone 1.64.0-1
 ripgrep 13.0.0-3
 rofi 1.7.5-2
@@ -99,10 +99,12 @@ systemsettings 5.27.8-2
 tmux 3.3_a-7
 ttf-ms-win10-auto 10.0.19042.789-5
 visidata 2.11.1-1
+vulkan-radeon 1:23.2.1-2
 wget 1.21.4-1
 which 2.21-6
 xclip 0.13-4
 xdg-desktop-portal-kde 5.27.8-4
+xf86-video-amdgpu 23.0.0-1
 xone-dkms-git 0.3.r2.gbbf0dcc-1
 xorg-server 21.1.8-2
 yay 12.1.2-1
