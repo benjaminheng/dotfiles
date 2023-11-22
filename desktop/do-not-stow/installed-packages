@@ -13,9 +13,9 @@ cmusfm 0.4.1-1
 ctags 1:6.0.0-1
 darktable 2:4.4.2-3
 digikam 8.1.0-2
-discord 0.0.34-1
-discord-canary 0.0.179-1
-discover 5.27.9-2
+discord 0.0.35-1
+discord-canary 0.0.181-1
+discover 5.27.9-3
 dolphin 23.08.3-1
 drkonqi 5.27.9-2
 feh 3.10.1-2
@@ -23,10 +23,11 @@ ffmpegthumbs 23.08.3-1
 firefox-developer-edition 120.0b9-1
 flatpak-kcm 5.27.9-1
 fzf 0.43.0-1
-git 2.42.1-1
+git 2.43.0-1
 git-delta 0.16.5-1
 go 2:1.21.4-1
-gwenview 23.08.3-1
+gourou 0.8.2-1
+gwenview 23.08.3-2
 htop 3.2.2-1
 jless 0.9.0-1
 jq 1.7-1
@@ -53,9 +54,9 @@ layer-shell-qt 5.27.9-1
 libkscreen 5.27.9-1
 libksysguard 5.27.9-1
 libva-mesa-driver 1:23.2.1-2
-linux 6.6.1.arch1-1
+linux 6.6.2.arch1-1
 linux-firmware 20231030.2b304bfe-1
-linux-headers 6.6.1.arch1-1
+linux-headers 6.6.2.arch1-1
 love 11.4-2
 man-db 2.12.0-1
 man-pages 6.05.01-2
@@ -63,6 +64,7 @@ milou 5.27.9-1
 mpv 1:0.36.0-1
 neovim 0.9.4-2
 noto-fonts-cjk 20230817-1
+noto-fonts-emoji 1:2.040-1
 nvme-cli 2.6-1
 nvtop 3.0.2-1
 oh-my-zsh-git r6969.6a7aab47d-1
@@ -81,7 +83,7 @@ plasma-systemmonitor 5.27.9-1
 plasma-thunderbolt 5.27.9-1
 plasma-vault 5.27.9-1
 plasma-welcome 5.27.9-2
-plasma-workspace 5.27.9.1-2
+plasma-workspace 5.27.9.1-3
 plasma-workspace-wallpapers 5.27.9-1
 plymouth-kcm 5.27.9-1
 polkit-kde-agent 5.27.9-1
@@ -97,7 +99,7 @@ spectacle 23.08.3-1
 steam 1.0.0.78-2
 stow 2.3.1-3
 sudo 1.9.15.p2-1
-syncthing 1.26.0-1
+syncthing 1.26.1-1
 systemsettings 5.27.9-1
 tmux 3.3_a-7
 ttf-ms-win10-auto 10.0.19042.789-5
@@ -111,7 +113,7 @@ xf86-video-amdgpu 23.0.0-1
 xone-dkms-git 0.3.r2.gbbf0dcc-1
 xorg-server 21.1.9-1
 yay 12.1.2-1
-yt-dlp 2023.10.13-1
+yt-dlp 2023.11.16-1
 zsh 5.9-4
 zsh-completions 0.35.0-1
 zsh-syntax-highlighting 0.7.1-1
