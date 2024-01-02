@@ -84,6 +84,7 @@ export VISUAL="nvim"
 export EDITOR="$VISUAL"
 export GIT_EDITOR="$VISUAL"
 export GOPRIVATE=github.com/benjaminheng
+export LEDGER_FILE="/home/ben/syncthing/hledger/finances.journal"
 
 if [ -z "$SSH_AUTH_SOCK" ] ; then
   eval `ssh-agent -s` > /dev/null

@@ -31,6 +31,7 @@ Plug 'mfussenegger/nvim-dap'
 Plug 'rcarriga/nvim-dap-ui'
 Plug 'junegunn/goyo.vim'
 Plug 'robertmeta/nofrils'
+Plug 'ledger/vim-ledger'
 call plug#end()
 filetype plugin indent on
 filetype indent on
@@ -360,6 +361,11 @@ autocmd FileType javascript nnoremap <silent> <leader>gf :call Prettier()<CR>
 autocmd FileType qf wincmd J " quickfix window always at bottom
 autocmd filetype crontab setlocal nobackup nowritebackup
 " autocmd BufRead,BufNewFile *.scss set filetype=css
+
+augroup filetype_ledger
+    autocmd!
+    autocmd FileType ledger nmap <leader>gb :!hledger check --strict<CR>
+augroup END
 
 " Syntax highlighting overrides
 """""""""""""""""""""""""""""""""""""""""""""
