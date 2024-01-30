@@ -14,6 +14,7 @@ desktop:
 		-R rofi \
 		-R mpv \
 		-R yt-dlp \
+		-R fish \
 		2> >(grep -v 'BUG in find_stowed_path? Absolute/relative mismatch' 1>&2)
 
 desktop-installed-packages:
