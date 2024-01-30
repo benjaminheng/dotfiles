@@ -58,3 +58,5 @@
     syntax-theme                  = Monokai Extended
     tabs                          = 8
     word-diff-regex               = '\\w+'
+[core]
+	editor = nvim
