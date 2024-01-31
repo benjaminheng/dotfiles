@@ -15,6 +15,7 @@ desktop:
 		-R mpv \
 		-R yt-dlp \
 		-R fish \
+		-R feh \
 		2> >(grep -v 'BUG in find_stowed_path? Absolute/relative mismatch' 1>&2)
 
 desktop-installed-packages:
