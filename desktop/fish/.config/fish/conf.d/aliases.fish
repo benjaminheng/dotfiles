@@ -40,3 +40,6 @@ end
 function cdhl
     cd ~/syncthing/hledger
 end
+function feh
+    command feh --scale-down $argv
+end
