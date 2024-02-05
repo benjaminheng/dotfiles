@@ -43,3 +43,10 @@ end
 function feh
     command feh --scale-down $argv
 end
+function current_branch
+    set -l ref (git rev-parse --abbrev-ref HEAD 2> /dev/null)
+    if test $status -ne 0
+        return
+    end
+    echo $ref
+end
