@@ -50,3 +50,6 @@ function current_branch
     end
     echo $ref
 end
+function venv-activate
+    . ~/dev/python-virtualenvs/$argv[1]/bin/activate.fish
+end
