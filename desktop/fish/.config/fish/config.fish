@@ -12,7 +12,7 @@ set VISUAL "nvim"
 set EDITOR "$VISUAL"
 set GIT_EDITOR "$VISUAL"
 set GOPRIVATE github.com/benjaminheng
-set LEDGER_FILE "/home/ben/syncthing/hledger/finances.journal"
+set -x LEDGER_FILE "/home/ben/syncthing/hledger/finances.journal"
 
 # Set prompt
 function fish_prompt
