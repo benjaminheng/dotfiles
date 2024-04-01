@@ -1,6 +1,6 @@
 [Desktop Entry]
 Categories=Utility;
-Exec=rofi -show calc
+Exec=rofi -show calc -modi calc -no-show-match -no-sort -normal-window
 Name=Qalc
 GenericName=Calculator
 Type=Application
