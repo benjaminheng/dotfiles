@@ -23,10 +23,10 @@ function open
     xdg-open $argv
 end
 function ccopy
-    xclip -i -selection clipboard
+    wl-copy -n
 end
 function cpaste
-    xclip -o -selection clipboard
+    wl-paste
 end
 function arch-news
     open "https://archlinux.org/news/"
