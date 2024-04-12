@@ -118,6 +118,7 @@ alias pkb="kb --config ~/.config/kb/private-kb.config.toml"
 alias epoch="date -r"
 alias jqless="jq -C | less -R"
 alias fly-apps="fly ls apps --json | jq -r '.[].ID'"
+alias units="gunits"
 
 
 # Disable flow control (allow keys like Ctrl+S)
