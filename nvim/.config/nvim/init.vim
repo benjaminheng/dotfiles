@@ -35,6 +35,7 @@ Plug 'udalov/kotlin-vim'
 Plug 'mfussenegger/nvim-dap'
 Plug 'rcarriga/nvim-dap-ui'
 Plug 'terrastruct/d2-vim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 call plug#end()
 filetype plugin indent on
 filetype indent on
@@ -189,6 +190,8 @@ let g:ale_linters = {
 \}
 if getcwd() == "/Users/benheng/dev/shared-proto"
     let g:ale_proto_protoc_gen_lint_options = '-I /Users/benheng/dev/shared-proto'
+elseif getcwd() == "/Users/benheng/dev/grp-proto"
+    let g:ale_proto_protoc_gen_lint_options = '-I /Users/benheng/dev/grp-proto/proto'
 endif
 hi ALEErrorSign ctermfg=red ctermbg=236
 hi ALEWarningSign ctermfg=yellow ctermbg=236
@@ -320,6 +323,9 @@ augroup filetype_markdown
     " Format markdown table
     autocmd Filetype markdown nmap <leader>gft gaip*<Bar>
 augroup END
+
+" Plug 'scrooloose/nerdtree', {'commit': 'fc85a6f0'}
+let NERDTreeIgnore=['^__pycache__$', '\~$']
 
 " Functions
 """""""""""""""""""""""""""""""""""""""""""""
