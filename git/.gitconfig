@@ -9,6 +9,8 @@
     logf = !git-fzflog
     checkoutf = !git checkout $(git branchf)
     mergef = !git merge $(git branchf)
+    addf = !git add $(git ls-files -m | fzf -m)
+    resetf = !git reset $(git diff --name-only --cached | fzf -m)
     fixup = !git commit --fixup $(git log --oneline --color=always | fzf --ansi | awk '{print $1}')
 [url "git@github.com:"]
 	insteadOf = https://github.com/
