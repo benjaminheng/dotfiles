@@ -20,16 +20,5 @@ desktop:
 
 desktop-installed-packages:
 	pacman -Qe > desktop/do-not-stow/installed-packages
-
-.PHONY: work
-work:
-	stow -d work/ -t /Users/benheng \
-		-R bin \
-		-R cron \
-		-R delve \
-		-R git \
-		-R nvim \
-		-R psql \
-		-R stow \
-		-R tmux \
-		-R zsh
+	git add desktop/do-not-stow/installed-packages
+	git commit -m "Update desktop installed packages"
