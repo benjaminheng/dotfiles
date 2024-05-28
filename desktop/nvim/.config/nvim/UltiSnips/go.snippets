@@ -9,14 +9,6 @@ if ${2:v}, ok := ${1}; ok {
 }
 endsnippet
 
-snippet rpchandler "Orion service method definition" b
-func ($1 $2) $3(ctx context.Context, req *proto.$3Request) (*proto.$3Response, error) {
-	resp := &proto.$3Response{}
-	$4
-	return resp, nil
-}
-endsnippet
-
 snippet testcases "table tests struct" b
 cases := []struct {
 	$1
@@ -31,25 +23,6 @@ endsnippet
 
 snippet spew "spew.Dump" b
 spew.Dump($1)
-endsnippet
-
-snippet createrule "Trust service create rule" b
-state.CreateRule(Rule{
-	Name: "",
-	Func: func(state *State) bool {
-		return false
-	},
-	RolloutPercent: 0,
-	Reason:         "",
-})
-endsnippet
-
-snippet whenrule "Trust service when rule" b
-state.WhenRule([]string{
-	""
-},
-	NewLabelAction("label_name", CreatedContentLabelTarget, PendingLabelState),
-)
 endsnippet
 
 snippet ffjson "Parse to json and print" b
@@ -85,9 +58,4 @@ endsnippet
 snippet trun "t.Run()" b
 t.Run("$1", func(t *testing.T) {
 })
-endsnippet
-
-snippet span "spanutils" b
-span, ctx := spanutils.NewInternalSpan(ctx, "$1")
-defer span.Finish()
 endsnippet
