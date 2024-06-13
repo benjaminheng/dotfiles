@@ -12,7 +12,7 @@ case $key in
         shift
         ;;
     *)
-        args+=($1)
+        args+=("$1")
         shift
         ;;
 esac
@@ -21,18 +21,18 @@ done
 copy_to_clipboard="echo {} | awk '{print \$1}' | xargs echo -n | pbcopy"
 
 current_context=$(kubectl config current-context)
-query="${args[@]}"
-selection=($(kubectl ${kubectl_args} get pods | grep -v ^NAME | fzf --multi --query="${query}" --header="$current_context" --bind "ctrl-y:execute-silent($copy_to_clipboard)" | awk '{print $1}'))
+query="${args[*]}"
+selection=($(kubectl "${kubectl_args[@]}" get pods | grep -v ^NAME | fzf --multi --query="${query}" --header="$current_context" --bind "ctrl-y:execute-silent($copy_to_clipboard)" | awk '{print $1}'))
 
 if [ ${#selection[@]} -eq 1 ]; then
     echo "${selection[0]}"
-    kubectl ${kubectl_args} logs ${selection[0]} --tail=100 -f
+    kubectl "${kubectl_args[@]}" logs "${selection[0]}" --tail=100 -f
 else
     # Open logs in multiple tmux panes
-    tmux new-window "kubectl ${kubectl_args} logs ${selection[0]} --tail=20 -f"
-    unset selection[0];
+    tmux new-window "kubectl " "${kubectl_args[@]}" " logs ${selection[0]} --tail=20 -f"
+    unset "selection[0]";
     for i in "${selection[@]}"; do
-        tmux split-window -h  "kubectl ${kubectl_args} logs $i --tail=20 -f"
+        tmux split-window -h  "kubectl " "${kubectl_args[@]}" " logs $i --tail=20 -f"
     done
     tmux select-layout tiled > /dev/null
     tmux select-pane -t 1
