@@ -29,12 +29,12 @@ if [ ${#selection[@]} -eq 1 ]; then
     kubectl "${kubectl_args[@]}" logs "${selection[0]}" --tail=100 -f
 else
     # Open logs in multiple tmux panes
-    tmux new-window "kubectl " "${kubectl_args[@]}" " logs ${selection[0]} --tail=20 -f"
+    tmux new-window "kubectl ${kubectl_args[@]} logs ${selection[0]} --tail=20 -f"
     unset "selection[0]";
     for i in "${selection[@]}"; do
-        tmux split-window -h  "kubectl " "${kubectl_args[@]}" " logs $i --tail=20 -f"
+        tmux split-window -h  "kubectl ${kubectl_args[@]} logs $i --tail=20 -f"
     done
     tmux select-layout tiled > /dev/null
-    tmux select-pane -t 1
+
     tmux set-window-option synchronize-panes on > /dev/null
 fi
