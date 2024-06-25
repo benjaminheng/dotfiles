@@ -11,4 +11,6 @@
 */cmus/.config/cmus/playlists/
 */cmus/.config/cmus/search-history
 
-*/bin/bin/hledger*
+*/bin/bin/hledger
+*/bin/bin/hledger-ui
+*/bin/bin/hledger-web
