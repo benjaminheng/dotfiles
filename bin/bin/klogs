@@ -27,7 +27,7 @@ selection=($(kubectl "${kubectl_args[@]}" get pods | grep -v ^NAME | fzf --multi
 if [ ${#selection[@]} -eq 1 ]; then
     echo "${selection[0]}"
     kubectl "${kubectl_args[@]}" logs "${selection[0]}" --tail=100 -f
-else
+elif [ ${#selection[@]} -gt 1 ]; then
     # Open logs in multiple tmux panes
     tmux new-window "kubectl ${kubectl_args[@]} logs ${selection[0]} --tail=20 -f"
     unset "selection[0]";
@@ -35,6 +35,7 @@ else
         tmux split-window -h  "kubectl ${kubectl_args[@]} logs $i --tail=20 -f"
     done
     tmux select-layout tiled > /dev/null
-
     tmux set-window-option synchronize-panes on > /dev/null
+else
+    exit 0
 fi
