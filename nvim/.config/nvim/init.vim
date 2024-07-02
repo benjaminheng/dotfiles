@@ -34,6 +34,7 @@ Plug 'udalov/kotlin-vim'
 " Plug 'sebdah/vim-delve'
 Plug 'mfussenegger/nvim-dap'
 Plug 'rcarriga/nvim-dap-ui'
+Plug 'nvim-neotest/nvim-nio' " needed for nvim-dap-ui
 Plug 'terrastruct/d2-vim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 call plug#end()
