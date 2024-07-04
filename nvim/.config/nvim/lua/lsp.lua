@@ -34,3 +34,10 @@ nvim_lsp.pyright.setup{
       debounce_text_changes = 150,
     }
 }
+
+require('nvim-treesitter.configs').setup {
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = false,
+  },
+}
