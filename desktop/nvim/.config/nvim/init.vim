@@ -32,6 +32,7 @@ Plug 'rcarriga/nvim-dap-ui'
 Plug 'junegunn/goyo.vim'
 Plug 'robertmeta/nofrils'
 Plug 'ledger/vim-ledger'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 call plug#end()
 filetype plugin indent on
 filetype indent on

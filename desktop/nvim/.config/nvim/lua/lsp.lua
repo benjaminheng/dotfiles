@@ -34,3 +34,11 @@ nvim_lsp.pyright.setup{
       debounce_text_changes = 150,
     }
 }
+
+require'nvim-treesitter.configs'.setup {
+    ensure_installed = { "templ" },
+    highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = false,
+    },
+}
