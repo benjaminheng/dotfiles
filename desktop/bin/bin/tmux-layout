@@ -38,7 +38,7 @@ if [ "$layout" == "dev" ]; then
     if [ ! -z "$working_dir" ]; then
         general_args+=("-c $working_dir")
     fi
-    tmux new-window ${new_window_args[@]} ${general_args[@]} \; split-window -v -p 30 ${general_args[@]} \; split-window -h ${general_args[@]} \; select-pane -U
+    tmux new-window ${new_window_args[@]} ${general_args[@]} \; split-window -v -l '25%' ${general_args[@]} \; split-window -h ${general_args[@]} \; select-pane -U
 else
     echo "Unknown layout: $layout"
     echo "Supported layouts: dev"
