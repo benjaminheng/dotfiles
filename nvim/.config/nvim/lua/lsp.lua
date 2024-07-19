@@ -1,7 +1,7 @@
 local nvim_lsp = require('lspconfig')
 
 -- Disable diagnostics, since we use ale for linting errors
-vim.lsp.handlers["textDocument/publishDiagnostics"] = function() end
+-- vim.lsp.handlers["textDocument/publishDiagnostics"] = function() end
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -17,7 +17,7 @@ local on_attach = function(client, bufnr)
 
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   buf_set_keymap('n', '<C-]>', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  -- buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
   buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   buf_set_keymap('n', '<leader>gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
   buf_set_keymap('n', '<leader>gd', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
@@ -29,6 +29,14 @@ end
 
 -- Python
 nvim_lsp.pyright.setup{
+    on_attach = on_attach,
+    flags = {
+      debounce_text_changes = 150,
+    }
+}
+
+-- Go
+nvim_lsp.gopls.setup{
     on_attach = on_attach,
     flags = {
       debounce_text_changes = 150,
