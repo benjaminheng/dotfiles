@@ -263,9 +263,9 @@ let g:go_list_type = "quickfix"
 augroup filetype_go
     autocmd!
     autocmd FileType go nmap <leader>gb :<C-u>call <SID>build_go_files()<CR>
-    autocmd FileType go nmap <leader>gr  <Plug>(go-referrers)
-    autocmd FileType go nmap <leader>gi  <Plug>(go-info)
-    autocmd FileType go nmap <leader>gI  <Plug>(go-implements)
+    "autocmd FileType go nmap <leader>gr  <Plug>(go-referrers)
+    "autocmd FileType go nmap <leader>gi  <Plug>(go-info)
+    "autocmd FileType go nmap <leader>gI  <Plug>(go-implements)
     autocmd FileType go nmap <leader>gt  <Plug>(go-test)
     autocmd FileType go nmap <leader>gT  <Plug>(go-test-func)
     autocmd FileType go nmap <leader>gtc  <Plug>(go-coverage-toggle)
