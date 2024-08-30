@@ -186,7 +186,7 @@ let g:ale_sign_warning = '● '
 let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'python': ['flake8'],
-\   'go': [],
+\   'go': ['go build', 'go vet'],
 \   'bash': ['shellcheck'],
 \   'java': [],
 \}
@@ -197,6 +197,8 @@ if getcwd() == "/Users/benheng/dev/shared-proto"
     let g:ale_proto_protoc_gen_lint_options = '-I /Users/benheng/dev/shared-proto'
 elseif getcwd() == "/Users/benheng/dev/grp-proto"
     let g:ale_proto_protoc_gen_lint_options = '-I /Users/benheng/dev/grp-proto/proto'
+elseif getcwd() == "/Users/benheng/dev/cs-proto"
+    let g:ale_proto_protoc_gen_lint_options = '-I /Users/benheng/dev/cs-proto/proto'
 endif
 hi ALEErrorSign ctermfg=red ctermbg=236
 hi ALEWarningSign ctermfg=yellow ctermbg=236
@@ -283,8 +285,8 @@ augroup filetype_go
     " autocmd FileType go nmap <leader>gr  <Plug>(go-referrers)
     " autocmd FileType go nmap <leader>gi  <Plug>(go-info)
     " autocmd FileType go nmap <leader>gI  <Plug>(go-implements)
-    " autocmd FileType go nmap <leader>gt  <Plug>(go-test)
-    " autocmd FileType go nmap <leader>gT  <Plug>(go-test-func)
+    autocmd FileType go nmap <leader>gt  <Plug>(go-test)
+    autocmd FileType go nmap <leader>gT  <Plug>(go-test-func)
     " autocmd FileType go nmap <leader>gtc  <Plug>(go-coverage-toggle)
     autocmd FileType go setlocal noexpandtab sw=8 ts=8
 
