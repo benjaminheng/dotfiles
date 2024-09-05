@@ -37,6 +37,7 @@ Plug 'rcarriga/nvim-dap-ui'
 Plug 'nvim-neotest/nvim-nio' " needed for nvim-dap-ui
 Plug 'terrastruct/d2-vim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'robitx/gp.nvim', { 'branch': 'main' }
 call plug#end()
 filetype plugin indent on
 filetype indent on
@@ -432,4 +433,5 @@ endfun
 lua << EOF
 require('lsp')
 require('debugger')
+require('ai')
 EOF
