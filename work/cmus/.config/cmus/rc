@@ -1,7 +1,0 @@
-colorscheme zenburn
-bind -f common ^D win-page-down
-bind -f common ^U win-page-up
-bind -f common + vol +5%
-bind -f common = vol +5%
-bind -f common - vol -5%
-bind -f common o win-activate
