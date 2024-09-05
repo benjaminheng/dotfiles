@@ -55,6 +55,9 @@ require'nvim-treesitter.configs'.setup {
     ensure_installed = { "templ" },
     highlight = {
         enable = true,
+        disable = {
+            "go" -- Disable for go filetype. Keep for markdown and other filetypes where Go code might be embedded in.
+        },
         additional_vim_regex_highlighting = false,
     },
 }

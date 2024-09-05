@@ -33,6 +33,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'robertmeta/nofrils'
 Plug 'ledger/vim-ledger'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'robitx/gp.nvim', { 'branch': 'main' }
 call plug#end()
 filetype plugin indent on
 filetype indent on
@@ -442,4 +443,5 @@ endfun
 lua << EOF
 require('lsp')
 require('debugger')
+require('ai')
 EOF
