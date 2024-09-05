@@ -35,7 +35,7 @@
     grep-file-style               = purple
     grep-line-number-style        = green
     whitespace-error-style        = reverse purple
-    blame-palette                 = #000000 #222222 #444444
+    blame-palette                 = "#000000 #222222 #444444"
     true-color                    = auto
     file-added-label              = added:
     file-modified-label           = modified:
