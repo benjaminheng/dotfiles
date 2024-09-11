@@ -20,7 +20,7 @@ Plug 'tpope/vim-repeat'
 Plug 'machakann/vim-sandwich'
 Plug 'w0rp/ale', {'commit': 'bbe5153f'}
 Plug 'terryma/vim-expand-region'
-Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
+"Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 Plug 'christoomey/vim-tmux-navigator'
 " Plug 'cespare/vim-toml'
 Plug 'aklt/plantuml-syntax'
@@ -84,7 +84,7 @@ let &showbreak = '--→ '
 let mapleader = ","
 
 " tpope's markdown syntax highlighting
-let g:markdown_fenced_languages = ['json', 'go', 'sql', 'diff', 'bash', 'dot', 'plantuml', 'proto']
+let g:markdown_fenced_languages = ['json', 'go', 'sql', 'diff', 'bash', 'dot', 'plantuml', 'proto', 'html', 'python']
 " Highlight inline code blocks for better visibility
 hi link markdownCode PreProc
 hi link markdownCodeBlock Normal
