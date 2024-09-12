@@ -56,7 +56,8 @@ require'nvim-treesitter.configs'.setup {
     highlight = {
         enable = true,
         disable = {
-            "go" -- Disable for go filetype. Keep for markdown and other filetypes where Go code might be embedded in.
+            "go", -- Disable for go filetype. Keep for markdown and other filetypes where Go code might be embedded in.
+            "markdown" -- Vim regex-based syntax highlighting for markdown is still better
         },
         additional_vim_regex_highlighting = false,
     },
