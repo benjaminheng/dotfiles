@@ -1,0 +1,10 @@
+[Desktop Entry]
+Categories=Utility;
+Comment=ipython shell in the scratchpad virtualenv
+Exec=alacritty --class "ipython-scratchpad" --title "ipython (scratchpad)" --option "window.dimensions.columns=100" --option "window.dimensions.lines=24" --option "font.size=10" --command "/home/ben/.local/share/applications/ipython-scratchpad.sh"
+Icon=
+Name=iPython Shell (Scratchpad)
+Terminal=false
+Type=Application
+X-KDE-SubstituteUID=false
+X-KDE-Username=
