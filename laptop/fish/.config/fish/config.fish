@@ -1,8 +1,6 @@
 if status is-interactive
     eval (ssh-agent -c) > /dev/null
     ssh-add ~/.ssh/id_ed25519_github > /dev/null 2>&1
-    ssh-add ~/.ssh/id_rsa_hbenjamin_com > /dev/null 2>&1
-    ssh-add ~/.ssh/id_ed25519_digitalocean_1 > /dev/null 2>&1
 end
 
 set -g -x GOPATH "$HOME/dev/go"
