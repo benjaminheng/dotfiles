@@ -1,0 +1,14 @@
+
+[env]
+TERM = "xterm-256color"
+
+[terminal.shell]
+program = "/usr/bin/fish"
+
+[font]
+size = 11.0
+
+[general]
+import = ["/home/ben/.config/alacritty/theme_dracula.toml"]
+
+[terminal]

@@ -1,0 +1,19 @@
+[Desktop Entry]
+Categories=Multimedia;
+Comment[en_US]=Small, fast and powerful console music player
+Comment=Small, fast and powerful console music player
+Exec=alacritty --class "cmus" --title "cmus" --option "window.dimensions.columns=100" --option "window.dimensions.lines=30" --command "cmus"
+GenericName[en_US]=cmus
+GenericName=cmus
+Icon=goodvibes
+MimeType=
+Name[en_US]=cmus
+Name=cmus
+Path=
+StartupNotify=true
+StartupWMClass=cmus
+Terminal=false
+TerminalOptions=
+Type=Application
+X-KDE-SubstituteUID=false
+X-KDE-Username=

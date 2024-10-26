@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# Explore hledger expenses interactively using fzf
+
+echo '' \
+    | fzf --phony \
+          --preview-window='up:99%' \
+          --print-query \
+          --delimiter ":" \
+          --preview 'hl register $(echo {q} | xargs -n 1)'

@@ -1,0 +1,62 @@
+[user]
+	name = "Benjamin Heng"
+	email = "ben@hbenjamin.com"
+[pager]
+	diff = delta
+[alias]
+    branchf = !git branch --sort=-committerdate | fzf
+    fix-conflicts = !git diff --name-only | uniq | xargs nvim
+    logf = !git-fzflog
+    checkoutf = !git checkout $(git branchf)
+    mergef = !git merge $(git branchf)
+    fixup = !git commit --fixup $(git log --oneline --color=always | fzf --ansi | awk '{print $1}')
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+[pull]
+	rebase = false
+[init]
+	defaultBranch = master
+
+[delta]
+    commit-style                  = raw
+    file-style                    = brightyellow
+    hunk-header-style             = line-number syntax
+    hunk-header-decoration-style  =
+    hunk-label                    = @@
+    minus-style                   = bold red
+    minus-non-emph-style          = bold red
+    minus-emph-style              = bold red 52
+    minus-empty-line-marker-style = normal "#3f0001"
+    zero-style                    = normal
+    plus-style                    = bold green
+    plus-non-emph-style           = bold green
+    plus-emph-style               = bold green 22
+    plus-empty-line-marker-style  = normal "#002800"
+    grep-file-style               = purple
+    grep-line-number-style        = green
+    whitespace-error-style        = reverse purple
+    blame-palette                 = "#000000 #222222 #444444"
+    true-color                    = auto
+    file-added-label              = added:
+    file-modified-label           = modified:
+    file-removed-label            = removed:
+    file-renamed-label            = renamed:
+    right-arrow                   = '⟶  '
+    hyperlinks                    = false
+    inspect-raw-lines             = true
+    keep-plus-minus-markers       = false
+    line-numbers                  = true
+    max-line-distance             = 0.6
+    max-line-length               = 512
+    diff-stat-align-width         = 48
+    line-fill-method              = ansi
+    navigate                      = false
+    navigate-regex                =
+    pager                         = less
+    paging                        = auto
+    side-by-side                  = false
+    syntax-theme                  = Monokai Extended
+    tabs                          = 8
+    word-diff-regex               = '\\w+'
+[core]
+	editor = nvim
