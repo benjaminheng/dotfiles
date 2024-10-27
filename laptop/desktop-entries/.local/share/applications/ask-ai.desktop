@@ -1,0 +1,7 @@
+[Desktop Entry]
+Categories=Utility;
+Exec=nvim -c ":GpChatNew"
+Exec=alacritty --class "ask-ai" --title "ask-ai" --option "window.dimensions.columns=100" --option "window.dimensions.lines=24" --command "/home/ben/.local/share/applications/ask-ai.sh"
+Name=Ask AI
+GenericName=Ask AI
+Type=Application
