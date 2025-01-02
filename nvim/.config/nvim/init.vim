@@ -365,6 +365,7 @@ hi xmlTag     ctermfg=04
 hi xmlTagName ctermfg=04
 hi xmlEndTag  ctermfg=04
 hi xmlEqual   ctermfg=110
+hi SignColumn ctermfg=252
 
 " Mappings
 """""""""""""""""""""""""""""""""""""""""""""
