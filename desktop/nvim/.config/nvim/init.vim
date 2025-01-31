@@ -319,20 +319,12 @@ augroup END
 function! s:goyo_enter()
     set noshowmode
     set noshowcmd
-    set spell
     autocmd InsertLeave * :set norelativenumber
-    nnoremap <buffer> j gj
-    nnoremap <buffer> k gk
-    let &showbreak = ''
 endfunction
 function! s:goyo_leave()
     set showmode
     set showcmd
-    set nospell
     autocmd InsertLeave * :set relativenumber
-    nunmap <buffer> j
-    nunmap <buffer> k
-    let &showbreak = '--→ '
 endfunction
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
@@ -349,8 +341,20 @@ endfunction
 
 function! WritingMode()
     color nofrils-light
+    set spell
+    nnoremap j gj
+    nnoremap k gk
+    let &showbreak = ''
+endfunction
+function! NoWritingMode()
+    color jellybeans
+    set nospell
+    nunmap j
+    nunmap k
+    let &showbreak = '--→ '
 endfunction
 command! WritingMode :call WritingMode()
+command! NoWritingMode :call NoWritingMode()
 
 " Auto-commands
 """""""""""""""""""""""""""""""""""""""""""""
