@@ -38,6 +38,10 @@ Plug 'nvim-neotest/nvim-nio' " needed for nvim-dap-ui
 Plug 'terrastruct/d2-vim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'robitx/gp.nvim', { 'branch': 'main' }
+" Plug 'stevearc/dressing.nvim' " dep for avante
+" Plug 'nvim-lua/plenary.nvim' " dep for avante
+" Plug 'MunifTanjim/nui.nvim', { 'branch': 'main' } " dep for avante
+" Plug 'yetone/avante.nvim', { 'branch': 'main', 'do': 'make' }
 call plug#end()
 filetype plugin indent on
 filetype indent on
