@@ -310,7 +310,9 @@ xmap ga <Plug>(EasyAlign)
 augroup filetype_markdown
     autocmd!
     " Format markdown table
-    autocmd Filetype markdown nmap <leader>gft gaip*<Bar>
+    " `ml` to save cursor position, `<backtick>l` to restore position. `l` is
+    " arbitrarily chosen as the marker since it's not one I normally use.
+    autocmd Filetype markdown nmap <leader>gft mlgaip*<Bar>`l
 augroup END
 
 " Plug 'jungunn/goyo.vim'
