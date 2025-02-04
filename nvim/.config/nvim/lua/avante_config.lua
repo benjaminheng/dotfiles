@@ -45,17 +45,19 @@ require('avante').setup({
       prev = "[[",
     },
     submit = {
-      normal = "<CR>",
+      normal = "<C-g><C-g>",
       insert = "<C-s>",
     },
     sidebar = {
       apply_all = "A",
       apply_cursor = "a",
-      switch_windows = "<Tab>",
-      reverse_switch_windows = "<S-Tab>",
+      -- switch_windows = "<Tab>",
+      -- reverse_switch_windows = "<S-Tab>",
+      switch_windows = "<Nop>",
+      reverse_switch_windows = "<Nop>",
     },
   },
-  hints = { enabled = true },
+  hints = { enabled = false },
   windows = {
     ---@type "right" | "left" | "top" | "bottom"
     position = "right", -- the position of the sidebar
@@ -76,7 +78,7 @@ require('avante').setup({
     },
     ask = {
       floating = false, -- Open the 'AvanteAsk' prompt in a floating window
-      start_insert = true, -- Start insert mode when opening the ask window
+      start_insert = false, -- Start insert mode when opening the ask window
       border = "rounded",
       ---@type "ours" | "theirs"
       focus_on_apply = "ours", -- which diff to focus after applying
