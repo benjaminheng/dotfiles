@@ -56,7 +56,18 @@ require('avante').setup({
       switch_windows = "<Nop>",
       reverse_switch_windows = "<Nop>",
     },
-  },
+    ask = "<leader>ua",
+    edit = "<leader>ue",
+    refresh = "<leader>ur",
+    focus = "<leader>uf",
+    toggle = {
+        default = "<leader>ut",
+        debug = "<leader>ud",
+        hint = "<leader>uh",
+        suggestion = "<leader>us",
+        repomap = "<leader>uR",
+    },
+},
   hints = { enabled = false },
   windows = {
     ---@type "right" | "left" | "top" | "bottom"
