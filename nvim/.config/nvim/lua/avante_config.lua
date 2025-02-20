@@ -22,6 +22,7 @@ require('avante').setup({
     auto_apply_diff_after_generation = false,
     support_paste_from_clipboard = false,
     minimize_diff = true, -- Whether to remove unchanged lines when applying a code block
+    enable_cursor_planning_mode = false,
   },
   mappings = {
     --- @class AvanteConflictMappings
@@ -66,6 +67,9 @@ require('avante').setup({
         hint = "<leader>uh",
         suggestion = "<leader>us",
         repomap = "<leader>uR",
+    },
+    files = {
+        add_current = "<leader>uc", -- Add current buffer to selected files
     },
 },
   hints = { enabled = false },

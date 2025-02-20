@@ -197,6 +197,7 @@ let g:ale_linters = {
 \}
 let g:ale_fixers = {
 \   'python': ['black'],
+\   'go': ['goimports'],
 \}
 if getcwd() == "/Users/benheng/dev/shared-proto"
     let g:ale_proto_protoc_gen_lint_options = '-I /Users/benheng/dev/shared-proto'
@@ -275,7 +276,8 @@ endfunction
 
 " Disable vim-go's use of gopls since we're using neovim's built-in LSP
 " instead.
-let g:go_fmt_command = "goimports"
+let g:go_fmt_autosave = 0
+let g:go_fmt_command = ""
 let g:go_fmt_fail_silently = 1
 let g:go_highlight_functions = 1
 let g:go_gocode_unimported_packages = 1
