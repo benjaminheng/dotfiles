@@ -8,9 +8,10 @@ require('avante').setup({
   auto_suggestions_provider = "claude",
   claude = {
     endpoint = "https://api.anthropic.com",
-    model = "claude-3-5-sonnet-20241022",
+    model = "claude-3-7-sonnet-20250219",
     temperature = 0,
     max_tokens = 4096,
+    disable_tools = true, -- disable tools; don't trust the LLM to do anything beyond responding with text
   },
   dual_boost = {
     enabled = false,
@@ -23,6 +24,10 @@ require('avante').setup({
     support_paste_from_clipboard = false,
     minimize_diff = true, -- Whether to remove unchanged lines when applying a code block
     enable_cursor_planning_mode = false,
+    enable_token_counting = false, -- Token counting increases key latency when typing into the prompt window
+  },
+  web_search_engine = {
+      provider = nil, -- disable web search tool use
   },
   mappings = {
     --- @class AvanteConflictMappings
