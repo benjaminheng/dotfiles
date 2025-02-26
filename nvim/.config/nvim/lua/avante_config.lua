@@ -76,6 +76,7 @@ require('avante').setup({
     files = {
         add_current = "<leader>uc", -- Add current buffer to selected files
     },
+    select_model = "<leader>u?",
 },
   hints = { enabled = false },
   windows = {
