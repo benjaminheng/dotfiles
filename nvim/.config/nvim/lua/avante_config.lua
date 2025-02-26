@@ -52,7 +52,7 @@ require('avante').setup({
     },
     submit = {
       normal = "<C-g><C-g>",
-      insert = "<C-s>",
+      insert = "<C-g><C-g>",
     },
     sidebar = {
       apply_all = "A",
