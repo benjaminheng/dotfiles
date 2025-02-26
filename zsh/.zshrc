@@ -67,7 +67,8 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export PATH=$PATH:/usr/local/sbin
 export PATH=$PATH:~/bin
-export PATH="$HOME/.yarn/bin:$PATH"
+export PATH="$PATH:$HOME/.yarn/bin"
+export PATH="$PATH:$HOME/.npm-global/bin"
 
 export GOPATH="$HOME/dev/go"
 export GOBIN="$GOPATH/bin"
@@ -147,3 +148,6 @@ if [ -z "$SSH_AUTH_SOCK" ] ; then
   eval `ssh-agent -s`
   ssh-add
 fi
+
+# npm global path
+export PATH="/Users/benheng/.npm-global/bin:$PATH"
