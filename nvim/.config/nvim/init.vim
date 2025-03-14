@@ -5,7 +5,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-slash'
 Plug 'benjaminheng/vim-smyteql-syntax'
 Plug 'benjaminheng/vim-githubbrowse'
-Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'itchyny/lightline.vim'
 Plug 'scrooloose/nerdtree', {'commit': 'fc85a6f0'}
 Plug 'majutsushi/tagbar'
@@ -263,48 +262,25 @@ let g:wiki_mappings_use_defaults = 'local'
 " Plug 'christoomey/vim-tmux-navigator'
 let g:tmux_navigator_disable_when_zoomed = 1
 
-" Plug 'fatih/vim-go'
-" run :GoBuild or :GoTestCompile based on the go file
-function! s:build_go_files()
-  let l:file = expand('%')
-  if l:file =~# '^\f\+_test\.go$'
-    call go#test#Test(0, 1)
-  elseif l:file =~# '^\f\+\.go$'
-    call go#cmd#Build(0)
-  endif
-endfunction
-
-" Disable vim-go's use of gopls since we're using neovim's built-in LSP
-" instead.
-let g:go_fmt_autosave = 0
-let g:go_fmt_command = ""
-let g:go_fmt_fail_silently = 1
-let g:go_highlight_functions = 1
-let g:go_gocode_unimported_packages = 1
-let go_highlight_diagnostic_errors = 0
-let go_highlight_diagnostic_warnings = 0
-let g:go_def_mode='gopls'
-let g:go_info_mode='gopls'
-let g:go_list_type = "quickfix"
+" Go language config
+hi link @property.go @variable.go
+hi link @function.method.call.go @variable.go
+hi link @module.go @variable.go
+hi link @variable.go Normal
+hi link @variable.member.go Normal
 augroup filetype_go
     autocmd!
-    autocmd FileType go nmap <leader>gb :<C-u>call <SID>build_go_files()<CR>
     " autocmd FileType go nmap <leader>gr  <Plug>(go-referrers)
     " autocmd FileType go nmap <leader>gi  <Plug>(go-info)
     " autocmd FileType go nmap <leader>gI  <Plug>(go-implements)
-    autocmd FileType go nmap <leader>gt  <Plug>(go-test)
-    autocmd FileType go nmap <leader>gT  <Plug>(go-test-func)
     " autocmd FileType go nmap <leader>gtc  <Plug>(go-coverage-toggle)
+    "
+    " autocmd FileType go nmap <leader>gb :<C-u>call <SID>build_go_files()<CR>
+    " autocmd FileType go nmap <leader>gt  <Plug>(go-test)
+    " autocmd FileType go nmap <leader>gT  <Plug>(go-test-func)
     autocmd FileType go setlocal noexpandtab sw=8 ts=8
 
     " Debug commands
-    " autocmd FileType go nmap <leader>db  :DlvToggleBreakpoint<CR>
-    " autocmd FileType go nmap <leader>dB  :DlvToggleTracepoint<CR>
-    " autocmd FileType go nmap <leader>dC  :DlvClearAll<CR>
-    " autocmd FileType go nmap <leader>dt  :DlvTest<CR>
-    " autocmd FileType go nmap <leader>dT :DlvTestCurrent<CR>
-    " autocmd FileType go nmap <leader>ddr :DlvConnect 127.0.0.1:4000
-    " autocmd FileType go nmap <leader>ddl :DlvDebug
     autocmd FileType go nnoremap <silent> <F5> <Cmd>lua require'dap'.continue()<CR>
     autocmd FileType go nnoremap <silent> <F6> <Cmd>lua require'dap'.step_over()<CR>
     autocmd FileType go nnoremap <silent> <F7> <Cmd>lua require'dap'.step_into()<CR>

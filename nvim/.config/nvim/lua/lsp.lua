@@ -63,9 +63,6 @@ nvim_lsp.gopls.setup{
 require('nvim-treesitter.configs').setup {
   highlight = {
     enable = true,
-    disable = {
-        "go" -- Disable for go filetype. Keep for markdown and other filetypes where Go code might be embedded in.
-    },
     additional_vim_regex_highlighting = false,
   },
 }
