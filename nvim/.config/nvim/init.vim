@@ -262,7 +262,69 @@ let g:wiki_mappings_use_defaults = 'local'
 " Plug 'christoomey/vim-tmux-navigator'
 let g:tmux_navigator_disable_when_zoomed = 1
 
+""""""""""""""""""
 " Go language config
+"""""""""""""""""
+" Build or compile tests depending on the file type
+function! s:build_go_files()
+    let l:file = expand('%')
+    let l:dir = expand('%:p:h')
+    let l:rel_dir = fnamemodify(l:dir, ':.')
+    let l:tmpfile = tempname()
+    
+    " Close quickfix window before execution
+    silent! cclose
+    
+    function! s:on_exit(job_id, exit_code, event) closure
+        if a:exit_code == 0
+            echohl Function
+            echom "[build] SUCCESS"
+            echohl None
+        else
+            " Read the output file
+            let l:output = readfile(l:tmpfile)
+            " Filter out lines starting with # and empty lines
+            let l:filtered_output = filter(l:output, 'v:val !~ "^#" && v:val !~ "^$"')
+            call writefile(l:filtered_output, l:tmpfile)
+            
+            " Open the quickfix window with the errors
+            execute 'cfile ' . l:tmpfile
+            copen
+        endif
+        
+        " Clean up the temporary file
+        call delete(l:tmpfile)
+    endfunction
+    
+    function! s:on_stdout(job_id, data, event) closure
+        call writefile(a:data, l:tmpfile, 'a')
+    endfunction
+    
+    function! s:on_stderr(job_id, data, event) closure
+        call writefile(a:data, l:tmpfile, 'a')
+    endfunction
+    
+    let l:cmd = ''
+    if l:file =~# '^\f\+_test\.go$'
+        " Run go test
+        let l:cmd = 'go test -v ./' . l:rel_dir . '/...'
+        echom "[build] Running tests..."
+    elseif l:file =~# '^\f\+\.go$'
+        " Run go build
+        let l:cmd = 'go build ./' . l:rel_dir . '/...'
+        echom "[build] Building..."
+    endif
+    
+    if !empty(l:cmd)
+        " Start the job
+        let l:job_opts = {
+            \ 'on_stdout': function('s:on_stdout'),
+            \ 'on_stderr': function('s:on_stderr'),
+            \ 'on_exit': function('s:on_exit')
+            \ }
+        let l:job_id = jobstart(l:cmd, l:job_opts)
+    endif
+endfunction
 hi link @property.go @variable.go
 hi link @function.method.call.go @variable.go
 hi link @module.go @variable.go
@@ -275,7 +337,7 @@ augroup filetype_go
     " autocmd FileType go nmap <leader>gI  <Plug>(go-implements)
     " autocmd FileType go nmap <leader>gtc  <Plug>(go-coverage-toggle)
     "
-    " autocmd FileType go nmap <leader>gb :<C-u>call <SID>build_go_files()<CR>
+    autocmd FileType go nmap <leader>gb :<C-u>call <SID>build_go_files()<CR>
     " autocmd FileType go nmap <leader>gt  <Plug>(go-test)
     " autocmd FileType go nmap <leader>gT  <Plug>(go-test-func)
     autocmd FileType go setlocal noexpandtab sw=8 ts=8
@@ -292,6 +354,9 @@ augroup filetype_go
     autocmd FileType go nnoremap <silent> <Leader>dr <Cmd>lua require'dap'.repl.open()<CR>
     autocmd FileType go nnoremap <silent> <Leader>dq <Cmd>lua require'dap'.disconnect()<CR>
 augroup END
+""""""""""""""""""
+" End Go language config
+"""""""""""""""""
 
 " Plug 'machakann/vim-sandwich'
 call operator#sandwich#set('delete', 'all', 'highlight', 0)
