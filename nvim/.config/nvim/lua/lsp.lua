@@ -2,15 +2,25 @@ local nvim_lsp = require('lspconfig')
 
 -- Disable diagnostics, since we use ale for linting errors
 local function setup_diagnostics()
+    vim.diagnostic.config({
+        signs = {
+            text = {
+                [vim.diagnostic.severity.ERROR] = '● ',
+                [vim.diagnostic.severity.WARN] = '● ',
+                [vim.diagnostic.severity.INFO] = '● ',
+            },
+        },
+    })
+
     vim.lsp.handlers["textDocument/publishDiagnostics"] = function() end
     -- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-    -- vim.lsp.diagnostic.on_publish_diagnostics,
-    -- {
-    --     virtual_text = false,
-    --     signs = true,
-    --     update_in_insert = false,
-    --     underline = true,
-    -- }
+    --     vim.lsp.diagnostic.on_publish_diagnostics,
+    --     {
+    --         virtual_text = false,
+    --         signs = true,
+    --         update_in_insert = false,
+    --         underline = true,
+    --     }
     -- )
 end
 setup_diagnostics()
@@ -35,13 +45,6 @@ local on_attach_generic = function(client, bufnr)
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
   -- Enable completion triggered by <c-x><c-o>
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-  init_lsp_keybindings(bufnr)
-  print('Attached to LSP')
-end
-
--- LSP on_attach handler for Go. Differences from generic:
--- 1. No omnifunc handler. We use vim-go's one instead, because it has fuzzy matching.
-local on_attach_go = function(client, bufnr)
   init_lsp_keybindings(bufnr)
   print('Attached to LSP')
 end

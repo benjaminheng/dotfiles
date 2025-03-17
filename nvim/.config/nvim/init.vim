@@ -19,7 +19,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-repeat'
 Plug 'machakann/vim-sandwich'
-Plug 'w0rp/ale', {'commit': 'bbe5153f'}
+Plug 'w0rp/ale'
 Plug 'terryma/vim-expand-region'
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 Plug 'christoomey/vim-tmux-navigator'
@@ -74,6 +74,7 @@ set scrolloff=1
 set tw=0
 set incsearch               " Search before pressing enter
 set completeopt-=preview    " remove scratchpad preview from omnicomplete
+set completeopt+=fuzzy      " Enable fuzzy omnifunc completions. Needed for fuzzy LSP matches.
 set ttimeoutlen=10          " Keycode delay
 set formatoptions+=j        " Delete comment character when joining commented lines
 set cursorline
@@ -187,10 +188,12 @@ let g:ale_lint_on_insert_leave = 0
 let g:ale_fix_on_save = 1
 let g:ale_sign_error = '● '
 let g:ale_sign_warning = '● '
+let g:ale_virtualtext_cursor = 'disabled'
+let g:ale_use_neovim_diagnostics_api = 1 " If 1, signs should be configured using neovim's `vim.diagnostic.config()` API
 let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'python': ['flake8'],
-\   'go': ['go build', 'go vet'],
+\   'go': ['go vet'],
 \   'bash': ['shellcheck'],
 \   'java': [],
 \}
@@ -205,11 +208,6 @@ elseif getcwd() == "/Users/benheng/dev/grp-proto"
 elseif getcwd() == "/Users/benheng/dev/cs-proto"
     let g:ale_proto_protoc_gen_lint_options = '-I /Users/benheng/dev/cs-proto/proto'
 endif
-hi ALEErrorSign ctermfg=red ctermbg=236
-hi ALEWarningSign ctermfg=yellow ctermbg=236
-hi ALEErrorSign ctermbg=236
-hi ALEError cterm=underline ctermbg=none
-hi ALEWarning cterm=underline ctermbg=none
 
 " Neovim-related options
 let g:python_host_prog='/usr/bin/python'
@@ -328,6 +326,7 @@ endfunction
 hi link @property.go @variable.go
 hi link @function.method.call.go @variable.go
 hi link @module.go @variable.go
+hi link @constant.go @variable.go
 hi link @variable.go Normal
 hi link @variable.member.go Normal
 augroup filetype_go
