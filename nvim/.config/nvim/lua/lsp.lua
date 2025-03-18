@@ -57,7 +57,7 @@ nvim_lsp.pyright.setup{
     }
 }
 nvim_lsp.gopls.setup{
-    on_attach = on_attach_go,
+    on_attach = on_attach_generic,
     flags = {
       debounce_text_changes = 150,
     }
