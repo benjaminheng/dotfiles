@@ -305,8 +305,8 @@ function! s:build_go_files()
     let l:cmd = ''
     if l:file =~# '^\f\+_test\.go$'
         " Run go test
-        let l:cmd = 'go test -v ./' . l:rel_dir . '/...'
-        echom "[build] Running tests..."
+        let l:cmd = 'go test -c -o /dev/null ' . './' . l:rel_dir . '/...'
+        echom "[build] Compiling tests..."
     elseif l:file =~# '^\f\+\.go$'
         " Run go build
         let l:cmd = 'go build ./' . l:rel_dir . '/...'
