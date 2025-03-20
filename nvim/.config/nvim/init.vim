@@ -468,6 +468,9 @@ command! Decr normal! <C-x>
 " temporary mapping
 nnoremap <Leader>n :let @1='# ' . expand('%') . '::' . tagbar#currenttag('%s', '', 'f')<CR>
 
+" Clear Avante history and memory
+nnoremap <Leader>ul :AvanteClear history<CR>:AvanteClear memory<CR>:echo "Avante history/memory cleared"<CR>
+
 " Show syntax highlighting group of the character under cursor
 " Invoke with `:call SyntaxHighlightingGroup()`
 function! SyntaxHighlightingGroup()
