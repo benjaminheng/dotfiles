@@ -1,3 +1,71 @@
+# Fmt Printf debug
+snippet ff "fmt.Printf(...)"
+fmt.Printf("$1 = %+v\n", ${1:${VISUAL}})
+endsnippet
+
+# Fmt Println debug
+snippet fn "fmt.Println(...)"
+fmt.Println("${1:${VISUAL}}")
+endsnippet
+
+# log printf
+snippet lf "log.Printf(...)"
+log.Printf("${1:${VISUAL}} = %+v\n", $1)
+endsnippet
+
+# log println
+snippet ln "log.Println(...)"
+log.Println("${1:${VISUAL}}")
+endsnippet
+
+# main()
+snippet main "func main() { ... }"
+func main() {
+	${0:${VISUAL}}
+}
+endsnippet
+
+# switch
+snippet switch "switch x { ... }"
+switch ${1:var} {
+case ${2:value1}:
+	${0}
+}
+endsnippet
+
+# sprintf
+snippet sp "fmt.Sprintf(...)"
+fmt.Sprintf("%${1:s}", ${2:var})
+endsnippet
+
+# test function
+snippet test "func TestXYZ(t *testing.T) { ... }"
+func Test${1:Function}(t *testing.T) {
+	${0:${VISUAL}}
+}
+endsnippet
+
+# test table snippet
+snippet tt
+var tests = []struct {
+	name string
+	expected string
+	given string
+}{
+	{"${1}", "${2}", "${3}",},
+}
+for _, tt := range tests {
+	tt := tt
+	t.Run(tt.name, func(t *testing.T){
+		actual := ${0:${VISUAL}}(tt.given)
+		if actual != tt.expected {
+				t.Errorf("$0(%s): expected %s, actual %s", tt.given, tt.expected, actual)
+		}
+
+	})
+}
+endsnippet
+
 # ctx context.Context
 snippet ctx "ctx context.Context" w
 ctx context.Context
@@ -90,4 +158,76 @@ endsnippet
 snippet span "spanutils" b
 span, ctx := spanutils.NewInternalSpan(ctx, "$1")
 defer span.Finish()
+endsnippet
+
+# error snippet
+snippet errn "Error return" !b
+if err != nil {
+	return err
+}
+${0}
+endsnippet
+
+snippet errnw "Error return wrap" !b
+if err != nil {
+	return errors.Wrap(err, "${1:message}")
+}
+${0}
+endsnippet
+
+# error log snippet
+snippet errl "Error with log.Fatal(err)" !b
+if err != nil {
+	log.Fatal(err)
+}
+${0}
+endsnippet
+
+# error multiple return
+snippet errn, "Error return with two return values" !b
+if err != nil {
+	return ${1:nil}, ${2:err}
+}
+${0}
+endsnippet
+
+snippet errn,w "Error return wrap with two return values" !b
+if err != nil {
+	return nil, errors.Wrap(err, "${1:message}")
+}
+${0}
+endsnippet
+
+# error panic
+snippet errp "Error panic" !b
+if err != nil {
+	panic(${1})
+}
+${0}
+endsnippet
+
+# for loop
+snippet for "for ... { ... }"
+for ${1} {
+	${0:${VISUAL}}
+}
+endsnippet
+
+# for integer loop
+snippet fori "for 0..N-1 { ... }"
+for ${1:i} := 0; $1 < ${2:N}; $1++ {
+	${0:${VISUAL}}
+}
+endsnippet
+
+# for range loop
+snippet forr "for k, v := range items { ... }"
+for ${2:k}, ${3:v} := range ${1} {
+	${0:${VISUAL}}
+}
+endsnippet
+
+# append
+snippet ap "append(slice, value)"
+append(${1:slice}, ${0:value})
 endsnippet
