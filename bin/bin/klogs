@@ -59,7 +59,7 @@ if [ "$single_stream" = true ]; then
         exit 0
     fi
 else
-    # Original pod selection logic
+    # Select individual pods to view logs for
     selection=($(kubectl "${kubectl_args[@]}" get pods | grep -v ^NAME | fzf --multi --query="${query}" --header="$current_context" --bind "ctrl-y:execute-silent($copy_to_clipboard)" | awk '{print $1}'))
 
     if [ ${#selection[@]} -eq 1 ]; then
