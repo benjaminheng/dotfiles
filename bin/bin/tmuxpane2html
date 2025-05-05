@@ -3,6 +3,7 @@ set -euo pipefail
 
 pane=""
 inline=""
+include_scrollback=""
 
 while [[ $# -gt 0 ]]
 do
@@ -19,6 +20,10 @@ case $key in
         inline="true"
         shift
         ;;
+    --include-scrollback)
+        include_scrollback="true"
+        shift
+        ;;
     *)
         shift
         ;;
@@ -27,7 +32,11 @@ done
 
 [ -z "$pane" ] && echo "--pane required" >&2 && exit 1
 
-tmux capture-pane -t "$pane" -e -b tmuxpane2html_buffer
+capturepane_flags=( "-t" "$pane" "-e" "-b" "tmuxpane2html_buffer" )
+if [ "$include_scrollback" = "true" ]; then
+    capturepane_flags+=("-S" "-9999")
+fi
+tmux capture-pane "${capturepane_flags[@]}"
 tmux save-buffer -b tmuxpane2html_buffer /tmp/tmuxpane2html.output
 ansi2html_flags=( "-W" )
 if [ "$inline" = "true" ]; then
