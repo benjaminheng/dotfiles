@@ -49,13 +49,13 @@ query="${args[*]}"
 if [ "$single_stream" = true ]; then
     # Get available app labels and let user select one
     echo "Fetching available app labels..."
-    app_label=$(kubectl get pods -n "$namespace" --show-labels | grep -o "app=[^,]*" | sort | uniq | fzf --header="$current_context")
+    selected_label=$(kubectl get pods -n "$namespace" --show-labels | grep -o -E "(app|component)=[^,]*" | sort | uniq | fzf --header="$current_context")
     
-    if [ -n "$app_label" ]; then
-        echo "Streaming logs for all pods with label: $app_label"
-        kubectl logs -f -n "$namespace" --max-log-requests=50 -l "$app_label"
+    if [ -n "$selected_label" ]; then
+        echo "Streaming logs for all pods with label: $selected_label"
+        kubectl logs -f -n "$namespace" --max-log-requests=50 -l "$selected_label"
     else
-        echo "No app label selected. Exiting."
+        echo "No label selected. Exiting."
         exit 0
     fi
 else
