@@ -1,14 +1,37 @@
 #!/bin/bash
+# klogs - A kubectl logs wrapper.
+# 
+# This script provides an interactive interface to view k8s pod logs:
+# - Uses fzf for interactive pod selection
+# - Supports filtering pods with a search query
+# - Allows copying pod names to clipboard with Ctrl+Y
+# - For single pod selection: displays logs with follow mode
+# - For multiple pod selection: opens each pod's logs in separate tmux panes
+# - Preserves kubectl namespace flags
+# - Supports single-stream mode to view logs from all pods with a specific app label
+#
+# Usage: klogs [search_query] [kubectl_options]
+# Options:
+#   --single-stream    View logs from all pods with a selected app label in a single stream
+#
 
 args=()
 kubectl_args=()
+single_stream=false
+namespace="default"
+
 while [[ $# -gt 0 ]]
 do
 key="$1"
 case $key in
     --namespace|-n)
+        namespace="$2"
         kubectl_args+=("--namespace=$2")
         shift
+        shift
+        ;;
+    --single-stream)
+        single_stream=true
         shift
         ;;
     *)
@@ -22,20 +45,36 @@ copy_to_clipboard="echo {} | awk '{print \$1}' | xargs echo -n | pbcopy"
 
 current_context=$(kubectl config current-context)
 query="${args[*]}"
-selection=($(kubectl "${kubectl_args[@]}" get pods | grep -v ^NAME | fzf --multi --query="${query}" --header="$current_context" --bind "ctrl-y:execute-silent($copy_to_clipboard)" | awk '{print $1}'))
 
-if [ ${#selection[@]} -eq 1 ]; then
-    echo "${selection[0]}"
-    kubectl "${kubectl_args[@]}" logs "${selection[0]}" --tail=100 -f
-elif [ ${#selection[@]} -gt 1 ]; then
-    # Open logs in multiple tmux panes
-    tmux new-window "kubectl ${kubectl_args[@]} logs ${selection[0]} --tail=20 -f"
-    unset "selection[0]";
-    for i in "${selection[@]}"; do
-        tmux split-window -h  "kubectl ${kubectl_args[@]} logs $i --tail=20 -f"
-    done
-    tmux select-layout tiled > /dev/null
-    tmux set-window-option synchronize-panes on > /dev/null
+if [ "$single_stream" = true ]; then
+    # Get available app labels and let user select one
+    echo "Fetching available app labels..."
+    app_label=$(kubectl get pods -n "$namespace" --show-labels | grep -o "app=[^,]*" | sort | uniq | fzf --header="$current_context")
+    
+    if [ -n "$app_label" ]; then
+        echo "Streaming logs for all pods with label: $app_label"
+        kubectl logs -f -n "$namespace" --max-log-requests=50 -l "$app_label"
+    else
+        echo "No app label selected. Exiting."
+        exit 0
+    fi
 else
-    exit 0
+    # Original pod selection logic
+    selection=($(kubectl "${kubectl_args[@]}" get pods | grep -v ^NAME | fzf --multi --query="${query}" --header="$current_context" --bind "ctrl-y:execute-silent($copy_to_clipboard)" | awk '{print $1}'))
+
+    if [ ${#selection[@]} -eq 1 ]; then
+        echo "${selection[0]}"
+        kubectl "${kubectl_args[@]}" logs "${selection[0]}" --tail=100 -f
+    elif [ ${#selection[@]} -gt 1 ]; then
+        # Open logs in multiple tmux panes
+        tmux new-window "kubectl ${kubectl_args[@]} logs ${selection[0]} --tail=20 -f"
+        unset "selection[0]";
+        for i in "${selection[@]}"; do
+            tmux split-window -h  "kubectl ${kubectl_args[@]} logs $i --tail=20 -f"
+        done
+        tmux select-layout tiled > /dev/null
+        tmux set-window-option synchronize-panes on > /dev/null
+    else
+        exit 0
+    fi
 fi
