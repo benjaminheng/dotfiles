@@ -5,6 +5,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-slash'
 Plug 'benjaminheng/vim-smyteql-syntax'
 Plug 'benjaminheng/vim-githubbrowse'
+" Plug 'benjaminheng/go-struct-tags.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'scrooloose/nerdtree', {'commit': 'fc85a6f0'}
 Plug 'majutsushi/tagbar'
@@ -41,6 +42,7 @@ Plug 'stevearc/dressing.nvim' " dep for avante
 Plug 'nvim-lua/plenary.nvim' " dep for avante
 Plug 'MunifTanjim/nui.nvim', { 'branch': 'main' } " dep for avante
 Plug 'yetone/avante.nvim', { 'branch': 'main', 'do': 'make' }
+Plug 'fatih/vim-go'
 call plug#end()
 filetype plugin indent on
 filetype indent on
@@ -263,82 +265,102 @@ let g:tmux_navigator_disable_when_zoomed = 1
 """"""""""""""""""
 " Go language config
 """""""""""""""""
-" Build or compile tests depending on the file type
-function! s:build_go_files()
-    let l:file = expand('%')
-    let l:dir = expand('%:p:h')
-    let l:rel_dir = fnamemodify(l:dir, ':.')
-    let l:tmpfile = tempname()
+" " Build or compile tests depending on the file type
+" function! s:build_go_files()
+"     let l:file = expand('%')
+"     let l:dir = expand('%:p:h')
+"     let l:rel_dir = fnamemodify(l:dir, ':.')
+"     let l:tmpfile = tempname()
     
-    " Close quickfix window before execution
-    silent! cclose
+"     " Close quickfix window before execution
+"     silent! cclose
     
-    function! s:on_exit(job_id, exit_code, event) closure
-        if a:exit_code == 0
-            echohl Function
-            echom "[build] SUCCESS"
-            echohl None
-        else
-            " Read the output file
-            let l:output = readfile(l:tmpfile)
-            " Filter out lines starting with # and empty lines
-            let l:filtered_output = filter(l:output, 'v:val !~ "^#" && v:val !~ "^$"')
-            call writefile(l:filtered_output, l:tmpfile)
+"     function! s:on_exit(job_id, exit_code, event) closure
+"         if a:exit_code == 0
+"             echohl Function
+"             echom "[build] SUCCESS"
+"             echohl None
+"         else
+"             " Read the output file
+"             let l:output = readfile(l:tmpfile)
+"             " Filter out lines starting with # and empty lines
+"             let l:filtered_output = filter(l:output, 'v:val !~ "^#" && v:val !~ "^$"')
+"             call writefile(l:filtered_output, l:tmpfile)
             
-            " Open the quickfix window with the errors
-            execute 'cfile ' . l:tmpfile
-            copen
-        endif
+"             " Open the quickfix window with the errors
+"             execute 'cfile ' . l:tmpfile
+"             copen
+"         endif
         
-        " Clean up the temporary file
-        call delete(l:tmpfile)
-    endfunction
+"         " Clean up the temporary file
+"         call delete(l:tmpfile)
+"     endfunction
     
-    function! s:on_stdout(job_id, data, event) closure
-        call writefile(a:data, l:tmpfile, 'a')
-    endfunction
+"     function! s:on_stdout(job_id, data, event) closure
+"         call writefile(a:data, l:tmpfile, 'a')
+"     endfunction
     
-    function! s:on_stderr(job_id, data, event) closure
-        call writefile(a:data, l:tmpfile, 'a')
-    endfunction
+"     function! s:on_stderr(job_id, data, event) closure
+"         call writefile(a:data, l:tmpfile, 'a')
+"     endfunction
     
-    let l:cmd = ''
-    if l:file =~# '^\f\+_test\.go$'
-        " Run go test
-        let l:cmd = 'go test -c -o /dev/null ' . './' . l:rel_dir . '/...'
-        echom "[build] Compiling tests..."
-    elseif l:file =~# '^\f\+\.go$'
-        " Run go build
-        let l:cmd = 'go build ./' . l:rel_dir . '/...'
-        echom "[build] Building..."
-    endif
+"     let l:cmd = ''
+"     if l:file =~# '^\f\+_test\.go$'
+"         " Run go test
+"         let l:cmd = 'go test -c -o /dev/null ' . './' . l:rel_dir . '/...'
+"         echom "[build] Compiling tests..."
+"     elseif l:file =~# '^\f\+\.go$'
+"         " Run go build
+"         let l:cmd = 'go build ./' . l:rel_dir . '/...'
+"         echom "[build] Building..."
+"     endif
     
-    if !empty(l:cmd)
-        " Start the job
-        let l:job_opts = {
-            \ 'on_stdout': function('s:on_stdout'),
-            \ 'on_stderr': function('s:on_stderr'),
-            \ 'on_exit': function('s:on_exit')
-            \ }
-        let l:job_id = jobstart(l:cmd, l:job_opts)
-    endif
+"     if !empty(l:cmd)
+"         " Start the job
+"         let l:job_opts = {
+"             \ 'on_stdout': function('s:on_stdout'),
+"             \ 'on_stderr': function('s:on_stderr'),
+"             \ 'on_exit': function('s:on_exit')
+"             \ }
+"         let l:job_id = jobstart(l:cmd, l:job_opts)
+"     endif
+" endfunction
+
+" run :GoBuild or :GoTestCompile based on the go file
+function! s:build_go_files()
+  let l:file = expand('%')
+  if l:file =~# '^\f\+_test\.go$'
+    call go#test#Test(0, 1)
+  elseif l:file =~# '^\f\+\.go$'
+    call go#cmd#Build(0)
+  endif
 endfunction
+
+" vim-go config. Disable everything we don't use. Keep vim-go around for its
+" auxiliary commands, but we don't want its code-completion, auto-fmt, or
+" other features. Those are delegated to neovim's built-in LSP functionality now.
+let g:go_def_mapping_enabled = 0
+let g:go_code_completion_enabled = 0
+let g:go_fmt_command = "goimports"
+let g:go_fmt_fail_silently = 1
+let g:go_fmt_autosave = 0
+let g:go_imports_autosave = 0
+let g:go_mod_fmt_autosave = 0
+let g:go_doc_keywordprg_enabled = 0
+let g:go_gopls_enabled = 0
+
 hi link @property.go @variable.go
 hi link @function.method.call.go @variable.go
 hi link @module.go @variable.go
 hi link @constant.go @variable.go
 hi link @variable.go Normal
 hi link @variable.member.go Normal
+hi link @variable.parameter.go Normal
 augroup filetype_go
     autocmd!
-    " autocmd FileType go nmap <leader>gr  <Plug>(go-referrers)
-    " autocmd FileType go nmap <leader>gi  <Plug>(go-info)
-    " autocmd FileType go nmap <leader>gI  <Plug>(go-implements)
-    " autocmd FileType go nmap <leader>gtc  <Plug>(go-coverage-toggle)
-    "
     autocmd FileType go nmap <leader>gb :<C-u>call <SID>build_go_files()<CR>
-    " autocmd FileType go nmap <leader>gt  <Plug>(go-test)
-    " autocmd FileType go nmap <leader>gT  <Plug>(go-test-func)
+    autocmd FileType go nmap <leader>gt  <Plug>(go-test)
+    autocmd FileType go nmap <leader>gT  <Plug>(go-test-func)
     autocmd FileType go setlocal noexpandtab sw=8 ts=8
 
     " Debug commands

@@ -76,6 +76,7 @@ export PATH="$GOBIN:$PATH"
 export PATH="$HOME/.gotools:$PATH"
 export PATH="$PATH:$HOME/dev/private-dotfiles/bin"
 export PATH="$(pyenv root)/shims:$PATH"
+export PATH="$PATH:$HOME/.local/bin"
 export GOPRIVATE=github.com/carousell
 
 export HISTSIZE=150000

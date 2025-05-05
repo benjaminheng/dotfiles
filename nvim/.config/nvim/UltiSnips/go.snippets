@@ -231,3 +231,51 @@ endsnippet
 snippet ap "append(slice, value)"
 append(${1:slice}, ${0:value})
 endsnippet
+
+snippet deferspanerr "Set span error in a deferred function" b
+defer func() {
+	if err != nil {
+		span.SetError(err.Error())
+	}
+}()
+endsnippet
+
+# method
+snippet meth "func (self Type) Method(...) [error] { ... }"
+func (${1:receiver} ${2:type}) ${3:name}(${4:params})${5/(.+)/ /}`!p opening_par(snip, 5)`$5`!p closing_par(snip, 5)` {
+	${0:${VISUAL}}
+}
+endsnippet
+
+# function
+snippet func "func Function(...) [error] { ... }"
+func ${1:name}(${2:params})${3/(.+)/ /}`!p opening_par(snip, 3)`$3`!p closing_par(snip, 3)` {
+	${0:${VISUAL}}
+}
+endsnippet
+
+
+global !p
+
+import re
+
+# Automatically wrap return types with parentheses
+
+def return_values(s):
+	# remove everything wrapped in parentheses
+	s = re.sub(r"\(.*?\)|\([^)]*$", "", s)
+	return len(s.split(","))
+
+def opening_par(snip, pos):
+	if return_values(t[pos]) > 1 and not t[pos].startswith("("):
+		snip.rv = "("
+	else:
+		snip.rv = ""
+
+def closing_par(snip, pos):
+	if return_values(t[pos]) > 1:
+		snip.rv = ")"
+	else:
+		snip.rv = ""
+
+endglobal
