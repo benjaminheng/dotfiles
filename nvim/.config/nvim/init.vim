@@ -200,7 +200,7 @@ let g:ale_linters = {
 \   'java': [],
 \}
 let g:ale_fixers = {
-\   'python': ['black'],
+\   'python': [],
 \   'go': ['goimports'],
 \}
 if getcwd() == "/Users/benheng/dev/shared-proto"
