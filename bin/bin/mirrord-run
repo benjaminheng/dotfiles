@@ -1,0 +1,48 @@
+#!/bin/bash
+
+# Check if ./.mirrord/mirrord.json exists
+if [[ ! -f "./.mirrord/mirrord.json" ]]; then
+    echo "Error: ./.mirrord/mirrord.json not found"
+    exit 1
+fi
+
+NAMESPACE=""
+args=()
+
+# Parse command line arguments
+while [[ $# -gt 0 ]]
+do
+    key="$1"
+    case $key in
+        --namespace|-n)
+            NAMESPACE="$2"
+            shift
+            shift
+            ;;
+        *)
+            args+=("$1")
+            shift
+            ;;
+    esac
+done
+
+# Check if namespace is provided
+if [[ -z "$NAMESPACE" ]]; then
+    echo "Error: Namespace is required. Please provide it with -n or --namespace flag."
+    exit 1
+fi
+
+# Get current context
+current_context=$(kubectl config current-context)
+
+# Use fzf to select the target pod
+selected_pod=$(kubectl --namespace "${NAMESPACE}" get pods | grep -v ^NAME | fzf --header="$current_context" | awk '{print $1}')
+
+# Check if a pod was selected
+if [[ -z "$selected_pod" ]]; then
+    echo "No pod selected. Exiting."
+    exit 1
+fi
+
+# Run mirrord with the selected pod
+mirrord exec -f ./.mirrord/mirrord.json --target "pod/${selected_pod}" --target-namespace="${NAMESPACE}" --context="${current_context}" --no-telemetry go1.24.3 run "${args[@]}"
