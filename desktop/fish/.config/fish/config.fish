@@ -27,3 +27,6 @@ end
 function fish_user_key_bindings
 	fzf_key_bindings
 end
+
+# uv
+fish_add_path "/home/ben/.local/bin"
