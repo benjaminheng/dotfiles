@@ -1,6 +1,6 @@
 [Desktop Entry]
 Categories=Game;
-Exec=/home/ben/apps/tetrio-desktop-9.0.0/TETR.IO
+Exec=/home/ben/apps/tetrio-desktop-10.0.0/TETR.IO
 Icon=/home/ben/.local/share/applications/icons/tetrio.svg
 Name=TETR.IO
 StartupNotify=true
