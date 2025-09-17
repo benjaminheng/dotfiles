@@ -29,6 +29,7 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'junegunn/vim-easy-align'
 Plug 'mfussenegger/nvim-dap'
 Plug 'rcarriga/nvim-dap-ui'
+Plug 'nvim-neotest/nvim-nio' " Required for nvim-dap-ui
 Plug 'junegunn/goyo.vim'
 Plug 'robertmeta/nofrils'
 Plug 'ledger/vim-ledger'
