@@ -84,6 +84,8 @@ export SAVEHIST=$HISTSIZE
 
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
+export ANTHROPIC_MODEL="claude-sonnet-4-20250514"
+
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
