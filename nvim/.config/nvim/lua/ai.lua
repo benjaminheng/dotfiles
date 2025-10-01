@@ -3,18 +3,10 @@ local gpConf = {
     agents = {
         {
 			provider = "anthropic",
-			name = "ChatClaude-3-7-Sonnet",
+			name = "ChatClaude-Sonnet-4.5",
 			chat = true,
 			command = false,
-			model = { model = "claude-3-7-sonnet-20250219", temperature = 0.8, top_p = 1 },
-			system_prompt = require("gp.defaults").chat_system_prompt,
-		},
-        {
-			provider = "anthropic",
-			name = "ChatClaude-3-5-Sonnet",
-			chat = true,
-			command = false,
-			model = { model = "claude-3-5-sonnet-20241022", temperature = 0.8, top_p = 1 },
+			model = { model = "claude-sonnet-4-20250514", temperature = 0.8, top_p = 1 },
 			system_prompt = require("gp.defaults").chat_system_prompt,
 		},
         {

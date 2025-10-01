@@ -8,7 +8,7 @@ require('avante').setup({
   auto_suggestions_provider = "claude",
   claude = {
     endpoint = "https://api.anthropic.com",
-    model = "claude-3-7-sonnet-20250219",
+    model = "claude-sonnet-4-5-20250929",
     temperature = 0,
     max_tokens = 4096,
     disable_tools = true, -- disable tools; don't trust the LLM to do anything beyond responding with text
