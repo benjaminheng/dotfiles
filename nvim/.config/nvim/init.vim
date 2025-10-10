@@ -49,7 +49,8 @@ filetype indent on
 
 " There's an issue with java syntax highlighting on my system. As a
 " workaround, disable vim's built-in highlighting and use treesitter instead.
-" Must be set before `syntax on`
+" Must be set before `syntax on`. A side effect is that syntax highlighting is
+" also disabled for all other buffers.
 autocmd FileType java syntax off
 
 " set encoding=utf-8
