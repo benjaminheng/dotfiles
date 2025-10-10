@@ -47,6 +47,11 @@ call plug#end()
 filetype plugin indent on
 filetype indent on
 
+" There's an issue with java syntax highlighting on my system. As a
+" workaround, disable vim's built-in highlighting and use treesitter instead.
+" Must be set before `syntax on`
+autocmd FileType java syntax off
+
 " set encoding=utf-8
 " set fileencoding=utf-8
 set backupdir=/tmp
