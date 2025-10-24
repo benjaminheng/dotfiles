@@ -11,10 +11,10 @@ set PATH $PATH ~/bin
 set PATH $PATH ~/dev/private-dotfiles/bin
 set PATH $GOBIN $PATH
 set PATH $PATH ~/.npm-global/bin
-set VISUAL "nvim"
-set EDITOR "$VISUAL"
-set GIT_EDITOR "$VISUAL"
-set -g -x GOPRIVATE github.com/benjaminheng
+set -gx VISUAL "nvim"
+set -gx EDITOR "$VISUAL"
+set -gx GIT_EDITOR "$VISUAL"
+set -gx GOPRIVATE github.com/benjaminheng
 set -x LEDGER_FILE "/home/ben/syncthing/hledger/finances.journal"
 set -g ANTHROPIC_API_KEY $(cat ~/.config/ben01/a)`
 

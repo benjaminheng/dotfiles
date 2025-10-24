@@ -1,5 +1,3 @@
--- local nvim_lsp = require('lspconfig')
-
 -- Disable diagnostics, since we use ale for linting errors
 -- Would like to use this because it's more performant for Go, I'm not a fan of
 -- its behavior. Don't like virtual text. I want messages to show up on hover
