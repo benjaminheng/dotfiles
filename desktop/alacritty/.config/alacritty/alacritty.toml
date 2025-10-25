@@ -6,7 +6,7 @@ TERM = "xterm-256color"
 program = "/usr/bin/fish"
 
 [font]
-size = 11.0
+size = 10.0
 
 [general]
 import = ["/home/ben/.config/alacritty/theme_dracula.toml"]
