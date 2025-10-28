@@ -1,0 +1,109 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+usage() {
+    cat << EOF
+Usage: vd-convert [INPUT_FILE] [OPTIONS]
+
+Convert files between formats using visidata (vd).
+
+OPTIONS:
+    -i FORMAT       Input format (required when reading from stdin)
+    -f FORMAT       Output format (required when outputting to stdout)
+    -o FILE         Output file (if not specified, outputs to stdout)
+    -h, --help      Show this help message
+
+EXAMPLES:
+    # Convert CSV to TSV, output to stdout
+    vd-convert file.csv -f tsv
+
+    # Read from stdin
+    cat file.csv | vd-convert -i csv -f tsv
+
+    # Write to file with explicit format
+    vd-convert file.csv -f tsv -o output.tsv
+
+    # Write to file with inferred format
+    vd-convert file.csv -o output.tsv
+
+EOF
+    exit 0
+}
+
+input_file=""
+input_format=""
+output_format=""
+output_file=""
+
+# Parse arguments
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        -i)
+            input_format="$2"
+            shift 2
+            ;;
+        -f)
+            output_format="$2"
+            shift 2
+            ;;
+        -o)
+            output_file="$2"
+            shift 2
+            ;;
+        -h|--help)
+            usage
+            ;;
+        -*)
+            echo "Error: Unknown option $1" >&2
+            usage
+            ;;
+        *)
+            if [[ -z "$input_file" ]]; then
+                input_file="$1"
+            else
+                echo "Error: Multiple input files specified" >&2
+                exit 1
+            fi
+            shift
+            ;;
+    esac
+done
+
+# Build vd command
+vd_args=()
+
+# Handle input
+if [[ -n "$input_file" ]]; then
+    # Input from file
+    vd_args+=("$input_file")
+elif [[ -n "$input_format" ]]; then
+    # Input from stdin with format specified
+    vd_args+=("-f" "$input_format" "-")
+else
+    echo "Error: When reading from stdin, -i FORMAT must be specified" >&2
+    exit 1
+fi
+
+# Add batch mode
+vd_args+=("-b")
+
+# Handle output
+if [[ -n "$output_file" ]]; then
+    # Output to file
+    if [[ -n "$output_format" ]]; then
+        # Explicit format specified
+        vd_args+=("--save-filetype=$output_format")
+    fi
+    vd_args+=("-o" "$output_file")
+else
+    # Output to stdout
+    if [[ -z "$output_format" ]]; then
+        echo "Error: When outputting to stdout, -f FORMAT must be specified" >&2
+        exit 1
+    fi
+    vd_args+=("--save-filetype=$output_format" "-o" "-")
+fi
+
+# Execute vd
+exec vd "${vd_args[@]}"
