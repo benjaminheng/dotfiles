@@ -1,0 +1,169 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+usage() {
+    cat << EOF
+Usage: render-sixel [OPTIONS] [FILE]
+
+Render images as sixels.
+
+By default, reads image from stdin and outputs sixel to stdout.
+When running in tmux, automatically resizes to fit the pane.
+
+OPTIONS:
+    -w FILE       Watch mode: watch FILE for changes and re-render
+    --full        Render at full resolution (skip auto-resize)
+    -h, --help    Show this help message
+
+EXAMPLES:
+    # Convert from stdin to stdout
+    cat image.png | render-sixel
+
+    # Watch a file for changes (auto-resize in tmux)
+    render-sixel -w image.png
+
+    # Watch at full resolution
+    render-sixel -w --full image.png
+
+REQUIREMENTS:
+    - convert (ImageMagick): Image conversion
+    - entr: File watching utility (for -w mode)
+    - tmux: For auto-resize detection (optional)
+
+EOF
+    exit 0
+}
+
+watch_mode=false
+full_mode=false
+file=""
+
+# Parse arguments
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        -w)
+            watch_mode=true
+            shift
+            if [[ $# -eq 0 ]]; then
+                echo "Error: -w requires a file argument" >&2
+                exit 1
+            fi
+            file="$1"
+            shift
+            ;;
+        --full)
+            full_mode=true
+            shift
+            ;;
+        --debug)
+            set -x
+            shift
+            ;;
+        -h|--help)
+            usage
+            ;;
+        -*)
+            echo "Error: Unknown option $1" >&2
+            usage
+            ;;
+        *)
+            echo "Error: Unexpected argument: $1" >&2
+            echo "Use -w for watch mode or read from stdin" >&2
+            exit 1
+            ;;
+    esac
+done
+
+# Check for convert command
+if ! command -v magick &> /dev/null; then
+    echo "Error: Required command not found: magick" >&2
+    exit 1
+fi
+
+# Function to get resize arguments for magick
+get_resize_args() {
+    if [[ "$full_mode" == true ]]; then
+        # No resize in full mode
+        echo ""
+        return
+    fi
+
+    # Check if running in tmux
+    if [[ -n "${TMUX:-}" ]]; then
+        # Get pane dimensions (in character cells)
+        if command -v tmux &> /dev/null; then
+            local dimensions
+            dimensions=$(tmux display-message -p '#{pane_width} #{pane_height}')
+            local pane_width pane_height
+            read -r pane_width pane_height <<< "$dimensions"
+
+            # Convert cells to approximate pixels
+            local pixel_width=$((pane_width * 7))
+            local pixel_height=$((pane_height * 13))
+
+            # Use > to only shrink, never enlarge
+            echo "-resize ${pixel_width}x${pixel_height}>"
+            return
+        fi
+    fi
+
+    # Not in tmux or tmux not available, no resize
+    echo ""
+}
+
+# Function to render an image file to sixel
+render_image() {
+    local input_file="$1"
+    local resize_args="$2"
+    local tmpfile="/tmp/render-sixel-$$.six"
+
+    # Render to temp file
+    if [[ -n "$resize_args" ]]; then
+        magick "$input_file" $resize_args "$tmpfile"
+    else
+        magick "$input_file" "$tmpfile"
+    fi
+
+    # Output and cleanup
+    cat "$tmpfile"
+    rm -f "$tmpfile"
+}
+
+resize_args=$(get_resize_args)
+
+if [[ "$watch_mode" == true ]]; then
+    # Watch mode
+    if [[ ! -f "$file" ]]; then
+        echo "Error: File not found: $file" >&2
+        exit 1
+    fi
+
+    # Check for required commands in watch mode
+    for cmd in entr; do
+        if ! command -v "$cmd" &> /dev/null; then
+            echo "Error: Required command not found: $cmd" >&2
+            exit 1
+        fi
+    done
+
+    # Watch for changes and display
+    # -c: clear screen before running command
+    echo "$file" | entr -c sh -c "
+        tmpfile=\"/tmp/render-sixel-\$\$.six\"
+        magick '$file' $resize_args \"\$tmpfile\"
+        cat \"\$tmpfile\"
+        rm -f \"\$tmpfile\"
+    "
+else
+    # Default mode: stdin to stdout
+    # Save stdin to temp file
+    input_tmpfile="/tmp/render-sixel-input-$$.img"
+    cat > "$input_tmpfile"
+
+    # Render the temp file
+    render_image "$input_tmpfile" "$resize_args"
+
+    # Cleanup input file
+    rm -f "$input_tmpfile"
+fi

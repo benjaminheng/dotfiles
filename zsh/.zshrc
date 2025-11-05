@@ -125,6 +125,7 @@ alias jqvim="jq | vim -c 'set ft=json' -c 'set foldmethod=syntax' -"
 alias fly-apps="fly ls apps --json | jq -r '.[].ID'"
 alias units="gunits"
 alias go-compile-tests="go test -run=XXX_SHOULD_NEVER_MATCH_8396DAA798DF_XXX ./..." # Hack to build all tests, but never run anything because the condition should never match
+alias python-scratchpad="uv run --with ipython ipython"
 
 
 # Disable flow control (allow keys like Ctrl+S)
