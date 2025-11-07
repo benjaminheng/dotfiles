@@ -2,7 +2,7 @@
 	name = "Benjamin Heng"
 	email = "benjamin.heng@thecarousell.com"
 [pager]
-	diff = diff-so-fancy | less
+	diff = delta
 [alias]
     branchf = !git branch --sort=-committerdate | fzf
     fix-conflicts = !git diff --name-only | uniq | xargs nvim
@@ -21,3 +21,8 @@
 	rebase = false
 [init]
 	defaultBranch = master
+[delta]
+    hunk-header-style             = line-number syntax
+    hunk-header-decoration-style  =
+    hunk-label                    = @@
+    paging                        = always
