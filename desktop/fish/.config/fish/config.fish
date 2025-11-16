@@ -10,12 +10,13 @@ set -g -x GOBIN "$GOPATH/bin"
 set PATH $PATH ~/bin
 set PATH $PATH ~/dev/private-dotfiles/bin
 set PATH $GOBIN $PATH
-set VISUAL "nvim"
-set EDITOR "$VISUAL"
-set GIT_EDITOR "$VISUAL"
-set -g -x GOPRIVATE github.com/benjaminheng
+set PATH $PATH ~/.npm-global/bin
+set -gx VISUAL "nvim"
+set -gx EDITOR "$VISUAL"
+set -gx GIT_EDITOR "$VISUAL"
+set -gx GOPRIVATE github.com/benjaminheng
 set -x LEDGER_FILE "/home/ben/syncthing/hledger/finances.journal"
-set ANTHROPIC_API_KEY $(cat ~/.config/ben01/a)`
+set -g ANTHROPIC_API_KEY $(cat ~/.config/ben01/a)`
 
 # Set prompt
 function fish_prompt
@@ -26,3 +27,6 @@ end
 function fish_user_key_bindings
 	fzf_key_bindings
 end
+
+# uv
+fish_add_path "/home/ben/.local/bin"

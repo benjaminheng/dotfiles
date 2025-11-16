@@ -1,1 +1,1 @@
-feh --scale-down --geometry 1200x800
+feh --scale-down --geometry 1200x800 --sort name --version-sort
