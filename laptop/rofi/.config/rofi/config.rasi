@@ -4,5 +4,5 @@
 
 configuration {
     modes: "drun,window";
-    font: "Mono 20";
+    font: "Mono 12";
 }

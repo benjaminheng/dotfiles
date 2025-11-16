@@ -1,0 +1,5 @@
+[keyboard]
+[[keyboard.bindings]]
+action = "None"
+key = "L"
+mods = "Control"
