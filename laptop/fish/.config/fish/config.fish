@@ -8,6 +8,7 @@ set -g -x GOPATH "$HOME/dev/go"
 set -g -x GOBIN "$GOPATH/bin"
 set PATH $PATH ~/bin
 set PATH $PATH ~/dev/private-dotfiles/bin
+set PATH $PATH ~/.local/bin
 set PATH $GOBIN $PATH
 set VISUAL "nvim"
 set EDITOR "$VISUAL"

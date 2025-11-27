@@ -347,8 +347,20 @@ endfunction
 
 function! WritingMode()
     color nofrils-light
+    set spell
+    nnoremap j gj
+    nnoremap k gk
+    let &showbreak = ''
+endfunction
+function! NoWritingMode()
+    color jellybeans
+    set nospell
+    nunmap j
+    nunmap k
+    let &showbreak = '--→ '
 endfunction
 command! WritingMode :call WritingMode()
+command! NoWritingMode :call NoWritingMode()
 
 " Auto-commands
 """""""""""""""""""""""""""""""""""""""""""""
