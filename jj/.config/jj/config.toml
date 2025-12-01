@@ -7,3 +7,9 @@ email = "benjamin.heng@thecarousell.com"
 [aliases]
 # Pull up the nearest bookmarks to the working-copy parent. Seen in `jj b m --help`
 tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
+
+[ui]
+diff-formatter = "delta"
+
+[merge-tools]
+delta.diff-expected-exit-codes = [0, 1] # prevents a warning when displaying diffs using delta
