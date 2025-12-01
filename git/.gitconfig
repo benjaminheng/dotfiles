@@ -26,3 +26,5 @@
     hunk-header-decoration-style  =
     hunk-label                    = @@
     paging                        = always
+    minus-style                   = syntax "#990000"
+    plus-style                    = syntax "#004600"
