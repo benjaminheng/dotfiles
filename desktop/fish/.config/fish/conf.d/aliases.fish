@@ -1,6 +1,9 @@
 function g
     git $argv
 end
+function j
+    jj $argv
+end
 function ls
     command ls -G --color=auto $argv
 end

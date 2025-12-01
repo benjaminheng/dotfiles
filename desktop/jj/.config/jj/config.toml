@@ -1,0 +1,22 @@
+#:schema https://jj-vcs.github.io/jj/latest/config-schema.json
+
+[user]
+name = "Benjamin Heng"
+email = "ben@hbenjamin.com"
+
+[aliases]
+# Pull up the nearest bookmarks to the working-copy parent. Seen in `jj b m --help`
+tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
+
+[ui]
+diff-formatter = "delta"
+default-command = "log"
+
+[merge-tools]
+delta.diff-expected-exit-codes = [0, 1] # prevents a warning when displaying diffs using delta
+
+# Don't use a pager for `jj status`
+[[--scope]]
+--when.commands = ["status"]
+[--scope.ui]
+paginate = "never"
