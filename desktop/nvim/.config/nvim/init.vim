@@ -330,6 +330,37 @@ endfunction
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
+" C development
+function! BuildC()
+    " Save and build silently
+    silent write
+    silent make!
+
+    " Redraw screen
+    redraw!
+
+    " Check if quickfix has actual errors (entries with file locations)
+    let l:has_errors = 0
+    for item in getqflist()
+        if item.bufnr != 0 && item.lnum != 0
+            let l:has_errors = 1
+            break
+        endif
+    endfor
+
+    if l:has_errors
+        copen
+        echo "make: build failed"
+    else
+        cclose
+        echo "make: build successful"
+    endif
+endfunction
+augroup filetype_c
+    autocmd!
+    autocmd FileType c nnoremap <leader>gb :call BuildC()<CR>
+augroup END
+
 " Functions
 """""""""""""""""""""""""""""""""""""""""""""
 function! Prettier()
