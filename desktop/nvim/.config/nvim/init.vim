@@ -186,6 +186,10 @@ let g:ale_linters = {
 \   'bash': ['shellcheck'],
 \   'java': [],
 \}
+let g:ale_fixers = {
+\   'c': ['clang-format'],
+\}
+let g:ale_fix_on_save = 1
 hi ALEErrorSign ctermfg=red ctermbg=236
 hi ALEWarningSign ctermfg=yellow ctermbg=236
 hi ALEErrorSign ctermbg=236
@@ -394,7 +398,7 @@ augroup toggle_relative_number
     autocmd InsertEnter * :set norelativenumber
     autocmd InsertLeave * :set relativenumber
 augroup END
-autocmd FileType javascript,sqrl,yaml,htmldjango,sql,json,html,gohtmltmpl setlocal sw=2 ts=2
+autocmd FileType javascript,sqrl,yaml,htmldjango,sql,json,html,gohtmltmpl,c setlocal sw=2 ts=2
 autocmd FileType python setlocal omnifunc=python3complete#Complete
 autocmd FileType javascript nnoremap <silent> <leader>gf :call Prettier()<CR>
 autocmd FileType qf wincmd J " quickfix window always at bottom
