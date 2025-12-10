@@ -44,6 +44,7 @@ Plug 'MunifTanjim/nui.nvim', { 'branch': 'main' } " dep for avante
 Plug 'yetone/avante.nvim', { 'branch': 'main', 'do': 'make' }
 Plug 'fatih/vim-go'
 Plug 'sindrets/diffview.nvim', { 'branch': 'main' }
+Plug 'rafikdraoui/jj-diffconflicts'
 call plug#end()
 filetype plugin indent on
 filetype indent on

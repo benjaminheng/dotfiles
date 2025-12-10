@@ -15,6 +15,14 @@ default-command = "log"
 [merge-tools]
 delta.diff-expected-exit-codes = [0, 1] # prevents a warning when displaying diffs using delta
 
+[merge-tools.diffconflicts]
+program = "nvim"
+merge-args = [
+    "-c", "let g:jj_diffconflicts_marker_length=$marker_length",
+    "-c", "JJDiffConflicts!", "$output", "$base", "$left", "$right",
+]
+merge-tool-edits-conflict-markers = true # For explanation of this config, see https://docs.jj-vcs.dev/v0.28.2/config/
+
 # Don't use a pager for `jj status`
 [[--scope]]
 --when.commands = ["status"]
