@@ -1,16 +1,41 @@
 #!/bin/bash
 
-# Hacky, hardcoded organizations.
+# Check if directory is managed by jj
+if jj workspace root &>/dev/null; then
+    # Managed by jj
+    branch=$(jj bookmark list -r 'heads(::@- & bookmarks())' --template 'self.name()' | head -n 1)
 
-remote=$(git remote -v | grep "(fetch)" | awk '{print $2}')
-repo=$(basename `git rev-parse --show-toplevel`)
-branch=$(git rev-parse --abbrev-ref HEAD)
+    # Parse remote to get org and repo name
+    remote=$(jj git remote list)
+    # Extract org and repo from format like "origin git@github.com:{org}/{repo}.git"
+    if [[ "$remote" =~ ([^:]+):([^/]+)/([^.]+)\.git ]]; then
+        org="${BASH_REMATCH[2]}"
+        repo="${BASH_REMATCH[3]}"
+    fi
+else
+    # Managed by git
+    remote=$(git remote -v | grep "(fetch)" | awk '{print $2}')
+    repo=$(basename `git rev-parse --show-toplevel`)
+    branch=$(git rev-parse --abbrev-ref HEAD)
 
+    # Extract org from remote
+    if [[ "$remote" =~ ([^:]+):([^/]+)/ ]]; then
+        org="${BASH_REMATCH[2]}"
+    fi
+fi
+
+# Only support carousell org
+if [[ "$org" != "carousell" ]]; then
+    echo "only 'carousell' org is supported"
+    exit 0
+fi
+
+# Generate URL based on remote
 url=""
-if [[ "$remote" =~ "gitlab.carousellinternal.com:carousell" ]]; then
-    url="https://gitlab.carousellinternal.com/carousell/${repo}/merge_requests/new?merge_request%5Bsource_branch%5D=${branch}"
-elif [[ "$remote" =~ "github.com:carousell" ]]; then
-    url="https://github.com/carousell/${repo}/compare/${branch}?expand=1"
+if [[ "$remote" =~ "gitlab.carousellinternal.com" ]]; then
+    url="https://gitlab.carousellinternal.com/${org}/${repo}/merge_requests/new?merge_request%5Bsource_branch%5D=${branch}"
+elif [[ "$remote" =~ "github.com" ]]; then
+    url="https://github.com/${org}/${repo}/compare/${branch}?expand=1"
 fi
 
 if [[ ! -z "$url" ]]; then
