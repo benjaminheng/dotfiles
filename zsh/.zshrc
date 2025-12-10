@@ -108,6 +108,7 @@ export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 alias g="git"
+alias j="jj"
 alias k="kubectl"
 alias ls="ls -G"
 alias vim="nvim"
