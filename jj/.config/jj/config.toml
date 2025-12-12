@@ -7,10 +7,13 @@ email = "benjamin.heng@thecarousell.com"
 [aliases]
 # Pull up the nearest bookmarks to the working-copy parent. Seen in `jj b m --help`
 tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
+resolve-conflicts = ["resolve", "--tool", "diffconflicts"]
+log-conflicts = ["log", "-r", "conflicts()"]
 
 [ui]
 diff-formatter = "delta"
 default-command = "log"
+pager="less -FRX" # F = quit if content can be displayed on one screen, R = support ansi color codes, R = disable termcap init/deinit strings
 
 [merge-tools]
 delta.diff-expected-exit-codes = [0, 1] # prevents a warning when displaying diffs using delta
