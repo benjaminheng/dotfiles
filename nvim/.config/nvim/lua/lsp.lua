@@ -1,5 +1,3 @@
-local nvim_lsp = require('lspconfig')
-
 -- Disable diagnostics, since we use ale for linting errors
 local function setup_diagnostics()
     vim.diagnostic.config({
@@ -50,18 +48,20 @@ local on_attach_generic = function(client, bufnr)
 end
 
 -- LSP setup
-nvim_lsp.pyright.setup{
+vim.lsp.config("pyright", {
     on_attach = on_attach_generic,
     flags = {
       debounce_text_changes = 150,
     }
-}
-nvim_lsp.gopls.setup{
+})
+vim.lsp.config("gopls", {
     on_attach = on_attach_generic,
     flags = {
       debounce_text_changes = 150,
     }
-}
+})
+vim.lsp.enable("pyright")
+vim.lsp.enable("gopls")
 
 require('nvim-treesitter.configs').setup {
   highlight = {
