@@ -5,6 +5,7 @@ if status is-interactive
     ssh-add ~/.ssh/id_ed25519_digitalocean_1 > /dev/null 2>&1
 end
 
+set --global fish_key_bindings fish_default_key_bindings
 set -g -x GOPATH "$HOME/dev/go"
 set -g -x GOBIN "$GOPATH/bin"
 set PATH $PATH ~/bin
