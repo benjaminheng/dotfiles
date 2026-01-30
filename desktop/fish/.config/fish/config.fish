@@ -16,7 +16,7 @@ set -gx EDITOR "$VISUAL"
 set -gx GIT_EDITOR "$VISUAL"
 set -gx GOPRIVATE github.com/benjaminheng
 set -x LEDGER_FILE "/home/ben/syncthing/hledger/finances.journal"
-set -g ANTHROPIC_API_KEY $(cat ~/.config/ben01/a)`
+set -gx ANTHROPIC_API_KEY $(cat ~/.config/ben01/a)`
 
 # Set prompt
 function fish_prompt

@@ -188,8 +188,10 @@ let g:ale_linters = {
 \}
 let g:ale_fixers = {
 \   'c': ['clang-format'],
+\   'cpp': ['clang-format'],
 \}
 let g:ale_fix_on_save = 1
+let g:ale_c_parse_compile_commands = 1
 hi ALEErrorSign ctermfg=red ctermbg=236
 hi ALEWarningSign ctermfg=yellow ctermbg=236
 hi ALEErrorSign ctermbg=236
@@ -197,8 +199,8 @@ hi ALEError cterm=underline ctermbg=none
 hi ALEWarning cterm=underline ctermbg=none
 
 " Neovim-related options
-let g:python_host_prog='/home/ben/dev/python-virtualenvs/neovim/bin/python'
-let g:python3_host_prog='/home/ben/dev/python-virtualenvs/neovim/bin/python'
+let g:python_host_prog='/home/ben/dev/python-virtualenvs/uv-neovim/bin/python'
+let g:python3_host_prog='/home/ben/dev/python-virtualenvs/uv-neovim/bin/python'
 
 " Plugin 'pangloss/vim-javascript'
 let b:javascript_fold = 0
@@ -363,6 +365,7 @@ endfunction
 augroup filetype_c
     autocmd!
     autocmd FileType c nnoremap <leader>gb :call BuildC()<CR>
+    autocmd FileType cpp nnoremap <leader>gb :call BuildC()<CR>
 augroup END
 
 " Functions
@@ -398,7 +401,7 @@ augroup toggle_relative_number
     autocmd InsertEnter * :set norelativenumber
     autocmd InsertLeave * :set relativenumber
 augroup END
-autocmd FileType javascript,sqrl,yaml,htmldjango,sql,json,html,gohtmltmpl,c setlocal sw=2 ts=2
+autocmd FileType javascript,sqrl,yaml,htmldjango,sql,json,html,gohtmltmpl,c,css setlocal sw=2 ts=2
 autocmd FileType python setlocal omnifunc=python3complete#Complete
 autocmd FileType javascript nnoremap <silent> <leader>gf :call Prettier()<CR>
 autocmd FileType qf wincmd J " quickfix window always at bottom
