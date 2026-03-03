@@ -1,12 +1,70 @@
 #!/bin/bash
 
-# Check if ./.mirrord/mirrord.json exists
-if [[ ! -f "./.mirrord/mirrord.json" ]]; then
-    echo "Error: ./.mirrord/mirrord.json not found"
-    exit 1
-fi
+_preset_steal() {
+    cat <<'EOF'
+{
+  "feature": {
+    "env": {
+      "exclude": "GOPATH;GOTOOLCHAIN;GOROOT"
+    },
+    "network": {
+      "incoming": {
+        "mode": "steal",
+        "ports": [9281],
+        "http_filter": {
+          "path_filter": "^(?!/sf/healthcheck).*$",
+          "ports": [9282]
+        }
+      },
+      "outgoing": true
+    }
+  },
+  "telemetry": false
+}
+EOF
+}
+
+_preset_egress_only() {
+    cat <<'EOF'
+{
+  "feature": {
+    "env": {
+      "exclude": "GOPATH;GOTOOLCHAIN;GOROOT"
+    },
+    "network": {
+      "incoming": "off",
+      "outgoing": true
+    }
+  },
+  "telemetry": false
+}
+EOF
+}
+
+_resolve_preset() {
+    local preset="$1"
+    case "$preset" in
+        steal) _preset_steal ;;
+        egress-only) _preset_egress_only ;;
+        *)
+            echo "Error: unknown preset '$preset'" >&2
+            exit 1
+            ;;
+    esac
+}
+
+# Check if mirrord config file exists (checked after parsing args to allow --file override)
+_check_mirrord_file() {
+    if [[ ! -f "$MIRRORD_FILE" ]]; then
+        echo "Error: $MIRRORD_FILE not found"
+        exit 1
+    fi
+}
 
 NAMESPACE=""
+MIRRORD_FILE=""
+FILE_PRESET="steal"
+EXPLICIT_FILE=false
 args=()
 
 # Parse command line arguments
@@ -19,12 +77,34 @@ do
             shift
             shift
             ;;
+        --file|-f)
+            MIRRORD_FILE="$2"
+            EXPLICIT_FILE=true
+            shift
+            shift
+            ;;
+        --file-preset)
+            FILE_PRESET="$2"
+            shift
+            shift
+            ;;
         *)
             args+=("$1")
             shift
             ;;
     esac
 done
+
+if [[ "$EXPLICIT_FILE" == true ]]; then
+    if [[ "$FILE_PRESET" != "steal" ]]; then
+        echo "Warning: --file takes precedence over --file-preset; ignoring preset '$FILE_PRESET'" >&2
+    fi
+    _check_mirrord_file
+else
+    MIRRORD_FILE=$(mktemp /tmp/mirrord-preset-XXXXXX.json)
+    trap 'rm -f "$MIRRORD_FILE"' EXIT
+    _resolve_preset "$FILE_PRESET" > "$MIRRORD_FILE"
+fi
 
 # Check if namespace is provided
 if [[ -z "$NAMESPACE" ]]; then
@@ -45,4 +125,4 @@ if [[ -z "$selected_pod" ]]; then
 fi
 
 # Run mirrord with the selected pod
-mirrord exec -f ./.mirrord/mirrord.json --target "pod/${selected_pod}" --target-namespace="${NAMESPACE}" --context="${current_context}" --no-telemetry go1.24.3 run "${args[@]}"
+mirrord exec -f "$MIRRORD_FILE" --target "pod/${selected_pod}" --target-namespace="${NAMESPACE}" --context="${current_context}" --no-telemetry go run "${args[@]}"
