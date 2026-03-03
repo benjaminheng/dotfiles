@@ -10,6 +10,10 @@ tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
 resolve-conflicts = ["resolve", "--tool", "diffconflicts"]
 log-conflicts = ["log", "-r", "conflicts()"]
 
+[revset-aliases]
+# Show bookmarks older than this date
+'bookmarks_older_than_1y' = 'bookmarks() & committer_date(before:"1 years ago")'
+
 [ui]
 diff-formatter = "delta"
 default-command = "log"
