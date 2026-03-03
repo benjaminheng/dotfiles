@@ -42,7 +42,7 @@ ansi2html_flags=( "-W" )
 if [ "$inline" = "true" ]; then
     ansi2html_flags+=("-p" "-i")
 fi
-html_output=$(~/.pyenv/versions/ansi2html/bin/ansi2html "${ansi2html_flags[@]}" < /tmp/tmuxpane2html.output)
+html_output=$(uvx ansi2html "${ansi2html_flags[@]}" < /tmp/tmuxpane2html.output)
 
 if [ "$inline" = "true" ]; then
     echo '<div class="ansi2html">'
