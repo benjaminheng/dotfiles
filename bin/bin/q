@@ -1,11 +1,18 @@
 #!/bin/bash
+# q - Quick LLM queries from the command line
+#
+# Usage:
+#   q <prompt>                Ask a question
+#   echo "data" | q [prompt]  Pipe stdin, optionally with a prompt
+#   q                         Interactive prompt
+#   q find|f                  Browse history, print response
+#   q continue|cont|c         Browse history, resume interactively
 
-if [ $# -eq 0 ]; then
-    echo "Usage: q <prompt>"
-    exit 1
-fi
+set -euo pipefail
 
-prompt="$*"
+HISTORY_DIR="$HOME/.config/q/history"
+mkdir -p "$HISTORY_DIR"
+
 system_prompt='You are being invoked from the command line for adhoc queries. Respond concisely. Return only the information asked for.
 
 ## Commands
@@ -29,4 +36,95 @@ Notes:
 If you are being asked a question or other enquiry, output your response as normal. Keep it brief. Use minimal markup, because your output is likely being rendered to a terminal and will not have pretty markup formatting.
 '
 
-claude --system-prompt "${system_prompt}" --print "${prompt}"
+write_history() {
+    local prompt="$1"
+    local response="$2"
+    local timestamp
+    timestamp=$(date +%Y-%m-%d_%H%M%S)
+    jq -n --arg p "$prompt" --arg r "$response" '{prompt: $p, response: $r}' \
+        > "$HISTORY_DIR/${timestamp}.json"
+}
+
+run_query() {
+    local prompt="$1"
+    local response
+    response=$(cd ~/dev/scratchpad/claude-adhoc && claude --system-prompt "${system_prompt}" --print "${prompt}")
+    printf '%s\n' "$response"
+    write_history "$prompt" "$response"
+}
+
+fzf_select_history() {
+    local entries=()
+    for f in "$HISTORY_DIR"/*.json; do
+        [ -f "$f" ] || continue
+        local basename
+        basename=$(basename "$f" .json)
+        local prompt
+        prompt=$(jq -r '.prompt' "$f")
+        if [ ${#prompt} -gt 120 ]; then
+            prompt="${prompt:0:120}..."
+        fi
+        entries+=("[${basename}] ${prompt}")
+    done
+
+    if [ ${#entries[@]} -eq 0 ]; then
+        echo "No history found." >&2
+        return 1
+    fi
+
+    local selection
+    selection=$(printf '%s\n' "${entries[@]}" | fzf --tac \
+        --preview "jq -r .response \"$HISTORY_DIR/\$(echo {} | sed 's/^\[\([^]]*\)\].*/\1/').json\"" \
+        --preview-window=up:50%:wrap) || true
+    if [ -z "$selection" ]; then
+        return 1
+    fi
+
+    echo "$selection" | sed 's/^\[\([^]]*\)\].*/\1/'
+}
+
+cmd_find() {
+    local timestamp
+    timestamp=$(fzf_select_history) || return 0
+    jq -r '.response' "$HISTORY_DIR/${timestamp}.json"
+}
+
+cmd_continue() {
+    local timestamp
+    timestamp=$(fzf_select_history) || return 0
+    local prompt
+    prompt=$(jq -r '.prompt' "$HISTORY_DIR/${timestamp}.json")
+    (cd ~/dev/scratchpad/claude-adhoc && claude --system-prompt "${system_prompt}" "$prompt")
+}
+
+# Main dispatch
+if [ $# -gt 0 ]; then
+    case "$1" in
+        find|f)
+            cmd_find
+            exit
+            ;;
+        continue|cont|c)
+            cmd_continue
+            exit
+            ;;
+    esac
+fi
+
+# Build prompt
+prompt=""
+
+if [ ! -t 0 ]; then
+    prompt=$(cat)
+    if [ $# -gt 0 ]; then
+        prompt="${prompt}
+
+$*"
+    fi
+elif [ $# -gt 0 ]; then
+    prompt="$*"
+else
+    read -r -p "prompt> " prompt
+fi
+
+run_query "$prompt"
