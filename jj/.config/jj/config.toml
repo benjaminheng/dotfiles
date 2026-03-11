@@ -15,7 +15,7 @@ log-conflicts = ["log", "-r", "conflicts()"]
 'bookmarks_older_than_1y' = 'bookmarks() & committer_date(before:"1 years ago")'
 
 [ui]
-diff-formatter = "delta"
+diff-formatter = ":git"
 default-command = "log"
 pager="less -FRX" # F = quit if content can be displayed on one screen, R = support ansi color codes, R = disable termcap init/deinit strings
 
@@ -35,3 +35,18 @@ merge-tool-edits-conflict-markers = true # For explanation of this config, see h
 --when.commands = ["status"]
 [--scope.ui]
 paginate = "never"
+
+# For diffs, use delta as the pager. In `ui.diff-formatter` we set the
+# formatter to `:git`, so that the diff is formatted using the git-style, then
+# the pager (delta) is applied to add colors and syntax highlighting.
+#
+# The pager isn't applied when `jj diff` is piped to another program, which
+# means that the piped output won't contain colors, as desired.
+#
+# If `ui.diff-formatter="delta"` were set, and the pager left unspecified, then
+# even when piping, delta would be used to format the diffs, and colors would
+# be emitted, which is not desired.
+[[--scope]]
+--when.commands = ["diff", "show"]
+[--scope.ui]
+pager = "delta"
