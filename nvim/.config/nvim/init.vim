@@ -120,7 +120,7 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsSnippetsDir="/Users/benheng/.config/nvim/UltiSnips/"
+let g:UltiSnipsSnippetsDir="/Users/benjaminheng/.config/nvim/UltiSnips/"
 
 " Plug 'itchyny/lightline.vim'
 function! LightlineALEErrors()
@@ -211,17 +211,17 @@ let g:ale_fixers = {
 \   'python': [],
 \   'go': ['goimports'],
 \}
-if getcwd() == "/Users/benheng/dev/shared-proto"
-    let g:ale_proto_protoc_gen_lint_options = '-I /Users/benheng/dev/shared-proto'
-elseif getcwd() == "/Users/benheng/dev/grp-proto"
-    let g:ale_proto_protoc_gen_lint_options = '-I /Users/benheng/dev/grp-proto/proto'
-elseif getcwd() == "/Users/benheng/dev/cs-proto"
-    let g:ale_proto_protoc_gen_lint_options = '-I /Users/benheng/dev/cs-proto/proto'
+if getcwd() == "/Users/benjaminheng/dev/shared-proto"
+    let g:ale_proto_protoc_gen_lint_options = '-I /Users/benjaminheng/dev/shared-proto'
+elseif getcwd() == "/Users/benjaminheng/dev/grp-proto"
+    let g:ale_proto_protoc_gen_lint_options = '-I /Users/benjaminheng/dev/grp-proto/proto'
+elseif getcwd() == "/Users/benjaminheng/dev/cs-proto"
+    let g:ale_proto_protoc_gen_lint_options = '-I /Users/benjaminheng/dev/cs-proto/proto'
 endif
 
 " Neovim-related options
-let g:python_host_prog='/usr/bin/python'
-let g:python3_host_prog='/Users/benheng/.pyenv/shims/python3'
+let g:python_host_prog='/Users/benjaminheng/dev/python-virtualenvs/uv-neovim/bin/python'
+let g:python3_host_prog='/Users/benjaminheng/dev/python-virtualenvs/uv-neovim/bin/python'
 
 " Plugin 'pangloss/vim-javascript'
 let b:javascript_fold = 0

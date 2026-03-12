@@ -1,0 +1,20 @@
+if status is-interactive
+end
+
+set --global fish_key_bindings fish_default_key_bindings
+set -gx GOPATH "$HOME/dev/go"
+set -gx GOBIN "$GOPATH/bin"
+set PATH $PATH ~/bin
+set PATH $PATH ~/dev/private-dotfiles/bin
+set PATH $GOBIN $PATH
+set PATH $PATH ~/.npm-global/bin
+set -gx VISUAL "nvim"
+set -gx EDITOR "$VISUAL"
+set -gx GIT_EDITOR "$VISUAL"
+set -gx GOPRIVATE github.com/carousell
+set -gx ANTHROPIC_API_KEY $(cat ~/.config/ben01/a)`
+
+# Set prompt
+function fish_prompt
+    echo (set_color green)(prompt_pwd)(set_color normal) (fish_vcs_prompt) '> '
+end
