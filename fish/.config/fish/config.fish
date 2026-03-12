@@ -15,6 +15,7 @@ set -gx EDITOR "$VISUAL"
 set -gx GIT_EDITOR "$VISUAL"
 set -gx GOPRIVATE github.com/carousell
 set -gx ANTHROPIC_API_KEY $(cat ~/.config/ben01/a)
+set -gx USE_GKE_GCLOUD_AUTH_PLUGIN "True"
 
 # Set prompt
 function fish_prompt

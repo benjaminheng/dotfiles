@@ -1,2 +1,3 @@
 command = /opt/homebrew/bin/fish
 theme = Dracula
+font-feature = -calt

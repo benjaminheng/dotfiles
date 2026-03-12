@@ -4,6 +4,9 @@ end
 function j
     jj $argv
 end
+function k
+    kubectl $argv
+end
 function ls
     command ls -G --color=auto $argv
 end
@@ -37,4 +40,19 @@ function current_branch
 end
 function venv-activate
     . ~/dev/python-virtualenvs/$argv[1]/bin/activate.fish
+end
+function tnew
+    tmux new-session -A -s $argv[1];
+end
+function units
+    gunits
+end
+function jqvim
+    jq | vim -c 'set ft=json' -c 'set foldmethod=syntax' -
+end
+function pkb
+    kb --config ~/.config/kb/private-kb.config.toml
+end
+function allhosts
+    cat $HOME/dev/scratchpad/allhosts | grep -Ev '^#|^$'
 end
