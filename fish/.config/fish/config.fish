@@ -8,6 +8,7 @@ set PATH $PATH ~/bin
 set PATH $PATH ~/dev/private-dotfiles/bin
 set PATH $GOBIN $PATH
 set PATH $PATH ~/.npm-global/bin
+set PATH $PATH ~/.local/bin
 set -gx VISUAL "nvim"
 set -gx EDITOR "$VISUAL"
 set -gx GIT_EDITOR "$VISUAL"
@@ -18,3 +19,6 @@ set -gx ANTHROPIC_API_KEY $(cat ~/.config/ben01/a)`
 function fish_prompt
     echo (set_color green)(prompt_pwd)(set_color normal) (fish_vcs_prompt) '> '
 end
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/private/tmp/google-cloud-sdk/path.fish.inc' ]; . '/private/tmp/google-cloud-sdk/path.fish.inc'; end
