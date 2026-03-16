@@ -28,3 +28,5 @@
     paging                        = always
     minus-style                   = syntax "#990000"
     plus-style                    = syntax "#004600"
+[core]
+	excludesFile = /Users/benjaminheng/.gitignore_global
