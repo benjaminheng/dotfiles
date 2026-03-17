@@ -9,6 +9,7 @@ email = "benjamin.heng@thecarousell.com"
 tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
 resolve-conflicts = ["resolve", "--tool", "diffconflicts"]
 log-conflicts = ["log", "-r", "conflicts()"]
+g = ["git"]
 
 [revset-aliases]
 # Show bookmarks older than this date
