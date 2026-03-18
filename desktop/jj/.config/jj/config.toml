@@ -7,6 +7,7 @@ email = "ben@hbenjamin.com"
 [aliases]
 # Pull up the nearest bookmarks to the working-copy parent. Seen in `jj b m --help`
 tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
+g = ["git"]
 
 [ui]
 diff-formatter = "delta"
