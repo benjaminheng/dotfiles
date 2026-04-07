@@ -10,6 +10,7 @@ tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
 resolve-conflicts = ["resolve", "--tool", "diffconflicts"]
 log-conflicts = ["log", "-r", "conflicts()"]
 g = ["git"]
+diff2 = ["diff", "--tool", "delta-side-by-side"]
 
 [revset-aliases]
 # Show bookmarks older than this date
@@ -22,6 +23,12 @@ pager="less -FRX" # F = quit if content can be displayed on one screen, R = supp
 
 [merge-tools]
 delta.diff-expected-exit-codes = [0, 1] # prevents a warning when displaying diffs using delta
+
+# delta command with --side-by-side set. Used for 2-pane diffs.
+[merge-tools.delta-side-by-side]
+program = "delta"
+diff-args = ["--side-by-side", "--width=$width", "$left", "$right"]
+diff-expected-exit-codes = [0, 1]
 
 [merge-tools.diffconflicts]
 program = "nvim"
