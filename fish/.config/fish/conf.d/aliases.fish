@@ -20,7 +20,7 @@ function scratchpad
     cd $HOME/dev/tmp/scratchpad
 end
 function epoch
-    date -r
+    gdate -ud @$argv[1] --rfc-3339=seconds
 end
 function jqless
     jq -C | less -R
@@ -55,4 +55,7 @@ function pkb
 end
 function allhosts
     cat $HOME/dev/scratchpad/allhosts | grep -Ev '^#|^$'
+end
+function claude-adhoc
+    cd ~/dev/scratchpad/claude-adhoc/ && claude
 end
