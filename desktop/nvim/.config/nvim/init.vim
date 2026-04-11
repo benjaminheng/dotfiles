@@ -35,6 +35,7 @@ Plug 'robertmeta/nofrils'
 Plug 'ledger/vim-ledger'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'robitx/gp.nvim', { 'branch': 'main' }
+Plug 'rafikdraoui/jj-diffconflicts', { 'branch': 'main' }
 call plug#end()
 filetype plugin indent on
 filetype indent on
