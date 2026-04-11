@@ -40,8 +40,7 @@ laptop:
 
 desktop-installed-packages:
 	pacman -Qe > desktop/do-not-stow/installed-packages
-	git add desktop/do-not-stow/installed-packages
-	git commit -m "Update desktop installed packages"
+	jj commit -m "Update desktop installed packages"
 
 laptop-installed-packages:
 	pacman -Qe > laptop/do-not-stow/installed-packages
