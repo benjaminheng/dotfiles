@@ -33,7 +33,7 @@ Plug 'nvim-neotest/nvim-nio' " Required for nvim-dap-ui
 Plug 'junegunn/goyo.vim'
 Plug 'robertmeta/nofrils'
 Plug 'ledger/vim-ledger'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter', {'branch': 'main', 'do': ':TSUpdate'}
 Plug 'robitx/gp.nvim', { 'branch': 'main' }
 Plug 'rafikdraoui/jj-diffconflicts', { 'branch': 'main' }
 call plug#end()
