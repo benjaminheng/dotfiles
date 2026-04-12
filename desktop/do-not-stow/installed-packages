@@ -90,6 +90,8 @@ oh-my-zsh-git r6969.6a7aab47d-1
 oxygen-sounds 6.6.4-1
 oxygen5 6.6.4-1
 pinta 2.1.2-2
+pipewire-alsa 1:1.6.2-1
+pipewire-pulse 1:1.6.2-1
 plasma-browser-integration 6.6.4-1
 plasma-desktop 6.6.4-1
 plasma-disks 6.6.4-1
