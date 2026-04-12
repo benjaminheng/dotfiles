@@ -57,3 +57,11 @@ vim.lsp.config("clangd", {
 vim.lsp.enable("pyright")
 vim.lsp.enable("gopls")
 vim.lsp.enable("clangd")
+
+-- Treesitter
+vim.api.nvim_create_autocmd('FileType', {
+    pattern = {
+        "go",
+    },
+    callback = function() vim.treesitter.start() end,
+})
