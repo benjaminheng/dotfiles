@@ -1,0 +1,43 @@
+#!/bin/bash
+
+# NAME                      :: TAGS                         :: COMMAND
+# ---------------------------------------------------------------------------
+# hosts                     :: some_tag                     :: cat /etc/hosts | grep -v "^#"
+
+config_base_path="$HOME/.config/snippet/"
+
+function select_cmd {
+    if [ "$#" -lt 1 ]; then
+        echo "Usage: snippet <group>"
+        exit 1
+    fi
+    group=$1
+    config_file="${config_base_path}/${group}_config"
+    if [ ! -f "$config_file" ]; then
+        echo "$config_file does not exist."
+        exit 1
+    fi
+    
+    # format for fzf
+    lines=""
+    while IFS= read -r line; do
+        name=$(echo "$line" | awk -F'::' '{print $1}' | xargs)
+        tags=$(echo "$line" | awk -F'::' '{print $2}' | xargs)
+        cmd=$(echo "$line" | awk -F'::' '{print $3}')
+        lines="$lines\n$(echo -e "$(tput setaf 2)${name}$(tput sgr0) $(tput setaf 3)(${tags})$(tput sgr0) $(tput setaf 242):: ${cmd}$(tput sgr0)")"
+    done < <(cat "$config_file" | grep -v "^#")
+    lines=$(echo $lines | sed 's/^\\n//g')
+
+    selection=$(echo -e $lines | fzf --ansi --tac)
+    selected_cmd=$(echo "$selection" | awk -F'::' '{print $2}')
+    if [ ! -z "$selected_cmd" ]; then
+        echo $selected_cmd
+        eval $selected_cmd
+    fi
+}
+
+case "$1" in
+    *)
+        select_cmd $@
+        ;;
+esac

@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -euo pipefail
+set -x
+
+# Get the latest file from https://pikchr.org/home/file/pikchr.c?ci=trunk
+curl "https://pikchr.org/home/raw/02f23c6c39e1af5d95734124b8c3c59fa3bf62bea1dab93a191ba54ab4386a45?at=pikchr.c" > /tmp/pikchr.c
+
+pushd /tmp || exit
+gcc -c pikchr.c
+gcc -DPIKCHR_SHELL -o pikchr pikchr.c -lm
+mv pikchr /usr/local/bin/pikchr
+popd || exit

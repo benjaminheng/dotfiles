@@ -1,0 +1,23 @@
+#!/bin/bash
+# a script to ssh multiple servers over multiple tmux panes
+
+multi_ssh() {
+    if [ -z "$HOSTS" ]; then
+       echo "Please provide of list of hosts separated by spaces [ENTER]: "
+       read HOSTS
+    fi
+
+    local hosts=( $HOSTS )
+
+    tmux new-window "ssh -t benh@${hosts[0]}"
+    unset hosts[0];
+    for i in "${hosts[@]}"; do
+        tmux split-window -h  "ssh -t benh@$i"
+        tmux select-layout tiled > /dev/null
+    done
+    tmux select-pane -t 1
+    tmux set-window-option synchronize-panes on > /dev/null
+}
+
+HOSTS=${HOSTS:=$*}
+multi_ssh

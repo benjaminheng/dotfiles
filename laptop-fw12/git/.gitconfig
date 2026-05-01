@@ -1,0 +1,27 @@
+[user]
+	name = "Benjamin Heng"
+	email = "ben@hbenjamin.com"
+[pager]
+	diff = delta
+[alias]
+    branchf = !git branch --sort=-committerdate | fzf
+    fix-conflicts = !git diff --name-only | uniq | xargs nvim
+    logf = !git-fzflog
+    checkoutf = !git checkout $(git branchf)
+    mergef = !git merge $(git branchf)
+    fixup = !git commit --fixup $(git log --oneline --color=always | fzf --ansi | awk '{print $1}')
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+[pull]
+	rebase = false
+[init]
+	defaultBranch = master
+[delta]
+    hunk-header-style             = line-number syntax
+    hunk-header-decoration-style  =
+    hunk-label                    = @@
+    paging                        = always
+    minus-style                   = syntax "#990000"
+    plus-style                    = syntax "#004600"
+[core]
+	editor = nvim

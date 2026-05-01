@@ -1,0 +1,61 @@
+# ctx context.Context
+snippet ctx "ctx context.Context" w
+ctx context.Context
+endsnippet
+
+snippet ifok "If ok then" b
+if ${2:v}, ok := ${1}; ok {
+	${0:${VISUAL}}
+}
+endsnippet
+
+snippet testcases "table tests struct" b
+cases := []struct {
+	$1
+}{
+	{},
+}
+
+for _, c := range cases {
+
+}
+endsnippet
+
+snippet spew "spew.Dump" b
+spew.Dump($1)
+endsnippet
+
+snippet ffjson "Parse to json and print" b
+b, _ := json.Marshal($1)
+fmt.Println(string(b))
+endsnippet
+
+# test table snippet
+snippet tt
+var tests = []struct {
+	name string
+	given string
+	expected string
+}{
+	{
+		"${1}",
+		"",
+		"",
+	},
+}
+for _, tt := range tests {
+	tt := tt
+	t.Run(tt.name, func(t *testing.T){
+		result := ${0:${VISUAL}}(tt.given)
+		if result != tt.expected {
+			t.Errorf("$0(%+v): expected %+v, got %+v", tt.given, tt.expected, result)
+		}
+
+	})
+}
+endsnippet
+
+snippet trun "t.Run()" b
+t.Run("$1", func(t *testing.T) {
+})
+endsnippet

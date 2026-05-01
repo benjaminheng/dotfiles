@@ -1,0 +1,19 @@
+[Desktop Entry]
+Type=Application
+TryExec=alacritty
+Exec=alacritty -e tmux new-session -A -s default
+Icon=Alacritty
+Terminal=false
+Categories=System;TerminalEmulator;
+
+Name=Terminal
+GenericName=Terminal
+Comment=Alias to Alacritty. Launches tmux on start.
+StartupWMClass=Alacritty
+Actions=New;
+
+X-Desktop-File-Install-Version=0.26
+
+[Desktop Action New]
+Name=Terminal (tmux)
+Exec=alacritty -e tmux new-session -A -s default

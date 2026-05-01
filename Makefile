@@ -19,6 +19,16 @@ desktop:
 		-R jj \
 		2> >(grep -v 'BUG in find_stowed_path? Absolute/relative mismatch' 1>&2)
 
+.PHONY: laptop-fw12
+laptop-fw12:
+	stow -d laptop-fw12/ -t /home/ben \
+		-R nvim \
+		-R stow \
+		-R tmux \
+		-R fish \
+		-R rofi \
+		2> >(grep -v 'BUG in find_stowed_path? Absolute/relative mismatch' 1>&2)
+
 .PHONY: laptop
 laptop:
 	stow -d laptop/ -t /home/ben \

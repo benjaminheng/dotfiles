@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+    selected=$(docker ps --format '{{ .Names }}' | fzf)
+    if [ -n "$selected" ]; then
+        echo "$selected"
+        docker exec -it "$selected" bash
+    fi
+else
+    docker exec -it "$1" bash
+fi

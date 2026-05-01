@@ -1,0 +1,2 @@
+\set HISTFILE ~/.config/psql/history/.psql_history_ :HOST _ :DBNAME
+\set PROMPT1 '%[%033[37m%][%M] %n@%/%R%#%x %[%033[0m%]%'

@@ -1,0 +1,129 @@
+snippet clog "Console log" b
+console.log($1);
+endsnippet
+
+snippet bp "Breakpoint" b
+debugger;
+endsnippet
+
+snippet if "if" b
+if ($1) {
+  $2
+}
+endsnippet
+
+snippet constructor "constructor" b
+constructor(props) {
+  super(props);
+  $1
+}
+endsnippet
+
+snippet bind "bind function in constructor" !b
+this.$1 = this.$1.bind(this);
+endsnippet
+
+snippet component "react component" !b
+import PropTypes from "prop-types";
+import React, { Component } from "react";
+
+class $1 extends Component {
+  render() {
+    return (
+      <div></div>
+    );
+  }
+}
+
+$1.propTypes = {
+};
+
+export default $1;
+endsnippet
+
+snippet container "react container" b
+import PropTypes from "prop-types";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+
+class $1 extends Component {
+  render() {
+    return (
+      <div></div>
+    );
+  }
+}
+
+$1.propTypes = {
+};
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+  };
+};
+
+export default connect(mapStateToProps)($1);
+endsnippet
+
+snippet statelesscomponent "React stateless component" b
+import PropTypes from "prop-types";
+import React from "react";
+
+const $1 = ({}) => {
+  return (
+    <div></div>
+  );
+};
+
+$1.propTypes = {
+};
+
+export default $1;
+endsnippet
+
+snippet mapDispatchToProps "bindActionCreators" b
+const mapDispatchToProps = (dispatch) => {
+  return {
+    actions: bindActionCreators({
+    }, dispatch),
+  };
+};
+endsnippet
+
+snippet childrenprop "children prop types" b
+children: PropTypes.oneOfType([
+  PropTypes.arrayOf(PropTypes.element),
+  PropTypes.element,
+]),
+endsnippet
+
+snippet render "render function" b
+render() {
+  return (
+    <div></div>
+  );
+}
+endsnippet
+
+snippet rendera "render arrow function" b
+render$1 = () => {
+  return (
+    <div></div>
+  );
+};
+endsnippet
+
+snippet func "arrow function" b
+$1 = ($2) => {
+  $3
+};
+endsnippet
+
+snippet ff "Console log variable" b
+console.log("$1 =", $1);
+endsnippet
+
+snippet ffo "Console log variable" b
+console.log("$1 = ...");
+console.log($1);
+endsnippet

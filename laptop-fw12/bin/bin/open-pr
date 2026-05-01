@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Hacky, hardcoded organizations.
+
+remote=$(git remote -v | grep "(fetch)" | awk '{print $2}')
+repo=$(basename `git rev-parse --show-toplevel`)
+branch=$(git rev-parse --abbrev-ref HEAD)
+
+url=""
+if [[ "$remote" =~ "github.com:benjaminheng" ]]; then
+    url="https://github.com/benjaminheng/${repo}/compare/${branch}?expand=1"
+fi
+
+if [[ ! -z "$url" ]]; then
+    echo "$url"
+    open "$url"
+fi
