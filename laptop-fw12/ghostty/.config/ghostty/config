@@ -1,0 +1,3 @@
+command = /usr/bin/fish
+font-feature = -calt
+confirm-close-surface = false

@@ -11,7 +11,7 @@ Plug 'majutsushi/tagbar'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'cohama/lexima.vim'
 Plug 'pangloss/vim-javascript'
-" Plug 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips'
 Plug 'hynek/vim-python-pep8-indent'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
@@ -200,8 +200,8 @@ hi ALEError cterm=underline ctermbg=none
 hi ALEWarning cterm=underline ctermbg=none
 
 " Neovim-related options
-let g:python_host_prog='/home/ben/dev/python-virtualenvs/uv-neovim/bin/python'
-let g:python3_host_prog='/home/ben/dev/python-virtualenvs/uv-neovim/bin/python'
+let g:python_host_prog='/home/ben/dev/python-virtualenvs/neovim/bin/python'
+let g:python3_host_prog='/home/ben/dev/python-virtualenvs/neovim/bin/python'
 
 " Plugin 'pangloss/vim-javascript'
 let b:javascript_fold = 0

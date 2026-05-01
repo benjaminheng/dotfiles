@@ -27,6 +27,15 @@ laptop-fw12:
 		-R tmux \
 		-R fish \
 		-R rofi \
+		-R git \
+		-R jj \
+		-R ghostty \
+		-R desktop-entries \
+		-R mpv \
+		-R feh \
+		-R bin \
+		-R cmus \
+		-R yt-dlp \
 		2> >(grep -v 'BUG in find_stowed_path? Absolute/relative mismatch' 1>&2)
 
 .PHONY: laptop
@@ -46,6 +55,8 @@ laptop:
 		-R yt-dlp \
 		-R fish \
 		-R feh \
+		-R delve \
+		-R yt-dlp \
 		2> >(grep -v 'BUG in find_stowed_path? Absolute/relative mismatch' 1>&2)
 
 desktop-installed-packages:
