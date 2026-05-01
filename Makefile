@@ -38,8 +38,8 @@ laptop-fw12:
 		-R yt-dlp \
 		2> >(grep -v 'BUG in find_stowed_path? Absolute/relative mismatch' 1>&2)
 
-.PHONY: laptop
-laptop:
+.PHONY: laptop-pocket3
+laptop-pocket3:
 	stow -d laptop/ -t /home/ben \
 		-R nvim \
 		-R stow \
@@ -63,7 +63,13 @@ desktop-installed-packages:
 	pacman -Qe > desktop/do-not-stow/installed-packages
 	jj commit -m "Update desktop installed packages"
 
-laptop-installed-packages:
+laptop-pocket3-installed-packages:
 	pacman -Qe > laptop/do-not-stow/installed-packages
 	git add laptop/do-not-stow/installed-packages
 	git commit -m "Update laptop installed packages"
+
+laptop-fw2-installed-packages:
+	jj git fetch
+	jj new master
+	pacman -Qe > laptop-fw2/do-not-stow/installed-packages
+	jj commit -m "Update laptop installed packages"
