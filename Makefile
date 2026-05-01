@@ -71,5 +71,5 @@ laptop-pocket3-installed-packages:
 laptop-fw2-installed-packages:
 	jj git fetch
 	jj new master
-	pacman -Qe > laptop-fw2/do-not-stow/installed-packages
+	pacman -Qe > laptop-fw12/do-not-stow/installed-packages
 	jj commit -m "Update laptop installed packages"
