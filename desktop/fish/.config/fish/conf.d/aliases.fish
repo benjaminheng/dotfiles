@@ -56,3 +56,6 @@ end
 function venv-activate
     . ~/dev/python-virtualenvs/$argv[1]/bin/activate.fish
 end
+function claude-adhoc
+    cd /home/ben/dev/scratchpad/claude-adhoc && claude
+end

@@ -18,6 +18,7 @@ set -gx GIT_EDITOR "$VISUAL"
 set -gx GOPRIVATE github.com/benjaminheng
 set -x LEDGER_FILE "/home/ben/syncthing/hledger/finances.journal"
 set -gx ANTHROPIC_API_KEY $(cat ~/.config/ben01/a)`
+set -gx CLAUDE_CODE_DISABLE_ALTERNATE_SCREEN 1
 
 # Set prompt
 function fish_prompt
