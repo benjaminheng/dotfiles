@@ -1,2 +1,5 @@
 # Prefer 1080p or lower resolutions
 -f bestvideo[height<=?1080]+bestaudio/best
+
+# Include subtitles
+--write-sub --write-auto-sub --sub-lang "en.*"

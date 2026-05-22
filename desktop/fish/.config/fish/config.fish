@@ -17,8 +17,20 @@ set -gx EDITOR "$VISUAL"
 set -gx GIT_EDITOR "$VISUAL"
 set -gx GOPRIVATE github.com/benjaminheng
 set -x LEDGER_FILE "/home/ben/syncthing/hledger/finances.journal"
-set -gx ANTHROPIC_API_KEY $(cat ~/.config/ben01/a)`
+
+# AI related vars
 set -gx CLAUDE_CODE_DISABLE_ALTERNATE_SCREEN 1
+# set -gx ANTHROPIC_BASE_URL "https://api.deepseek.com/anthropic"
+# set -gx ANTHROPIC_AUTH_TOKEN "$(cat ~/.config/ben01/deepseek.key)"
+# # set -gx ANTHROPIC_MODEL "deepseek-v4-pro[1m]"
+# set -gx ANTHROPIC_DEFAULT_OPUS_MODEL "deepseek-v4-pro[1m]"
+# set -gx ANTHROPIC_DEFAULT_SONNET_MODEL "deepseek-v4-flash[1m]"
+# set -gx ANTHROPIC_DEFAULT_HAIKU_MODEL "deepseek-v4-flash[1m]"
+# set -gx CLAUDE_CODE_SUBAGENT_MODEL "deepseek-v4-flash[1m]"
+# set -gx CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC "1" # for deepseek
+# set -gx CLAUDE_CODE_EFFORT_LEVEL "max" # for deepseek
+# set -gx ANTHROPIC_API_KEY "" # Set to empty string if using non-anthropic model
+set -gx ANTHROPIC_API_KEY $(cat ~/.config/ben01/a)`
 
 # Set prompt
 function fish_prompt
