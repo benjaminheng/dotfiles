@@ -59,6 +59,18 @@ vim.lsp.enable("gopls")
 vim.lsp.enable("clangd")
 
 -- Treesitter
+-- Note: use `:checkhealth nvim-treesitter` to see what's installed
+-- Note: Install using `:TSInstall <language>`
+require('nvim-treesitter').install({
+  'go',
+  'html',
+  'json',
+  'lua',
+  'markdown',
+  'python',
+  'templ',
+  'yaml',
+})
 vim.api.nvim_create_autocmd('FileType', {
     pattern = {
         "go",
