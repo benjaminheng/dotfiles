@@ -59,3 +59,8 @@ end
 function claude-adhoc
     cd ~/dev/scratchpad/claude-adhoc/ && claude
 end
+function jj-workspace-switch
+    set -l selection (jj workspace list -T 'self.name() ++ "\t" ++ self.root() ++ "\n"' | fzf --delimiter \t --with-nth 1)
+    or return
+    cd (string split --max 1 \t -- $selection)[2]
+end

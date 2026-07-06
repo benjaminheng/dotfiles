@@ -10,6 +10,7 @@ tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
 resolve-conflicts = ["resolve", "--tool", "diffconflicts"]
 log-conflicts = ["log", "-r", "conflicts()"]
 g = ["git"]
+w = ["workspace"]
 diff2 = ["diff", "--tool", "delta-side-by-side"]
 
 [revset-aliases]

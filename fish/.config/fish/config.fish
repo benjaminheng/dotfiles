@@ -16,6 +16,11 @@ set -gx GIT_EDITOR "$VISUAL"
 set -gx GOPRIVATE github.com/carousell
 set -gx ANTHROPIC_API_KEY $(cat ~/.config/ben01/a)
 set -gx USE_GKE_GCLOUD_AUTH_PLUGIN "True"
+set -gx CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY "1"
+set -gx CLAUDE_CODE_DISABLE_ALTERNATE_SCREEN "1"
+
+# env vars for fnm (node manager)
+fnm env --use-on-cd --shell fish | source
 
 # Set prompt
 function fish_prompt
@@ -24,3 +29,4 @@ end
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/benjaminheng/.local/share/gcloud/google-cloud-sdk/path.fish.inc' ]; . '/Users/benjaminheng/.local/share/gcloud/google-cloud-sdk/path.fish.inc'; end
+
