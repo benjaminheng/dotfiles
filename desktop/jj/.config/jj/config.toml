@@ -8,7 +8,10 @@ email = "ben@hbenjamin.com"
 # Pull up the nearest bookmarks to the working-copy parent. Seen in `jj b m --help`
 tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
 resolve-conflicts = ["resolve", "--tool", "diffconflicts"]
+log-conflicts = ["log", "-r", "conflicts()"]
 g = ["git"]
+w = ["workspace"]
+diff2 = ["diff", "--tool", "delta-side-by-side"]
 
 [ui]
 diff-formatter = "delta"
@@ -16,6 +19,12 @@ default-command = "log"
 
 [merge-tools]
 delta.diff-expected-exit-codes = [0, 1] # prevents a warning when displaying diffs using delta
+
+# delta command with --side-by-side set. Used for 2-pane diffs.
+[merge-tools.delta-side-by-side]
+program = "delta"
+diff-args = ["--side-by-side", "--width=$width", "$left", "$right"]
+diff-expected-exit-codes = [0, 1]
 
 [merge-tools.diffconflicts]
 program = "nvim"
