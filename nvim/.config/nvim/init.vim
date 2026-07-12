@@ -425,6 +425,7 @@ autocmd FileType python setlocal omnifunc=python3complete#Complete
 autocmd FileType javascript nnoremap <silent> <leader>gf :call Prettier()<CR>
 autocmd FileType qf wincmd J " quickfix window always at bottom
 autocmd filetype crontab setlocal nobackup nowritebackup
+autocmd BufRead,BufNewFile *.mdx set filetype=astro
 " autocmd BufRead,BufNewFile *.scss set filetype=css
 
 " Syntax highlighting overrides
