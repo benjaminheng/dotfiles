@@ -33,7 +33,11 @@ _preset_egress_only() {
     },
     "network": {
       "incoming": "off",
-      "outgoing": true
+      "outgoing": {
+        "filter": {
+          "local": ["localhost", "127.0.0.1/32"]
+        }
+      }
     }
   },
   "telemetry": false
@@ -61,6 +65,8 @@ _check_mirrord_file() {
     fi
 }
 
+# Context is hardcoded to feature env
+K8S_CONTEXT="gke_carousell-staging_asia-east1-c_staging-feature-k127"
 NAMESPACE=""
 MIRRORD_FILE=""
 FILE_PRESET="steal"
@@ -112,11 +118,8 @@ if [[ -z "$NAMESPACE" ]]; then
     exit 1
 fi
 
-# Get current context
-current_context=$(kubectl config current-context)
-
 # Use fzf to select the target pod
-selected_pod=$(kubectl --namespace "${NAMESPACE}" get pods | grep -v ^NAME | fzf --header="$current_context" | awk '{print $1}')
+selected_pod=$(kubectl --namespace "${NAMESPACE}" get pods | grep -v ^NAME | fzf --header="$K8S_CONTEXT" | awk '{print $1}')
 
 # Check if a pod was selected
 if [[ -z "$selected_pod" ]]; then
@@ -125,4 +128,4 @@ if [[ -z "$selected_pod" ]]; then
 fi
 
 # Run mirrord with the selected pod
-mirrord exec -f "$MIRRORD_FILE" --target "pod/${selected_pod}" --target-namespace="${NAMESPACE}" --context="${current_context}" --no-telemetry go run "${args[@]}"
+mirrord exec -f "$MIRRORD_FILE" --target "pod/${selected_pod}" --target-namespace="${NAMESPACE}" --context="${K8S_CONTEXT}" --no-telemetry go run "${args[@]}"
