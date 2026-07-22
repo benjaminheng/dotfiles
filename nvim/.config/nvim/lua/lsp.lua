@@ -48,7 +48,7 @@ local on_attach_generic = function(client, bufnr)
 end
 
 -- LSP setup
-vim.lsp.config("pyright", {
+vim.lsp.config("basedpyright", {
     on_attach = on_attach_generic,
     flags = {
       debounce_text_changes = 150,
@@ -60,7 +60,7 @@ vim.lsp.config("gopls", {
       debounce_text_changes = 150,
     }
 })
-vim.lsp.enable("pyright")
+vim.lsp.enable("basedpyright")
 vim.lsp.enable("gopls")
 
 require('nvim-treesitter.configs').setup {
