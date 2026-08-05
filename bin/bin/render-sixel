@@ -6,9 +6,9 @@ usage() {
     cat << EOF
 Usage: render-sixel [OPTIONS] [FILE]
 
-Render images as sixels.
+Render images using the kitty graphics protocol.
 
-By default, reads image from stdin and outputs sixel to stdout.
+By default, reads image from stdin and outputs to stdout.
 When running in tmux, automatically resizes to fit the pane.
 
 OPTIONS:
@@ -27,7 +27,7 @@ EXAMPLES:
     render-sixel -w --full image.png
 
 REQUIREMENTS:
-    - convert (ImageMagick): Image conversion
+    - timg: Image rendering
     - entr: File watching utility (for -w mode)
     - tmux: For auto-resize detection (optional)
 
@@ -75,13 +75,13 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-# Check for convert command
-if ! command -v magick &> /dev/null; then
-    echo "Error: Required command not found: magick" >&2
+# Check for timg command
+if ! command -v timg &> /dev/null; then
+    echo "Error: Required command not found: timg" >&2
     exit 1
 fi
 
-# Function to get resize arguments for magick
+# Function to get resize arguments for timg
 get_resize_args() {
     if [[ "$full_mode" == true ]]; then
         # No resize in full mode
@@ -98,12 +98,8 @@ get_resize_args() {
             local pane_width pane_height
             read -r pane_width pane_height <<< "$dimensions"
 
-            # Convert cells to approximate pixels
-            local pixel_width=$((pane_width * 7))
-            local pixel_height=$((pane_height * 13))
-
-            # Use > to only shrink, never enlarge
-            echo "-resize ${pixel_width}x${pixel_height}>"
+            # timg takes the geometry in character cells
+            echo "-g ${pane_width}x${pane_height}"
             return
         fi
     fi
@@ -112,22 +108,30 @@ get_resize_args() {
     echo ""
 }
 
-# Function to render an image file to sixel
+# Function to get background arguments for timg
+#
+# SVGs are typically drawn on a transparent background, which leaves black
+# strokes and text invisible against a dark terminal.
+get_bg_args() {
+    local input_file="$1"
+    local head_bytes
+
+    # Sniff the content rather than the name, since stdin has no extension.
+    # XML is case-sensitive, so the tag is always lowercase.
+    head_bytes=$(head -c 4096 "$input_file" 2>/dev/null || true)
+    if [[ "$head_bytes" == *"<svg"* ]]; then
+        echo "-b white"
+    fi
+}
+
+# Function to render an image file using the kitty graphics protocol
 render_image() {
     local input_file="$1"
     local resize_args="$2"
-    local tmpfile="/tmp/render-sixel-$$.six"
+    local bg_args
+    bg_args=$(get_bg_args "$input_file")
 
-    # Render to temp file
-    if [[ -n "$resize_args" ]]; then
-        magick "$input_file" $resize_args "$tmpfile"
-    else
-        magick "$input_file" "$tmpfile"
-    fi
-
-    # Output and cleanup
-    cat "$tmpfile"
-    rm -f "$tmpfile"
+    timg -pk $resize_args $bg_args "$input_file"
 }
 
 resize_args=$(get_resize_args)
@@ -149,12 +153,8 @@ if [[ "$watch_mode" == true ]]; then
 
     # Watch for changes and display
     # -c: clear screen before running command
-    echo "$file" | entr -c sh -c "
-        tmpfile=\"/tmp/render-sixel-\$\$.six\"
-        magick '$file' $resize_args \"\$tmpfile\"
-        cat \"\$tmpfile\"
-        rm -f \"\$tmpfile\"
-    "
+    bg_args=$(get_bg_args "$file")
+    echo "$file" | entr -c timg -pk $resize_args $bg_args "$file"
 else
     # Default mode: stdin to stdout
     # Save stdin to temp file
