@@ -4,7 +4,7 @@ set -euo pipefail
 set -x
 
 # Get the latest file from https://pikchr.org/home/file/pikchr.c?ci=trunk
-curl "https://pikchr.org/home/raw/02f23c6c39e1af5d95734124b8c3c59fa3bf62bea1dab93a191ba54ab4386a45?at=pikchr.c" > /tmp/pikchr.c
+curl "https://pikchr.org/home/raw/157276b22395ca1423bce1532e07d56fc3597cc813bf5cd46294c32181bbe1dc?at=pikchr.c" > /tmp/pikchr.c
 
 pushd /tmp || exit
 gcc -c pikchr.c
