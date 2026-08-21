@@ -8,3 +8,9 @@ action = "workspace-update-stale"
 seq = ["w", "u"]
 scope = "revisions"
 desc = "workspace update-stale"
+
+[[bindings]]
+action = "ui.cancel"
+key = "q"
+scope = "diff"
+desc = "close diff"
