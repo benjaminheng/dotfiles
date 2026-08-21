@@ -1,0 +1,10 @@
+[[actions]]
+name = "workspace-update-stale"
+desc = "workspace update-stale"
+lua = 'jj("workspace", "update-stale")'
+
+[[bindings]]
+action = "workspace-update-stale"
+seq = ["w", "u"]
+scope = "revisions"
+desc = "workspace update-stale"
