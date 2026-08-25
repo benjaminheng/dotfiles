@@ -1,0 +1,14 @@
+#!/bin/bash
+# Forget jj workspaces selected with fzf
+
+names=$(jj workspace list --color=never | fzf --multi --header="select workspaces to forget" | cut -d: -f1)
+if [[ -z "$names" ]]; then
+    exit 0
+fi
+
+echo "Workspaces to forget:"
+echo "$names" | sed 's/^/  /'
+read -r -p "Forget these workspaces? [y/N] " answer
+if [[ "$answer" =~ ^[Yy]$ ]]; then
+    echo "$names" | xargs jj workspace forget
+fi

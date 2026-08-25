@@ -44,3 +44,6 @@ merge-tool-edits-conflict-markers = true # For explanation of this config, see h
 --when.commands = ["status"]
 [--scope.ui]
 paginate = "never"
+
+[remotes.origin]
+fetch-tags = '~(glob:"images/*/staging/*" | glob:"images/*/env-*/*")'
