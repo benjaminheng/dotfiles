@@ -15,6 +15,7 @@ set -gx EDITOR "$VISUAL"
 set -gx GIT_EDITOR "$VISUAL"
 set -gx GOPRIVATE github.com/carousell
 set -gx ANTHROPIC_API_KEY $(cat ~/.config/ben01/a)
+set -gx DEEPSEEK_API_KEY $(cat ~/.config/ben01/deepseek-api-key)
 set -gx USE_GKE_GCLOUD_AUTH_PLUGIN "True"
 set -gx CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY "1"
 set -gx CLAUDE_CODE_DISABLE_ALTERNATE_SCREEN "1"
