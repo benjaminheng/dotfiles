@@ -18,7 +18,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-repeat'
 Plug 'machakann/vim-sandwich'
-Plug 'w0rp/ale', {'commit': 'bbe5153f'}
+Plug 'w0rp/ale'
+" Plug 'w0rp/ale', {'commit': 'bbe5153f'}
 Plug 'terryma/vim-expand-region'
 "Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 Plug 'christoomey/vim-tmux-navigator'
@@ -182,7 +183,7 @@ let g:ale_sign_error = '● '
 let g:ale_sign_warning = '● '
 let g:ale_linters = {
 \   'javascript': ['eslint'],
-\   'python': ['flake8'],
+\   'python': ['pyright'],
 \   'go': ['go build', 'go vet'],
 \   'bash': ['shellcheck'],
 \   'java': [],
