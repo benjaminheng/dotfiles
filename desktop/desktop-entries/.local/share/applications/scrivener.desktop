@@ -1,0 +1,14 @@
+[Desktop Entry]
+Name=Scrivener
+Exec=flatpak run --command=bottles-cli com.usebottles.bottles run -p 'Scrivener' -b 'Scrivener2' -- %u
+Type=Application
+Terminal=false
+Categories=Application;
+Icon=/home/ben/.var/app/com.usebottles.bottles/data/bottles/bottles/Scrivener2/icons/Scrivener.png
+Comment=Launch Scrivener using Bottles.
+StartupWMClass=ProgramNameInBottles
+Actions=Configure;
+
+[Desktop Action Configure]
+Name=Configure in Bottles
+Exec=flatpak run com.usebottles.bottles -b 'Scrivener2'
