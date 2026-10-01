@@ -46,4 +46,4 @@ merge-tool-edits-conflict-markers = true # For explanation of this config, see h
 paginate = "never"
 
 [remotes.origin]
-fetch-tags = '~(glob:"images/*/staging/*" | glob:"images/*/env-*/*")'
+fetch-tags = '~glob:"images/*"'
