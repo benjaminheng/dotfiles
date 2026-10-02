@@ -17,6 +17,7 @@ desktop:
 		-R fish \
 		-R feh \
 		-R jj \
+		-R jjui \
 		2> >(grep -v 'BUG in find_stowed_path? Absolute/relative mismatch' 1>&2)
 
 .PHONY: laptop-fw12
