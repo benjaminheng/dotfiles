@@ -8,6 +8,25 @@ revisions.refresh()
 seq = ["w", "u"]
 scope = "revisions"
 
+[[actions]]
+name = "workspace-forget"
+desc = "workspace forget"
+lua = '''
+local name = jj("log", "--no-graph", "-r", context.commit_id(), "-T", "self.working_copies().map(|w| stringify(w.name())).join(' ')")
+if name == "" then
+  flash("No workspace at this revision")
+  return
+end
+if name == "default" then
+  flash("Refusing to forget default workspace")
+  return
+end
+jj("workspace", "forget", name)
+revisions.refresh()
+'''
+seq = ["w", "f"]
+scope = "revisions"
+
 [[bindings]]
 action = "ui.cancel"
 desc = "close diff"
