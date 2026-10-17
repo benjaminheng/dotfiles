@@ -1,6 +1,7 @@
 .PHONY: desktop
 desktop:
 	stow -d desktop/ -t /home/ben \
+		-R agent-sandbox \
 		-R nvim \
 		-R stow \
 		-R tmux \
