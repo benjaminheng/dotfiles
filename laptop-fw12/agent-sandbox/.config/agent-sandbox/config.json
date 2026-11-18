@@ -1,0 +1,10 @@
+{
+  "mounts": [
+    { "path": "~/dotfiles", "mode": "ro" },
+    { "path": "~/dev", "mode": "ro" },
+    { "path": "~/dev/go/pkg", "mode": "rw" },
+    { "path": "~/dev/projects", "mode": "rw" }
+  ],
+  "piAgentConfigDir": "~/dev/pi-agent-config",
+  "env": ["KAGI_API_KEY_FOR_PI_AGENT"]
+}

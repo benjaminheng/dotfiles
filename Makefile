@@ -24,6 +24,7 @@ desktop:
 .PHONY: laptop-fw12
 laptop-fw12:
 	stow -d laptop-fw12/ -t /home/ben \
+		-R agent-sandbox \
 		-R nvim \
 		-R stow \
 		-R tmux \
@@ -31,6 +32,7 @@ laptop-fw12:
 		-R rofi \
 		-R git \
 		-R jj \
+		-R jjui \
 		-R ghostty \
 		-R desktop-entries \
 		-R mpv \
@@ -70,7 +72,7 @@ laptop-pocket3-installed-packages:
 	git add laptop/do-not-stow/installed-packages
 	git commit -m "Update laptop installed packages"
 
-laptop-fw2-installed-packages:
+laptop-fw12-installed-packages:
 	jj git fetch
 	jj new master
 	pacman -Qe > laptop-fw12/do-not-stow/installed-packages

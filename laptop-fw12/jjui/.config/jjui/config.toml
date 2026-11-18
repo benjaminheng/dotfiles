@@ -1,0 +1,41 @@
+[[actions]]
+name = "workspace-update-stale"
+desc = "workspace update-stale"
+lua = '''
+jj("workspace", "update-stale")
+revisions.refresh()
+'''
+seq = ["w", "u"]
+scope = "revisions"
+
+[[actions]]
+name = "workspace-forget"
+desc = "workspace forget"
+lua = '''
+local name = jj("log", "--no-graph", "-r", context.commit_id(), "-T", "self.working_copies().map(|w| stringify(w.name())).join(' ')")
+if name == "" then
+  flash("No workspace at this revision")
+  return
+end
+if name == "default" then
+  flash("Refusing to forget default workspace")
+  return
+end
+jj("workspace", "forget", name)
+revisions.refresh()
+'''
+seq = ["w", "f"]
+scope = "revisions"
+
+[[bindings]]
+action = "ui.cancel"
+desc = "close diff"
+key = "q"
+scope = "diff"
+
+[[actions]]
+name = "diff2"
+desc = "jj diff2"
+lua = 'exec_shell("jj diff2 --color=always -r " .. context.change_id() .. " | less -R")'
+seq = [",", "d"]
+scope = "revisions"

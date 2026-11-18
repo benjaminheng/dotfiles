@@ -17,7 +17,13 @@ set -gx EDITOR "$VISUAL"
 set -gx GIT_EDITOR "$VISUAL"
 set -gx GOPRIVATE github.com/benjaminheng
 set -x LEDGER_FILE "/home/ben/syncthing/hledger/finances.journal"
-set -gx ANTHROPIC_API_KEY $(cat ~/.config/ben01/a)`
+
+# AI related vars
+set -gx CLAUDE_CODE_DISABLE_ALTERNATE_SCREEN 1
+set -gx CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC "1" # for deepseek
+set -gx ANTHROPIC_API_KEY $(cat ~/.config/ben01/a)
+set -gx DEEPSEEK_API_KEY_FOR_PI_AGENT $(cat ~/.config/ben01/deepseek-pi-agent.key)
+set -gx KAGI_API_KEY_FOR_PI_AGENT $(cat ~/.config/ben01/kagi-for-ben-desktop-pi-agent.key)
 
 # Set prompt
 function fish_prompt
